@@ -1,5 +1,39 @@
 extends layout
 
 block content
-  h1= title
-  p Welcome to #{title}
+  section.hero.is-primary.is-medium.has-background-info
+    // Hero head: will stick at the top
+    .hero-head
+      nav.navbar
+        .container
+          .navbar-brand
+          #navbarMenuHeroA.navbar-menu
+            .navbar-end
+              a.navbar-item.is-active
+                | Home
+              a.navbar-item
+                | About us
+
+    // Hero content: will be in the middle
+    .hero-body
+      .container.has-text-centered
+        p.title
+          | Welcome !
+        p.subtitle
+          | This is a small website to buy and sell real estate
+
+    // Hero footer: will stick at the bottom
+    .hero-foot
+      nav.tabs
+        .container
+          ul
+            li.is-active
+              a Overview
+            li
+              a Other
+
+    footer.wrapper.has-background-light
+      .content.has-text-centered.has-text-black.wrapper
+        p
+          strong Bulma
+          |  by Maxence Bourgeaux and Robin Guyomar

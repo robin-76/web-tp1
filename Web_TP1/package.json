@@ -6,6 +6,7 @@
     "start": "node ./bin/www"
   },
   "dependencies": {
+    "bulma": "^0.9.3",
     "cookie-parser": "~1.4.4",
     "debug": "~2.6.9",
     "express": "~4.16.1",
@@ -14,7 +15,6 @@
     "pug": "^3.0.2"
   },
   "main": "app.js",
-  "devDependencies": {},
   "author": "",
   "license": "ISC",
   "keywords": [],
