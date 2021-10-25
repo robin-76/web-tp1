@@ -9,7 +9,15 @@ Se mettre dans le répertoire :
 
 Installer les dépendances :
 
-    npm install    
+    npm install
+
+Installer nodemon : 
+
+    npm install --save-dev nodemon
+
+Installer mongoose : 
+
+    npm install mongoose
     
 Lancer le serveur :
 
@@ -20,3 +28,10 @@ ou
     DEBUG=web-tp1:* npm start
 
 Lien du serveur : http://localhost:3000
+
+Dans un autre terminal : 
+
+    cd Web_TP1/
+
+    mongoimport --jsonArray --db testDB --collection tests --file dblp.json
+

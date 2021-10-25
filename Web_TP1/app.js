@@ -41,4 +41,54 @@ app.use(function(err, req, res) {
   res.render('error');
 });
 
+/**
+ * Import MongoClient & connexion à la DB
+ */
+const tests = require('./dblp.json')
+const MongoClient = require('mongodb').MongoClient;
+const url = 'mongodb://localhost:27017';
+const dbName = 'testDB';
+let db
+
+MongoClient.connect(url, function(err, client) {
+  console.log("Connected successfully to server");
+  db = client.db(dbName);
+});
+
+app.use(express.json())
+
+app.get('/tests', (req,res) => {
+  res.status(200).json(tests)
+})
+
+app.get('/tests/:id', (req,res) => {
+  const id = parseInt(req.params.id)
+  const test = tests.find(test => test.id === id)
+  res.status(200).json(test)
+})
+
+app.post('/tests', (req,res) => {
+  tests.push(req.body)
+  res.status(200).json(tests)
+})
+app.put('/tests/:id', (req,res) => {
+  const id = parseInt(req.params.id)
+  let test = tests.find(test => test.id === id)
+  test.name =req.body.name
+      test.city =req.body.city
+      test.type =req.body.type
+      res.status(200).json(test)
+})
+
+app.delete('/tests/:id', (req,res) => {
+  const id = parseInt(req.params.id)
+  let test = tests.find(test => test.id === id)
+  tests.splice(tests.indexOf(test),1)
+  res.status(200).json(tests)
+})
+
+app.listen(8080, () => {
+  console.log("Serveur à l'écoute")
+})
+
 module.exports = app;
