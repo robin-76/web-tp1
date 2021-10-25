@@ -6,6 +6,10 @@ Création d'un site Web de gestion d'annonces de biens immobiliers en utilisant 
 Se mettre dans le répertoire :
 
     cd Web_TP1
+
+Installer les dépendances :
+
+    npm install    
     
 Lancer le serveur :
 
