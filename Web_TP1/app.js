@@ -57,6 +57,7 @@ app.use(function(err, req, res) {
 
 /**
  * Import MongoClient & connexion à la DB
+*/
 
 const tests = require('./dblp.json')
 const MongoClient = require('mongodb').MongoClient;
@@ -103,6 +104,6 @@ app.delete('/tests/:id', (req,res) => {
 
 app.listen(8080, () => {
   console.log("Serveur à l'écoute")
-}) */
+})
 
 module.exports = app;

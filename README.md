@@ -15,6 +15,10 @@ Installer nodemon :
 
     npm install --save-dev nodemon
 
+Installer Font awesome icons :
+
+    npm install --save @fortawesome/fontawesome-free
+
 Installer mongoose : 
 
     npm install mongoose
@@ -25,7 +29,7 @@ Lancer le serveur :
 
 ou 
 
-    DEBUG=web-tp1:* npm start
+    nodemon --exec npm start
 
 Lien du serveur : http://localhost:3000
 
