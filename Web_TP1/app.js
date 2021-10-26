@@ -9,13 +9,7 @@ const usersRouter = require('./routes/users');
 const aboutRouter = require('./routes/about');
 
 const app = express();
-app.get('/', function (req, res) {
-  res.sendFile(__dirname + '/public/index.html');
- });
-
-app.get('/about', function (req, res) {
-  res.sendFile(path.join(__dirname + '/public/about.html'));
-});
+app.use('/bulma', express.static(__dirname + '/node_modules/bulma/css/'));
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -30,6 +24,14 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/about', aboutRouter);
+
+app.get('/', function (req, res) {
+  res.sendFile(__dirname + '/views/index');
+});
+
+app.get('/about', function (req, res) {
+  res.sendFile(path.join(__dirname + '/views/about'));
+});
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

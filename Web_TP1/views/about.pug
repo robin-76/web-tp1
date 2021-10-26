@@ -1,0 +1,39 @@
+extends layout
+
+block content
+    section.hero.is-primary.is-medium.has-background-info
+        // Hero head: will stick at the top
+        .hero-head
+            nav.navbar
+                .container
+                    .navbar-brand
+                    #navbarMenuHeroA.navbar-menu
+                        .navbar-end
+                            a.navbar-item(href="/")
+                                | Accueil
+                            a.navbar-item.is-active
+                                | A propos
+
+        // Hero content: will be in the middle
+        .hero-body
+            .container.has-text-centered
+                p.title
+                    | Bienvenue !
+                p.subtitle
+                    | Ceci est un petit site web pour acheter et vendre des biens immobiliers
+
+        // Hero footer: will stick at the bottom
+        .hero-foot
+            nav.tabs
+                .container
+                    ul
+                        li.is-active
+                            a Annonces
+                        li
+                            a Autre
+
+        footer.wrapper.has-background-light
+            .content.has-text-centered.has-text-black.wrapper
+                p
+                    strong Bulma
+                    |  par Maxence Bourgeaux and Robin Guyomar
