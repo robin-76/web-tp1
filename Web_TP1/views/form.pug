@@ -1,0 +1,58 @@
+extends layout
+
+block content
+    .field
+    label.label Titre :
+    .control
+    input.input(type='text')
+
+    .field
+    label.label Type de bien :
+    .control
+    .select
+      select
+        option Choisir une option
+        option Vente
+        option Location   
+
+    .field
+    label.label Status de publication :
+    .control
+    .select
+      select
+        option Choisir une option
+        option Publiée
+        option Non publiée      
+
+    .field
+    label.label Status de bien :
+    .control
+    .select
+      select
+        option Choisir une option
+        option Disponible
+        option Loué    
+        option Vendu     
+
+    .field
+    label.label Description :
+    .control
+    textarea.textarea(placeholder='Textarea')    
+
+    label.label Prix :
+    .control
+    input.input(type='text', min='0')
+
+    .field
+    label.label Date de disponibilité :
+    input.input(type='date', name='date1', value='2021-01-01', min='2021-01-01')
+    label.label au :
+    input.input(type='date', name='date1', value='2021-01-01', min='2021-01-01')
+
+    label.label Photos : 
+    input.input(type="file" name="photos" required multiple
+    data-max-file-size="3MB" accept='image/png, image/jpeg')
+
+    .field
+    .control
+    button.button.is-link Submit

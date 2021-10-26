@@ -7,6 +7,7 @@ const logger = require('morgan');
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
 const aboutRouter = require('./routes/about');
+const formRouter = require('./routes/form');
 
 const app = express();
 app.use('/bulma', express.static(__dirname + '/node_modules/bulma/css/'));
@@ -24,6 +25,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/about', aboutRouter);
+app.use('/form', formRouter);
 
 app.get('/', function (req, res) {
   res.sendFile(__dirname + '/views/index');
@@ -31,6 +33,10 @@ app.get('/', function (req, res) {
 
 app.get('/about', function (req, res) {
   res.sendFile(path.join(__dirname + '/views/about'));
+});
+
+app.get('/form', function (req, res) {
+  res.sendFile(path.join(__dirname + '/views/form'));
 });
 
 // catch 404 and forward to error handler
@@ -51,7 +57,7 @@ app.use(function(err, req, res) {
 
 /**
  * Import MongoClient & connexion à la DB
- */
+
 const tests = require('./dblp.json')
 const MongoClient = require('mongodb').MongoClient;
 const url = 'mongodb://localhost:27017';
@@ -97,6 +103,6 @@ app.delete('/tests/:id', (req,res) => {
 
 app.listen(8080, () => {
   console.log("Serveur à l'écoute")
-})
+}) */
 
 module.exports = app;
