@@ -4,6 +4,7 @@ const Announce = require('../models/Announce');
 
 // Get back all the announces
 router.get('/', async function(req, res) {
+    console.log(req.body);
     try {
         const announces = await Announce.find();
         res.json(announces);
@@ -63,4 +64,5 @@ router.patch('/:formId', async(req, res) => {
         res.json({message: err});
     }
 });
+
 module.exports = router;
