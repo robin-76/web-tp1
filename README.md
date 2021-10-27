@@ -22,6 +22,14 @@ Installer Font awesome icons :
 Installer mongoose : 
 
     npm install mongoose
+
+Installer dotenv :
+
+    npm install dotenv
+
+Installer body parser :
+
+    npm install body-parser
     
 Lancer le serveur :
 
@@ -33,9 +41,14 @@ ou
 
 Lien du serveur : http://localhost:3000
 
-Dans un autre terminal : 
 
-    cd Web_TP1/
 
-    mongoimport --jsonArray --db testDB --collection tests --file dblp.json
+On va utiliser postman pour tester l'envoie et la réception de requêtes en localhost.
+
+De plus, on va utiliser pour l'instant un serveur mongoDB en ligne via le cloud : 
+
+https://www.mongodb.com/fr-fr/cloud
+
+Il suffit de créer un compte gratuitement et on peut ainsi tester rapidement et facilement les fonctionnalités que l'on
+est en train d'implémenter.
 
