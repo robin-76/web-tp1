@@ -65,7 +65,7 @@ app.use(function(err, req, res) {
 });
 
 // Connect to DB
-mongoose.connect(process.env.DB_CONNECTION, () =>
+mongoose.connect('mongodb://localhost:27017/LeBonLogement', () =>
     console.log('Connected to DB !')
 );
 

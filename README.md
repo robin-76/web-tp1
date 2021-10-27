@@ -40,15 +40,3 @@ ou
     nodemon --exec npm start
 
 Lien du serveur : http://localhost:3000
-
-
-
-On va utiliser postman pour tester l'envoie et la réception de requêtes en localhost.
-
-De plus, on va utiliser pour l'instant un serveur mongoDB en ligne via le cloud : 
-
-https://www.mongodb.com/fr-fr/cloud
-
-Il suffit de créer un compte gratuitement et on peut ainsi tester rapidement et facilement les fonctionnalités que l'on
-est en train d'implémenter.
-

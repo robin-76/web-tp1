@@ -42,7 +42,7 @@ router.get('/:formId', async(req, res) => {
 });
 
 // Delete a specific announce
-router.delete('/:formId', async (req, res) => {
+router.delete('/:formId', async(req, res) => {
     try {
         const removedAnnounce = await Announce.remove({_id: req.params.formId })
         res.json(removedAnnounce);
@@ -52,7 +52,7 @@ router.delete('/:formId', async (req, res) => {
 });
 
 // Update a specific announce
-router.patch('/:formId', async (req, res) => {
+router.patch('/:formId', async(req, res) => {
     try {
         const updatedAnnounce = await Announce.updateOne(
             {_id: req.params.formId},

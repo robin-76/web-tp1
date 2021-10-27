@@ -35,7 +35,7 @@ const AnnounceSchema = mongoose.Schema({
         default: Date.now,
         required: true
     },
-    photo: {
+    photos: {
         data: Buffer,
         contentType: String,
     }
