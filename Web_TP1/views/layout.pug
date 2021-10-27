@@ -4,8 +4,32 @@ script(src='https://use.fontawesome.com/releases/v5.15.4/js/all.js' data-auto-a1
 doctype html
 
 html
-  head
-    title= title
-    link(rel='stylesheet', href='/stylesheets/style.css')
-  body
-    block content
+    head
+        link(rel='stylesheet', href='/stylesheets/style.css')
+    body
+        block content
+            block heroHeader
+                section.hero
+                    .is-primary
+                        .is-small
+                            .has-background-info
+                                // Hero head: will stick at the top
+                                .hero-head
+
+                                // Hero content: will be in the middle
+                                .hero-body
+                                    .container
+                                        .has-text-centered
+                                            p.title.has-text-white
+                                                | Le Bon Logement
+
+            block heroFoot
+
+            block middle
+
+        block foot
+            footer.footer.wrapper.has-background-light
+                .content.has-text-centered.has-text-black.wrapper
+                    p
+                    strong Bulma
+                    |  par Maxence Bourgeaux and Robin Guyomar
