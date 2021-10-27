@@ -10,8 +10,6 @@ const logger = require('morgan');
 require('dotenv/config')
 app.use('/bulma', express.static(__dirname + '/node_modules/bulma/css/'));
 
-app.use(bodyParser.json());
-
 // Import routes
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
@@ -23,6 +21,8 @@ const announceRouter = require('./routes/announce');
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
 
+// Middlewares
+app.use(bodyParser.json());
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));

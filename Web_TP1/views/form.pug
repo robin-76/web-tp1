@@ -37,65 +37,66 @@ block content
                                             span A propos
 
     section.section
-        .columns.is-centered.z
-            .column.is-half
-                .notification.is-primary.has-background-link-light
-                    .field.has-addons.has-addons-centered
-                    label.label Titre :
-                    .control
-                    input.input(type='text' placeholder='Titre de l\'annonce ...')
+        form(method="POST" action='/announce')
+            .columns.is-centered.z
+                .column.is-half
+                    .notification.is-primary.has-background-link-light
+                        .field.has-addons.has-addons-centered
+                        label.label Titre :
+                        .control
+                        input.input(type='text' name='title' placeholder='Titre de l\'annonce ...')
 
-                    .field
-                    label.label Type de bien :
-                    .control
-                    .select
-                        select
-                            option Choisir une option
-                            option Vente
-                            option Location
+                        .field
+                        label.label Type de bien :
+                        .control
+                        .select
+                            select(name='type')
+                                option Choisir une option
+                                option Vente
+                                option Location
 
-                    .field
-                    label.label Status de publication :
-                    .control
-                    .select
-                        select
-                            option Choisir une option
-                            option Publiée
-                            option Non publiée
+                        .field
+                        label.label Status de publication :
+                        .control
+                        .select
+                            select(name='publicationStatus')
+                                option Choisir une option
+                                option Publiée
+                                option Non publiée
 
-                    .field
-                    label.label Status de bien :
-                    .control
-                    .select
-                        select
-                            option Choisir une option
-                            option Disponible
-                            option Loué
-                            option Vendu
+                        .field
+                        label.label Status de bien :
+                        .control
+                        .select
+                            select(name='goodStatus')
+                                option Choisir une option
+                                option Disponible
+                                option Loué
+                                option Vendu
 
-                    .field
-                    label.label Description :
-                    .control
-                    textarea.textarea(placeholder='Décrivez votre annonce en quelques lignes ...')
+                        .field
+                        label.label Description :
+                        .control
+                        textarea.textarea(name='description' placeholder='Décrivez votre annonce en quelques lignes ...')
 
-                    .field
-                    label.label Prix :
-                    .control
-                    input.input(type='number', min='0')
+                        .field
+                        label.label Prix :
+                        .control
+                        input.input(name='price' type='number', min='0')
 
-                    .field
-                    label.label Date de disponibilité :
-                    input.input(type='date', name='date1', value='2021-01-01', min='2021-01-01')
-                    label.label au :
-                    input.input(type='date', name='date2', value='2021-01-01', min='2021-01-01')
+                        .field
+                        label.label Date de disponibilité :
+                        input.input(type='date', name='firstDate', value='2021-01-01', min='2021-01-01')
+                        label.label au :
+                        input.input(type='date', name='secondDate', value='2021-01-01', min='2021-01-01')
 
-                    .field
-                    label.label Photos :
-                    input.input(type="file" name="photos" required multiple data-max-file-size="3MB" accept='image/png, image/jpeg')
+                        .field
+                            label.label Photos :
+                            input.input(type="file" name="photos" required multiple data-max-file-size="3MB" accept='image/png, image/jpeg')
 
-                    .field
-                    .control
-                    button.button.is-link Envoyer
+                        .field
+                        .control
+                        button.button.is-link(type='submit') Envoyer
 
     footer.footer.wrapper.has-background-light
         .content.has-text-centered.has-text-black.wrapper
