@@ -40,3 +40,17 @@ ou
     nodemon --exec npm start
 
 Lien du serveur : http://localhost:3000
+
+Pour vérifier la base de données :
+
+Dans un nouveau terminal,
+
+    mongo
+
+    show dbs
+
+    use LeBonLogement
+
+    show collections
+
+    db.announces.find()

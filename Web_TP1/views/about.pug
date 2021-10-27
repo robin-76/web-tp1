@@ -18,7 +18,7 @@ block heroFoot
                                     li
                                         a(href='announce').has-text-white
                                             span.icon.is-small
-                                                i.far.fa-question-circle(aria-hidden='true')
+                                                i.fas.fa-list-ul(aria-hidden='true')
                                             span Annonces
                                     li
                                         a(href='form').has-text-white
@@ -33,11 +33,14 @@ block heroFoot
 
 block middle
     section.section.has-background-white
-        h1.title.has-text-black A propos de nous
+        h1.title
+            .has-text-black
+                .has-text-centered A propos de nous
         br
-        p.has-text-black
+        p.has-text-black.has-text-centered
             | Nous sommes Robin GUYOMAR et Maxence BOURGEAUX, étudiants en Master 2 IWOCS à l'université du Havre.
         br
-        p.has-text-black
+        p.has-text-black.has-text-centered
             | Ce site web d'annonces de biens immobiliers est un projet réalisé pour la matière WEB enseignée par :
-        a(href="https://pigne.org").has-text-info  Yoann Pigné
+        a(href="https://pigne.org").has-text-info
+            .has-text-centered Yoann Pigné
