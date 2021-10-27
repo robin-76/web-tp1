@@ -16,6 +16,7 @@ const usersRouter = require('./routes/users');
 const aboutRouter = require('./routes/about');
 const formRouter = require('./routes/form');
 const announceRouter = require('./routes/announce');
+const validationRouter = require('./routes/validation');
 
 // View engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -34,6 +35,7 @@ app.use('/users', usersRouter);
 app.use('/about', aboutRouter);
 app.use('/form', formRouter);
 app.use('/announce', announceRouter);
+app.use('/validation', validationRouter);
 
 // Catch 404 and forward to error handler
 app.use(function(req, res, next) {

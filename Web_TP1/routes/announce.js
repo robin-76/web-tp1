@@ -15,6 +15,7 @@ router.get('/', async function(req, res) {
 
 // Post an announce
 router.post('/', async(req, res) => {
+    res.redirect('/validation');
     const announce = new Announce({
         title: req.body.title,
         type: req.body.type,
