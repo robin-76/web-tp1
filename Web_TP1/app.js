@@ -35,19 +35,6 @@ app.use('/about', aboutRouter);
 app.use('/form', formRouter);
 app.use('/announce', announceRouter);
 
-// Routes
-app.get('/', function (req, res) {
-  res.sendFile(__dirname + '/views/index');
-});
-
-app.get('/about', function (req, res) {
-  res.sendFile(path.join(__dirname + '/views/about'));
-});
-
-app.get('/form', function (req, res) {
-  res.sendFile(path.join(__dirname + '/views/form'));
-});
-
 // Catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));

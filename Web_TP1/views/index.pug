@@ -1,21 +1,11 @@
 extends layout
 
-block content
+block heroFoot
+    // Hero footer: will stick at the bottom
     section.hero
         .is-primary
             .is-small
                 .has-background-info
-                    // Hero head: will stick at the top
-                    .hero-head
-
-                    // Hero content: will be in the middle
-                    .hero-body
-                        .container
-                            .has-text-centered
-                                p.title.has-text-white
-                                    | Le Bon Logement
-
-                    // Hero footer: will stick at the bottom
                     .hero-foot
                         nav.breadcrumb.is-centered(aria-label='breadcrumbs')
                             .has-bullet-separator
@@ -35,9 +25,3 @@ block content
                                             span.icon.is-small
                                                 i.far.fa-question-circle(aria-hidden='true')
                                             span A propos
-
-    footer.footer.wrapper.has-background-light
-        .content.has-text-centered.has-text-black.wrapper
-            p
-                strong Bulma
-                |  par Maxence Bourgeaux and Robin Guyomar
