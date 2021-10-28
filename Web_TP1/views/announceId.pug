@@ -20,11 +20,6 @@ block heroFoot
                                             span.icon.is-small
                                                 i.fas.fa-list-ul(aria-hidden='true')
                                             span Announces
-                                    li.is-active.has-text-black
-                                        a.has-text-black
-                                            span.icon.is-small
-                                                i.fas.fa-list-ul(aria-hidden='true')
-                                            span #{announceId.title}
                                     li
                                         a(href='../form').has-text-white
                                             span.icon.is-small
@@ -38,57 +33,66 @@ block heroFoot
 
 block middle
     section.section
-            .columns.is-centered.has-text-black
-                .column.is-half
-                    .box
-                        p.title.is-2.is-spaced #{announceId.title}
+        .columns.is-centered.has-text-black
+            .column.is-half
+                .box
+                    .columns.is-gapless
+                        .column.is-one-quarter
+                            figure.image.is-128x128
+                                img(src='https://bulma.io/images/placeholders/128x128.png')
+                        .column
+                            p.title.is-2 #{announceId.title}
 
-                        p.h2.subtitle #{announceId.description}
+                            p.h2.subtitle #{announceId.description}
 
-                .column.is-one-fifth
-                    .box
-                        .icon-text
-                            span.icon.has-text-info
-                                i.fas.fa-info-circle
-                            span #{announceId.type}
+            .column.is-one-fifth
+                .box
+                    .icon-text
+                        span.icon.has-text-info
+                            i.fas.fa-info-circle
+                        span #{announceId.type}
 
-                        .icon-text
-                            if announceId.publicationStatus === 'Published'
-                                span.icon.has-text-success
-                                    i.fas.fa-check-square
-                                span #{announceId.publicationStatus}
-                            else
-                                span.icon.has-text-danger
-                                    i.fas.fa-times
-                                span #{announceId.publicationStatus}
+                    .icon-text
+                        if announceId.publicationStatus === 'Published'
+                            span.icon.has-text-success
+                                i.fas.fa-check-square
+                            span #{announceId.publicationStatus}
+                        else
+                            span.icon.has-text-danger
+                                i.fas.fa-times
+                            span #{announceId.publicationStatus}
 
-                        .icon-text
-                            if announceId.goodStatus === 'Available'
-                                span.icon.has-text-success
-                                    i.fas.fa-check-square
-                                span #{announceId.goodStatus}
-                            else if announceId.goodStatus === 'Rented'
-                                span.icon.has-text-warning
-                                    i.fas.fa-exclamation-triangle
-                                span #{announceId.goodStatus}
-                            else
-                                span.icon.has-text-danger
-                                    i.fas.fa-times
-                                span #{announceId.goodStatus}
-                .column.is-one-fifth
-                    .box
-                        .icon-text
-                            span.icon.has-text-info
-                                i.fas.fa-euro-sign
-                            span #{announceId.price}
-                        .icon-text
-                            span.icon.has-text-info
-                                i.far.fa-calendar-alt
-                            span From &nbsp;
-                            span #{announceId.firstDate.toDateString()}
-                        .icon-text
-                            span.icon.has-text-info
-                                i.far.fa-calendar-alt
-                            span To &nbsp;
-                            span #{announceId.secondDate.toDateString()}
+                    .icon-text
+                        if announceId.goodStatus === 'Available'
+                            span.icon.has-text-success
+                                i.fas.fa-check-square
+                            span #{announceId.goodStatus}
+                        else if announceId.goodStatus === 'Rented'
+                            span.icon.has-text-warning
+                                i.fas.fa-exclamation-triangle
+                            span #{announceId.goodStatus}
+                        else
+                            span.icon.has-text-danger
+                                i.fas.fa-times
+                            span #{announceId.goodStatus}
+                .box.is-shadowless
+                    button.button.is-success.is-rounded Modify
 
+            .column.is-one-fifth
+                .box
+                    .icon-text
+                        span.icon.has-text-info
+                            i.fas.fa-euro-sign
+                        span #{announceId.price}
+                    .icon-text
+                        span.icon.has-text-info
+                            i.far.fa-calendar-alt
+                        span From &nbsp;
+                        span #{announceId.firstDate.toDateString()}
+                    .icon-text
+                        span.icon.has-text-info
+                            i.far.fa-calendar-alt
+                        span To &nbsp;
+                        span #{announceId.secondDate.toDateString()}
+                .box.is-shadowless
+                    button.button.is-danger.is-rounded Delete
