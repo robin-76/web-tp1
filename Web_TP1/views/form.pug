@@ -34,81 +34,79 @@ block middle
     section.section
         -data = data || {}
 
-          if errors
-            ul
-              for error in errors
-                li= error.msg
+            if errors
+                ul
+                    for error in errors
+                        li= error.msg
 
-          form(action="form" method="POST")
-            label(for="title") Titre :
-            input(
-              type="text"
-              required="required"
-              id="title"
-              name="title"
-              value=data.title
-            )
+        form(action="form" method="POST")
+            .columns.is-centered
+                .column.is-half
+                    .notification.is-primary.has-background-link-light
+                        .field
+                        label.label(for="title") Title :
+                        .control
+                        input.input(type="text" required="required" id="title" name="title" value=data.title)
 
-            label(for="type") Object's type :
-            select(name='type' required='required' id='type' value=data.type)
-                option(value='') Choose an option
-                option(value='Sell') Sell
-                option(value='Location') Location
+                        .field
+                        label.label(for="type") Object's type :
+                        .control
+                            .select
+                                select(name='type' required='required' id='type' value=data.type)
+                                    option(value='') Choose an option
+                                    option(value='Sell') Sell
+                                    option(value='Location') Location
 
-            label(for="publicationStatus") Publication's status :
-            select(name='publicationStatus' required='required' id='publicationStatus' value=data.publicationStatus)
-                option(value='') Choose an option
-                option(value='Published') Published
-                option(value='Not published') Not published
+                        .field
+                        label.label(for="publicationStatus") Publication's status :
+                        .control
+                            .select
+                                select(name='publicationStatus' required='required' id='publicationStatus'
+                                    value=data.publicationStatus)
+                                    option(value='') Choose an option
+                                    option(value='Published') Published
+                                    option(value='Not published') Not published
 
-            label(for="goodStatus") Object's status:
-            select(name='goodStatus' required='required' id='goodStatus' value=data.goodStatus)
-                option(value='') Choose an option
-                option(value='Available') Available
-                option(value='Rented') Rented
-                option(value='Sold') Sold
+                        .field
+                        label.label(for="goodStatus") Object's status:
+                        .control
+                            .select
+                                select(name='goodStatus' required='required' id='goodStatus' value=data.goodStatus)
+                                    option(value='') Choose an option
+                                    option(value='Available') Available
+                                    option(value='Rented') Rented
+                                    option(value='Sold') Sold
 
-            label(for="description") Description :
-            textarea(name='description' required='required' id ="description" placeholder='Describe your announce in a few lines ...' value=data.description)
+                        .field
+                        label.label(for="description") Description :
+                        .control
+                        textarea.textarea(name='description' required='required' id ="description"
+                            placeholder='Describe your announce in a few lines ...' value=data.description)
 
-            label(for="price") Price :
-            input(
-              type="number"
-              required="required"
-              id="price"
-              name="price"
-              min="0"
-              value=data.price
-            )
+                        .field
+                        label.label(for="price") Price :
+                        .control
+                        input.input(type="number" required="required" id="price" name="price" min="0" value=data.price)
 
-            label(for="firstDate") Available date :
-            input(
-              type="date"
-              required="required"
-              id="firstDate"
-              name="firstDate"
-              min='2021-01-01'
-              value=data.firstDate
-            )
+                        .field
+                            .columns
+                                .column
+                                    label.label(for="firstDate") From
+                                    .control
+                                    input.input(type="date" required="required" id="firstDate" name="firstDate" min='2021-01-01'
+                                        value=data.firstDate)
+                                .column
+                                    label.label(for="secondDate") to
+                                    .control
+                                    input.input(type="date" required="required" id="secondDate" name="secondDate" min='2021-01-01'
+                                        value=data.secondDate)
 
-            label(for="secondDate") to :
-            input(
-              type="date"
-              required="required"
-              id="secondDate"
-              name="secondDate"
-              min='2021-01-01'
-              value=data.secondDate
-            )
+                        .field
+                        label.label(for="pictures") Pictures :
+                        .control
+                        input.input(type="file" id="pictures" name="pictures" multiple data-max-file-size="3MB"
+                            accept='image/png, image/jpeg' value=data.pictures)
 
-            label(for="pictures") Pictures :
-            input(
-              type="file"
-              id="pictures"
-              name="pictures"
-              multiple data-max-file-size="3MB"
-              accept='image/png, image/jpeg'
-              value=data.pictures
-            )
-
-            input(type="submit" value="Submit")
+                        .field
+                        .control
+                        button.button.is-link(type='submit' value='submit' style='display: block; margin: 0 auto;') Submit
