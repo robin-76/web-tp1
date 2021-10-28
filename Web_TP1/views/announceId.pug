@@ -38,28 +38,57 @@ block heroFoot
 
 block middle
     section.section
-        .columns.is-centered
-            .column.is-half
-                .notification.is-primary.has-background-link-light
-                    table.has-text-black
-                        tr
-                            th Title
-                            th Type of good
-                            th Publication's status
-                            th Good's status
-                            th Description
-                            th Price
-                            th Available date
-                            th to
-                            th Pictures
+            .columns.is-centered.has-text-black
+                .column.is-half
+                    .box
+                        p.title.is-2.is-spaced #{announceId.title}
 
-                            tr
-                                td #{announceId.title}
-                                td #{announceId.type}
-                                td #{announceId.publicationStatus}
-                                td #{announceId.goodStatus}
-                                td #{announceId.description}
-                                td #{announceId.price}
-                                td #{announceId.firstDate}
-                                td #{announceId.secondDate}
-                                td #{announceId.pictures}
+                        p.h2.subtitle #{announceId.description}
+
+                .column.is-one-fifth
+                    .box
+                        .icon-text
+                            span.icon.has-text-info
+                                i.fas.fa-info-circle
+                            span #{announceId.type}
+
+                        .icon-text
+                            if announceId.publicationStatus === 'Published'
+                                span.icon.has-text-success
+                                    i.fas.fa-check-square
+                                span #{announceId.publicationStatus}
+                            else
+                                span.icon.has-text-danger
+                                    i.fas.fa-times
+                                span #{announceId.publicationStatus}
+
+                        .icon-text
+                            if announceId.goodStatus === 'Available'
+                                span.icon.has-text-success
+                                    i.fas.fa-check-square
+                                span #{announceId.goodStatus}
+                            else if announceId.goodStatus === 'Rented'
+                                span.icon.has-text-warning
+                                    i.fas.fa-exclamation-triangle
+                                span #{announceId.goodStatus}
+                            else
+                                span.icon.has-text-danger
+                                    i.fas.fa-times
+                                span #{announceId.goodStatus}
+                .column.is-one-fifth
+                    .box
+                        .icon-text
+                            span.icon.has-text-info
+                                i.fas.fa-euro-sign
+                            span #{announceId.price}
+                        .icon-text
+                            span.icon.has-text-info
+                                i.far.fa-calendar-alt
+                            span From &nbsp;
+                            span #{announceId.firstDate.toDateString()}
+                        .icon-text
+                            span.icon.has-text-info
+                                i.far.fa-calendar-alt
+                            span To &nbsp;
+                            span #{announceId.secondDate.toDateString()}
+

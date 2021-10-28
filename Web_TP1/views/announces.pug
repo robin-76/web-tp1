@@ -19,12 +19,12 @@ block heroFoot
                                         a.has-text-black
                                             span.icon.is-small
                                                 i.fas.fa-list-ul(aria-hidden='true')
-                                            span Announces
+                                            span Property Ads
                                     li
                                         a(href='../form').has-text-white
                                             span.icon.is-small
                                                 i.far.fa-file-alt(aria-hidden='true')
-                                            span Add an announce
+                                            span Add a property Ad
                                     li
                                         a(href='about').has-text-white
                                             span.icon.is-small
@@ -33,32 +33,33 @@ block heroFoot
 
 block middle
     section.section
-        .columns.is-centered
-            .column.is-half
-                .notification.is-primary.has-background-link-light
-                    if announces.length
-                        table.has-text-black
-                            tr
-                                th Title
-                                th Type of good
-                                th Publication's status
-                                th Good's status
-                                th Description
-                                th Price
-                                th Available date
-                                th to
-                                th Pictures
-                            each announce in announces
-                                tr
-                                    td
-                                        a(href=`announces/${announce.id}`) #{announce.title}
-                                    td= announce.type
-                                    td= announce.publicationStatus
-                                    td= announce.goodStatus
-                                    td= announce.description
-                                    td= announce.price
-                                    td= announce.firstDate
-                                    td= announce.secondDate
-                                    td= announce.pictures
-                    else
-                        p.has-text-black No announces yet :(
+        .notification.is-primary.has-background-link-light
+            if announces.length
+                table.table.has-text-black.has-text-centered.is-hoverable.is-striped.is-fullwidth.has-background-link-light
+                    thead
+                        tr
+                            th Pictures
+                            th Title
+                            th Type
+                            th Publication's status
+                            th Good's status
+                            th Description
+                            th Price
+                            th Available date
+                            th to
+                    tbody
+                    each announce in announces
+                        tr
+                            th
+                                a(href=`announces/${announce.pictures}`) #{announce.pictures}
+                            th
+                                a(href=`announces/${announce.id}`) #{announce.title}
+                            td= announce.type
+                            td= announce.publicationStatus
+                            td= announce.goodStatus
+                            td= announce.description
+                            td= announce.price
+                            td= announce.firstDate.toDateString()
+                            td= announce.secondDate.toDateString()
+            else
+                p.has-text-black No announces yet :(
