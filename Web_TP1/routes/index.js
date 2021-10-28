@@ -5,13 +5,13 @@ const Announce = mongoose.model('Announce');
 
 /* GET home page. */
 router.get('/', function(req, res) {
-  res.render('index', { title: 'TP1' });
+  res.render('index', { title: 'Home' });
 });
 
 router.get('/announces', (req, res) => {
   Announce.find()
       .then((announces) => {
-        res.render('announces', { title: 'TP1', announces });
+        res.render('announces', { title: 'Announces', announces });
       })
       .catch(() => { res.send('Sorry! Something went wrong.'); });
 });

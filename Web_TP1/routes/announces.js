@@ -7,7 +7,7 @@ const Announce = mongoose.model('Announce');
 router.get('/:formId', async(req, res) => {
     try {
         const announceId = await Announce.findById(req.params.formId);
-        res.render('announceId', { title:'TP1', announceId });
+        res.render('announceId', { title:'Announce', announceId });
     } catch(err) {
         res.json({ message : err });
     }

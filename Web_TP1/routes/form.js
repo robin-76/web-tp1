@@ -5,7 +5,7 @@ const router = express.Router();
 const Announce = mongoose.model('Announce');
 
 router.get('/', (req, res) => {
-    res.render('form', { title: 'TP1' });
+    res.render('form', { title: 'Form' });
 });
 
 router.post('/', (req, res) => {
@@ -14,7 +14,7 @@ router.post('/', (req, res) => {
     if (errors.isEmpty()) {
         const announce = new Announce(req.body);
         announce.save()
-            .then(() => { res.render('validation', {title: 'TP1'}); })
+            .then(() => { res.render('validation', {title: 'Form'}); })
             .catch((err) => {
                 console.log(err);
                 res.send('Sorry! Something went wrong.');
