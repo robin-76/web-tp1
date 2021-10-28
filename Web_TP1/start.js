@@ -1,7 +1,7 @@
 require('dotenv').config();
 const mongoose = require('mongoose');
 
-mongoose.connect('mongodb://localhost:27017/LeBonLogement', {
+mongoose.connect(process.env.DB, {
     useNewUrlParser: true,
     useUnifiedTopology: true
 });
@@ -15,6 +15,7 @@ mongoose.connection
     });
 
 require('./models/Announce');
+require('./models/User');
 const app = require('./app');
 
 const server = app.listen(3000, () => {

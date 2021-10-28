@@ -15,13 +15,13 @@ block heroFoot
                                             span.icon.is-small
                                                 i.fas.fa-home(aria-hidden='true')
                                             span Home
-                                    li.is-active.has-text-black
-                                        a.has-text-black
+                                    li
+                                        a(href='../announces').has-text-white
                                             span.icon.is-small
                                                 i.fas.fa-list-ul(aria-hidden='true')
                                             span Announces
                                     li
-                                        a(href='../form').has-text-white
+                                        a(href='form').has-text-white
                                             span.icon.is-small
                                                 i.far.fa-file-alt(aria-hidden='true')
                                             span Add an announce
@@ -39,36 +39,8 @@ block heroFoot
                                         a(href='signup').has-text-white
                                             span.icon.is-small
                                                 i.far.fa-question-circle(aria-hidden='true')
-                                            span Sign up          
+                                            span Sign up      
 
 block middle
-    section.section
-        .columns.is-centered
-            .column.is-half
-                .notification.is-primary.has-background-link-light
-                    if announces.length
-                        table.has-text-black
-                            tr
-                                th Title
-                                th Type of good
-                                th Publication's status
-                                th Good's status
-                                th Description
-                                th Price
-                                th Available date
-                                th to
-                                th Pictures
-                            each announce in announces
-                                tr
-                                    td
-                                        a(href=`announces/${announce.id}`) #{announce.title}
-                                    td= announce.type
-                                    td= announce.publicationStatus
-                                    td= announce.goodStatus
-                                    td= announce.description
-                                    td= announce.price
-                                    td= announce.firstDate
-                                    td= announce.secondDate
-                                    td= announce.pictures
-                    else
-                        p.has-text-black No announces yet :(
+    section.section.has-background-white
+        h1.title.has-text-black.has-text-centered Your account has been created !
