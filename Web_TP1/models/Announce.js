@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 
-const AnnounceSchema = mongoose.Schema({
+const AnnounceSchema = new mongoose.Schema({
     title: {
         type: String,
         required: true
@@ -35,10 +35,10 @@ const AnnounceSchema = mongoose.Schema({
         default: Date.now,
         required: true
     },
-    photos: {
+    pictures: {
         data: Buffer,
         contentType: String,
     }
 })
 
-module.exports = mongoose.model('Announces', AnnounceSchema);
+module.exports = mongoose.model('Announce', AnnounceSchema);

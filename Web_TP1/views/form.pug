@@ -14,81 +14,101 @@ block heroFoot
                                         a(href='/').has-text-white
                                             span.icon.is-small
                                                 i.fas.fa-home(aria-hidden='true')
-                                            span Accueil
+                                            span Home
                                     li
-                                        a(href='announce').has-text-white
+                                        a(href='announces').has-text-white
                                             span.icon.is-small
                                                 i.fas.fa-list-ul(aria-hidden='true')
-                                            span Annonces
+                                            span Announces
                                     li.is-active.has-text-black
                                         a
                                             span.icon.is-small
                                                 i.far.fa-file-alt(aria-hidden='true')
-                                            span Ajouter une annonce
+                                            span Add an announce
                                     li
                                         a(href='about').has-text-white
                                             span.icon.is-small
                                                 i.far.fa-question-circle(aria-hidden='true')
-                                            span A propos
+                                            span About
 block middle
     section.section
-        form(method="POST" action='/announce')
-            .columns.is-centered
-                .column.is-half
-                    .notification.is-primary.has-background-link-light
-                        .field.has-addons.has-addons-centered
-                        label.label Titre :
-                        .control
-                        input.input(type='text' required='required' name='title' placeholder='Titre de l\'annonce ...')
+        -data = data || {}
 
-                        .field
-                        label.label Type de bien :
-                        .control
-                        .select
-                            select(name='type' required='required')
-                                option(value='') Choisir une option
-                                option(value='Vente') Vente
-                                option(value='Location') Location
+          if errors
+            ul
+              for error in errors
+                li= error.msg
 
-                        .field
-                        label.label Status de publication :
-                        .control
-                        .select
-                            select(name='publicationStatus' required='required')
-                                option(value='') Choisir une option
-                                option(value='Publiée') Publiée
-                                option(value='Non publiée') Non publiée
+          form(action="form" method="POST")
+            label(for="title") Titre :
+            input(
+              type="text"
+              required="required"
+              id="title"
+              name="title"
+              value=data.title
+            )
 
-                        .field
-                        label.label Status de bien :
-                        .control
-                        .select
-                            select(name='goodStatus' required='required')
-                                option(value='') Choisir une option
-                                option(value='Disponible') Disponible
-                                option(value='Loué') Loué
-                                option(value='Vendu') Vendu
+            label(for="type") Object's type :
+            select(name='type' required='required' id='type' value=data.type)
+                option(value='') Choose an option
+                option(value='Sell') Sell
+                option(value='Location') Location
 
-                        .field
-                        label.label Description :
-                        .control
-                        textarea.textarea(name='description' required='required' placeholder='Décrivez votre annonce en quelques lignes ...')
+            label(for="publicationStatus") Publication's status :
+            select(name='publicationStatus' required='required' id='publicationStatus' value=data.publicationStatus)
+                option(value='') Choose an option
+                option(value='Published') Published
+                option(value='Not published') Not published
 
-                        .field
-                        label.label Prix :
-                        .control
-                        input.input(name='price' required='required' type='number', min='0')
+            label(for="goodStatus") Object's status:
+            select(name='goodStatus' required='required' id='goodStatus' value=data.goodStatus)
+                option(value='') Choose an option
+                option(value='Available') Available
+                option(value='Rented') Rented
+                option(value='Sold') Sold
 
-                        .field
-                        label.label Date de disponibilité :
-                        input.input(type='date', required='required', name='firstDate', value='2021-01-01', min='2021-01-01')
-                        label.label au :
-                        input.input(type='date', required='required' name='secondDate', value='2021-01-01', min='2021-01-01')
+            label(for="description") Description :
+            textarea(name='description' required='required' id ="description" placeholder='Describe your announce in a few lines ...' value=data.description)
 
-                        .field
-                            label.label Photos :
-                            input.input(type="file" name="photos" required multiple data-max-file-size="3MB" accept='image/png, image/jpeg')
+            label(for="price") Price :
+            input(
+              type="number"
+              required="required"
+              id="price"
+              name="price"
+              min="0"
+              value=data.price
+            )
 
-                        .field
-                        .control
-                        button.button.is-link(type='submit' style='display: block; margin: 0 auto;') Envoyer
+            label(for="firstDate") Available date :
+            input(
+              type="date"
+              required="required"
+              id="firstDate"
+              name="firstDate"
+              min='2021-01-01'
+              value=data.firstDate
+            )
+
+            label(for="secondDate") to :
+            input(
+              type="date"
+              required="required"
+              id="secondDate"
+              name="secondDate"
+              min='2021-01-01'
+              value=data.secondDate
+            )
+
+            label(for="pictures") Pictures :
+            input(
+              type="file"
+              id="pictures"
+              name="pictures"
+              multiple data-max-file-size="3MB"
+              accept='image/png, image/jpeg'
+              value=data.pictures
+            )
+
+            input(type="submit" value="Submit")

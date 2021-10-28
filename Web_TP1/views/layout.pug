@@ -1,11 +1,11 @@
-link(rel="stylesheet" type="text/css" href="bulma/bulma.css")
-script(src='https://use.fontawesome.com/releases/v5.15.4/js/all.js' data-auto-a11y='true')
-
 doctype html
 
 html
     head
+        link(rel="stylesheet" type="text/css" href="bulma/bulma.css")
+        script(src='https://use.fontawesome.com/releases/v5.15.4/js/all.js' data-auto-a11y='true')
         link(rel='stylesheet', href='/stylesheets/style.css')
+        title #{title}
     body
         block content
             block heroHeader
@@ -32,4 +32,4 @@ html
                 .content.has-text-centered.has-text-black.wrapper
                     p
                     strong Bulma
-                    |  par Maxence Bourgeaux et Robin Guyomar
+                    |  by Maxence Bourgeaux et Robin Guyomar
