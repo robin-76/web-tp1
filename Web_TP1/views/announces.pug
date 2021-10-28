@@ -50,7 +50,7 @@ block middle
                                 th Pictures
                             each announce in announces
                                 tr
-                                    td= announce.title
+                                    a(href=`announces/${announce.id}`) #{announce.title}
                                     td= announce.type
                                     td= announce.publicationStatus
                                     td= announce.goodStatus
@@ -61,3 +61,5 @@ block middle
                                     td= announce.photos
                     else
                         p.has-text-black No announces yet :(
+
+                         //   a(href='/about') 

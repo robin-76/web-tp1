@@ -3,6 +3,7 @@ const path = require('path');
 const indexRouter = require('./routes/index');
 const formRouter = require('./routes/form');
 const aboutRouter = require('./routes/about');
+const announcesRouter = require('./routes/announces');
 const bodyParser = require('body-parser');
 require('dotenv').config();
 
@@ -18,5 +19,6 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', indexRouter);
 app.use('/form', formRouter);
 app.use('/about', aboutRouter);
+app.use('/announces', announcesRouter);
 
 module.exports = app;
