@@ -5,7 +5,6 @@ const formRouter = require('./routes/form');
 const aboutRouter = require('./routes/about');
 const announcesRouter = require('./routes/announces');
 const signupRouter = require('./routes/signup');
-const validsignupRouter = require('./routes/validsignup');
 const loginRouter = require('./routes/login');
 const bodyParser = require('body-parser');
 require('dotenv').config();
@@ -24,7 +23,6 @@ app.use('/form', formRouter);
 app.use('/about', aboutRouter);
 app.use('/announces', announcesRouter);
 app.use('/signup', signupRouter);
-app.use('/validsignup', validsignupRouter);
 app.use('/login', loginRouter);
 
 module.exports = app;

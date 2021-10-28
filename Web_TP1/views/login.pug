@@ -21,7 +21,7 @@ block heroFoot
                                                 i.fas.fa-list-ul(aria-hidden='true')
                                             span Announces
                                     li
-                                        a
+                                        a(href='form').has-text-white
                                             span.icon.is-small
                                                 i.far.fa-file-alt(aria-hidden='true')
                                             span Add an announce
@@ -31,15 +31,16 @@ block heroFoot
                                                 i.far.fa-question-circle(aria-hidden='true')
                                             span About
                                     li.is-active.has-text-black
-                                        a(href='login').has-text-white
+                                        a
                                             span.icon.is-small
                                                 i.far.fa-question-circle(aria-hidden='true')
-                                            span Login    
+                                            span Login
                                     li
                                         a(href='signup').has-text-white
                                             span.icon.is-small
                                                 i.far.fa-question-circle(aria-hidden='true')
-                                            span Sign up          
+                                            span Sign up     
+                                                 
 block middle
     section.section
         -data = data || {}
