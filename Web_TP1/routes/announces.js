@@ -6,8 +6,8 @@ const Announce = mongoose.model('Announce');
 // Get a specific announce
 router.get('/:formId', async(req, res) => {
     try {
-        const announce = await Announce.findById(req.params.formId);
-        res.json(announce);
+        const announceId = await Announce.findById(req.params.formId);
+        res.render('announceId', { title:'TP1', announceId });
     } catch(err) {
         res.json({ message : err });
     }
