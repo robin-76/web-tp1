@@ -29,4 +29,10 @@ Dans un nouveau terminal,
 
     show collections
 
+Voir les objets créés :
+
     db.announces.find().pretty()
+
+Voir les utilisateurs créés :
+
+    db.users.find()

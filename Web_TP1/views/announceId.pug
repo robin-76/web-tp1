@@ -31,14 +31,14 @@ block heroFoot
                                                 i.far.fa-question-circle(aria-hidden='true')
                                             span About
                                     li
-                                        a(href='login').has-text-white
+                                        a(href='../login').has-text-white
                                             span.icon.is-small
-                                                i.far.fa-question-circle(aria-hidden='true')
+                                                i.fas.fa-plug(aria-hidden='true')
                                             span Login    
                                     li
-                                        a(href='signup').has-text-white
+                                        a(href='../signup').has-text-white
                                             span.icon.is-small
-                                                i.far.fa-question-circle(aria-hidden='true')
+                                                i.fas.fa-sign-in-alt(aria-hidden='true')
                                             span Sign up          
 
 block middle
@@ -86,7 +86,7 @@ block middle
                                 i.fas.fa-times
                             span #{announceId.goodStatus}
                 .box.is-shadowless
-                    button.button.is-success.is-rounded Modify
+                    button.button.is-success.is-rounded(type='submit' value='submit' style='display: block; margin: 0 auto;') Modify
 
             .column.is-one-fifth
                 .box
@@ -105,4 +105,4 @@ block middle
                         span To &nbsp;
                         span #{announceId.secondDate.toDateString()}
                 .box.is-shadowless
-                    button.button.is-danger.is-rounded Delete
+                    button.button.is-danger.is-rounded(type='submit' value='submit' style='display: block; margin: 0 auto;') Delete
