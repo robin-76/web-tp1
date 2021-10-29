@@ -12,6 +12,10 @@ const UserSchema = new mongoose.Schema({
     password: {
         type: String,
         required: true
+    },
+    announcer: {
+        type: Boolean,
+        required: true
     }
 })
 
