@@ -56,18 +56,25 @@ block middle
                     .notification.is-primary.has-background-link-light
                         .field
                         label.label(for="name") Name :
-                        .control
-                        input.input(type="text" required="required" id="name" name="name" value=data.name)
+                        p.control.has-icons-left
+                            input.input(type="text" required="required" id="name" name="name" value=data.name placeholder='Name')
+                            span.icon.is-small.is-left
+                                i.fas.fa-user-circle
 
                         .field
                         label.label(for="email") E-mail :
-                        .control
-                        input.input(type="email" required="required" id="email" name="email" value=data.email)
+                        p.control.has-icons-left
+                            input.input(type="email" required="required" id="email" name="email" value=data.email placeholder='Email')
+                            span.icon.is-small.is-left
+                                i.fas.fa-envelope
 
                         .field
                         label.label(for="password") Password :
-                        .control
-                        input.input(type="password" required="required" id="password" name="password" value=data.password)
+                        p.control.has-icons-left
+                            input.input(type="password" required="required" id="password" name="password" value=data.password placeholder='Password')
+                            span.icon.is-small.is-left
+                                i.fas.fa-lock
+
 
                         .field
                         .control

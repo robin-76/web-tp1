@@ -45,31 +45,32 @@ block middle
     section.section
         .notification.is-primary.has-background-link-light
             if announces.length
-                table.table.has-text-black.has-text-centered.is-hoverable.is-striped.is-fullwidth.has-background-link-light
-                    thead
-                        tr
-                            th Pictures
-                            th Title
-                            th Type
-                            th Publication's status
-                            th Good's status
-                            th Description
-                            th Price
-                            th Available date
-                            th to
-                    tbody
-                    each announce in announces
-                        tr
-                            th
-                                a(href=`announces/${announce.pictures}`) #{announce.pictures}
-                            th
-                                a(href=`announces/${announce.id}`) #{announce.title}
-                            td= announce.type
-                            td= announce.publicationStatus
-                            td= announce.goodStatus
-                            td= announce.description
-                            td= announce.price
-                            td= announce.firstDate.toDateString()
-                            td= announce.secondDate.toDateString()
+                .table-container
+                    table.table.has-text-black.has-text-centered.is-hoverable.is-striped.is-fullwidth.has-background-link-light
+                        thead
+                            tr
+                                th Pictures
+                                th Title
+                                th Type
+                                th Publication's status
+                                th Good's status
+                                th Description
+                                th Price
+                                th Available date
+                                th to
+                        tbody
+                        each announce in announces
+                            tr
+                                th
+                                    a(href=`announces/${announce.pictures}`) #{announce.pictures}
+                                th
+                                    a(href=`announces/${announce.id}`) #{announce.title}
+                                td= announce.type
+                                td= announce.publicationStatus
+                                td= announce.goodStatus
+                                td= announce.description
+                                td= announce.price
+                                td= announce.firstDate.toDateString()
+                                td= announce.secondDate.toDateString()
             else
                 p.has-text-black No announces yet :(

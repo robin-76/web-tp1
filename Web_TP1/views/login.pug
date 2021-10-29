@@ -56,13 +56,18 @@ block middle
                     .notification.is-primary.has-background-link-light
                         .field
                         label.label(for="name") Name :
-                        .control
-                        input.input(type="text" required="required" id="name" name="name" value=data.name)
+                        p.control.has-icons-left
+                            input.input(type="text" required="required" id="name" name="name" value=data.name placeholder='Name')
+                            span.icon.is-small.is-left
+                                i.fas.fa-user-circle
 
                         .field
                         label.label(for="password") Password :
-                        .control
-                        input.input(type="password" required="required" id="password" name="password" value=data.password)
+                        p.control.has-icons-left
+                            input.input(type="password" required="required" id="password" name="password" value=data.password
+                                placeholder='Password')
+                            span.icon.is-small.is-left
+                                i.fas.fa-lock
 
                         .field
                         .control
