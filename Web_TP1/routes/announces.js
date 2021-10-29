@@ -16,21 +16,29 @@ router.get('/:formId', async(req, res) => {
 // Delete a specific announce
 router.post('/:formId', async(req, res) => {
     try {
-        await Announce.deleteOne({_id: req.params.formId })
-        res.redirect('/validation');
-    } catch(err) {
-        res.json({ message : err });
+        await Announce.deleteOne({_id: req.params.formId})
+        res.redirect('/announces');
+    } catch (err) {
+        res.json({message: err});
     }
 });
 
 // Update a specific announce
-router.post('/:formId', async(req, res) => {
+router.post('/:formId/modify', async(req, res) => {
     try {
-        const updatedAnnounce = await Announce.updateOne(
-            {_id: req.params.formId},
-            {$set: {title: req.body.title}}
+        await Announce.updateOne({_id: req.params.formId},{$set:
+                {
+                    title: req.body.title,
+                    description: req.body.description,
+                    publicationStatus: req.body.publicationStatus,
+                    goodStatus: req.body.goodStatus,
+                    type: req.body.type,
+                    price: req.body.price,
+                    firstDate: req.body.firstDate,
+                    secondDate: req.body.secondDate
+                }}
         );
-        res.json(updatedAnnounce);
+        res.render('modify');
     } catch (err) {
         res.json({message: err});
     }
