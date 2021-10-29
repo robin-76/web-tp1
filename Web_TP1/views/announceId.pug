@@ -86,7 +86,7 @@ block middle
                                 i.fas.fa-times
                             span #{announceId.goodStatus}
                 .box.is-shadowless
-                    form(action=`/announces/${announceId.id}` method='POST')
+                    form(action=`/announces/${announceId.id}/modify` method='POST')
                         button.button.is-success.is-rounded(type='submit' value='submit' style='display: block; margin: 0 auto;') Modify
 
             .column.is-one-fifth

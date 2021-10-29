@@ -24,13 +24,21 @@ router.post('/:formId', async(req, res) => {
 });
 
 // Update a specific announce
-router.post('/:formId', async(req, res) => {
+router.post('/:formId/modify', async(req, res) => {
     try {
-        const updatedAnnounce = await Announce.updateOne(
-            { _id: req.params.formId },
-            {$set: {title: req.body.title}}
+        await Announce.updateOne({_id: req.params.formId},{$set:
+                {
+                    title: req.body.title,
+                    description: req.body.description,
+                    publicationStatus: req.body.publicationStatus,
+                    goodStatus: req.body.goodStatus,
+                    type: req.body.type,
+                    price: req.body.price,
+                    firstDate: req.body.firstDate,
+                    secondDate: req.body.secondDate
+                }}
         );
-        // res.render('modify', updatedAnnounce);
+        res.render('modify');
     } catch (err) {
         res.json({message: err});
     }
