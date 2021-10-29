@@ -50,39 +50,39 @@ block middle
                     for error in errors
                         li= error.msg
 
-        form(action="signup" method="POST")
+        form(action='signup' method='POST')
             .columns.is-centered
                 .column.is-half
                     .notification.is-primary.has-background-link-light
                         .field
-                        label.label(for="name") Name :
+                        label.label(for='name') Name
                         p.control.has-icons-left
-                            input.input(type="text" required="required" id="name" name="name" value=data.name placeholder='Name')
+                            input.input(type='text' required='required' id='name' name='name' value=data.name placeholder='Name')
                             span.icon.is-small.is-left
                                 i.fas.fa-user-circle
 
                         .field
-                        label.label(for="email") E-mail :
+                        label.label(for='email') E-mail
                         p.control.has-icons-left
-                            input.input(type="email" required="required" id="email" name="email" value=data.email placeholder='Email')
+                            input.input(type='email' required='required' id='email' name='email' value=data.email placeholder='Example : ludovic@aol.com')
                             span.icon.is-small.is-left
                                 i.fas.fa-envelope
 
                         .field
-                        label.label(for="password") Password :
+                        label.label(for='password') Password
                         p.control.has-icons-left
-                            input.input(type="password" required="required" id="password" name="password" value=data.password placeholder='Password')
+                            input.input(type='password' required='required' id='password' name='password' value=data.password placeholder='Password')
                             span.icon.is-small.is-left
                                 i.fas.fa-lock
 
                         .field
-                        label.label Password :
+                        label.label Password
                         .control.has-text-black
                             label.radio
-                                input(type="radio" name="announcer" required="required" value="true")
+                                input(type='radio' name='announcer' required='required' value='true')
                                 |     Yes
                             label.radio
-                                input(type="radio" name="announcer" required="value" id="false")
+                                input(type='radio' name='announcer' required='value' id='false' checked='')
                                 |     No
 
                         .field
