@@ -87,7 +87,6 @@ block middle
                             span #{announceId.goodStatus}
                 .box.is-shadowless
                     form(action=`/announces/${announceId.id}` method='POST')
-                        input(type='hidden' name='item' value='form1')
                         button.button.is-success.is-rounded(type='submit' value='submit' style='display: block; margin: 0 auto;') Modify
 
             .column.is-one-fifth
@@ -108,5 +107,4 @@ block middle
                         span #{announceId.secondDate.toDateString()}
                 .box.is-shadowless
                     form(action=`/announces/${announceId.id}` method='POST')
-                        input(type='hidden' name='item' value='form2')
                         button.button.is-danger.is-rounded(type='submit' value='submit' style='display: block; margin: 0 auto;') Delete
