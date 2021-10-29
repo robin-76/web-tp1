@@ -71,7 +71,7 @@ block middle
                         .field
                         label.label(for='password') Password
                         p.control.has-icons-left
-                            input.input(type='password' required='required' id='password' name='password' value=data.password placeholder='Password')
+                            input.input(type='password' required='required' id='password' name='password' minlength='8' maxlength='100' value=data.hashedPassword placeholder='Password')
                             span.icon.is-small.is-left
                                 i.fas.fa-lock
 
