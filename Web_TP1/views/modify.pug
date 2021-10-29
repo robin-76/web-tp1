@@ -16,47 +16,48 @@ block heroFoot
                                                 i.fas.fa-home(aria-hidden='true')
                                             span Home
                                     li
-                                        a(href='announces').has-text-white
+                                        a(href='../announces').has-text-white
                                             span.icon.is-small
                                                 i.fas.fa-list-ul(aria-hidden='true')
                                             span Announces
-                                    li.is-active.has-text-black
-                                        a
+                                    li
+                                        a(href='../form').has-text-white
                                             span.icon.is-small
-                                                i.fas.fa-home(aria-hidden='true')
+                                                i.far.fa-file-alt(aria-hidden='true')
                                             span Add an announce
                                     li
-                                        a(href='about').has-text-white
+                                        a(href='../about').has-text-white
                                             span.icon.is-small
                                                 i.far.fa-question-circle(aria-hidden='true')
                                             span About
-                                        li
-                                        a(href='login').has-text-white
+                                    li
+                                        a(href='../login').has-text-white
                                             span.icon.is-small
                                                 i.fas.fa-plug(aria-hidden='true')
-                                            span Login    
+                                            span Login
                                     li
-                                        a(href='signup').has-text-white
+                                        a(href='../signup').has-text-white
                                             span.icon.is-small
                                                 i.fas.fa-sign-in-alt(aria-hidden='true')
-                                            span Sign up      
+                                            span Sign up
+
 block middle
     section.section
         -data = data || {}
 
-            if errors
-                ul
-                    for error in errors
-                        li= error.msg
+        if errors
+            ul
+                for error in errors
+                    li= error.msg
 
-        form(action='form' method='POST')
+        form(action=`announceId` method='POST')
             .columns.is-centered
                 .column.is-half
                     .notification.is-primary.has-background-link-light
                         .field
                         label.label(for='title') Title
                         .control
-                        input.input(type='text' required='required' id='title' name='title' placeholder='Title of your ad ...' value=data.title)
+                        input.input(type='text' required='required' id='title' name='title' placeholder=`${announceId.title}` value=data.title)
 
                         .field
                         label.label(for='type') Object's type

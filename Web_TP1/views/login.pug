@@ -45,10 +45,10 @@ block middle
     section.section
         -data = data || {}
 
-            if errors
-                ul
-                    for error in errors
-                        li= error.msg
+        if errors
+            ul
+                for error in errors
+                    li= error.msg
 
         form(action='login' method='POST')
             .columns.is-centered
