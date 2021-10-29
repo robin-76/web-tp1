@@ -17,7 +17,7 @@ router.get('/:formId', async(req, res) => {
 router.post('/:formId', async(req, res) => {
     try {
         await Announce.deleteOne({_id: req.params.formId})
-        res.redirect('/validation');
+        res.redirect('/announces');
     } catch (err) {
         res.json({message: err});
     }
