@@ -14,7 +14,7 @@ router.get('/', (req, res) => {
     if (errors.isEmpty()) {
         const user = new User(req.body);
         user.save()
-            .then(() => { res.render('validsignup', {title: 'Login'}); })
+            .then(() => { res.redirect('/validation'); })
             .catch((err) => {
                 console.log(err);
                 res.send('Sorry! Something went wrong.');

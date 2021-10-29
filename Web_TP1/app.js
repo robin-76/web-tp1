@@ -4,6 +4,7 @@ const indexRouter = require('./routes/index');
 const formRouter = require('./routes/form');
 const aboutRouter = require('./routes/about');
 const announcesRouter = require('./routes/announces');
+const validationRouter = require('./routes/validation');
 const signupRouter = require('./routes/signup');
 const loginRouter = require('./routes/login');
 const bodyParser = require('body-parser');
@@ -22,6 +23,7 @@ app.use('/', indexRouter);
 app.use('/form', formRouter);
 app.use('/about', aboutRouter);
 app.use('/announces', announcesRouter);
+app.use('/validation', validationRouter);
 app.use('/signup', signupRouter);
 app.use('/login', loginRouter);
 

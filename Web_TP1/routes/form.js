@@ -14,7 +14,7 @@ router.post('/', (req, res) => {
     if (errors.isEmpty()) {
         const announce = new Announce(req.body);
         announce.save()
-            .then(() => { res.render('validation', {title: 'Announce created'}); })
+            .then(() => { res.redirect('/validation'); })
             .catch((err) => {
                 console.log(err);
                 res.send('Sorry! Something went wrong.');
