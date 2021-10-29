@@ -105,4 +105,5 @@ block middle
                         span To &nbsp;
                         span #{announceId.secondDate.toDateString()}
                 .box.is-shadowless
-                    button.button.is-danger.is-rounded(type='submit' value='submit' style='display: block; margin: 0 auto;') Delete
+                    form(action=`/announces/${announceId.id}` method='POST')
+                        button.button.is-danger.is-rounded(type='submit' value='submit' style='display: block; margin: 0 auto;') Delete

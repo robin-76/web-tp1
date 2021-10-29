@@ -14,7 +14,7 @@ router.post('/', (req, res) => {
     if (errors.isEmpty()) {
         const user = new User(req.body);
         user.save()
-            .then(() => { res.render('validsignup', {title: 'Sign up'}); })
+            .then(() => { res.render('validation', {title: 'User created'}); })
             .catch((err) => {
                 console.log(err);
                 res.send('Sorry! Something went wrong.');

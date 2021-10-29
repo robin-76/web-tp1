@@ -14,17 +14,17 @@ router.get('/:formId', async(req, res) => {
 });
 
 // Delete a specific announce
-router.delete('/:formId', async(req, res) => {
+router.post('/:formId', async(req, res) => {
     try {
-        const removedAnnounce = await Announce.remove({_id: req.params.formId })
-        res.json(removedAnnounce);
+        await Announce.deleteOne({_id: req.params.formId })
+        res.render('validation', {title: 'Announce deleted'});
     } catch(err) {
         res.json({ message : err });
     }
 });
 
 // Update a specific announce
-router.patch('/:formId', async(req, res) => {
+router.post('/:formId', async(req, res) => {
     try {
         const updatedAnnounce = await Announce.updateOne(
             {_id: req.params.formId},
@@ -35,6 +35,5 @@ router.patch('/:formId', async(req, res) => {
         res.json({message: err});
     }
 });
-
 
 module.exports = router;
