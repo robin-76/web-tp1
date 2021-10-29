@@ -57,21 +57,21 @@ block middle
                         .field
                         label.label(for='name') Name
                         p.control.has-icons-left
-                            input.input(type='text' required='required' id='name' name='name' value=data.name placeholder='Name')
+                            input.input(type='text' required='required' id='name' name='name' maxlength='50' value=data.name placeholder='Name')
                             span.icon.is-small.is-left
                                 i.fas.fa-user-circle
 
                         .field
                         label.label(for='email') E-mail
                         p.control.has-icons-left
-                            input.input(type='email' required='required' id='email' name='email' value=data.email placeholder='Example : ludovic@aol.com')
+                            input.input(type='email' required='required' id='email' name='email' maxlength='50' value=data.email placeholder='Example : ludovic@aol.com')
                             span.icon.is-small.is-left
                                 i.fas.fa-envelope
 
                         .field
                         label.label(for='password') Password
                         p.control.has-icons-left
-                            input.input(type='password' required='required' id='password' name='password' minlength='8' maxlength='100' value=data.hashedPassword placeholder='Password')
+                            input.input(type='password' required='required' id='password' name='password' minlength='6' maxlength='100' value=data.hashedPassword placeholder='Password')
                             span.icon.is-small.is-left
                                 i.fas.fa-lock
 

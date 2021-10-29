@@ -96,19 +96,19 @@ block middle
                         .field
                         label.label(for='price') Price
                         .control
-                        input.input(type='number' required='required' id='price' name='price' min='0' placeholder='Enter a price > 0 ...' value=data.price)
+                        input.input(type='number' required='required' id='price' name='price' min='0' placeholder='Enter a price ...' value=data.price)
 
                         .field
                             .columns
                                 .column
                                     label.label(for='firstDate') From
                                     .control
-                                    input.input(type='date' required='required' id='firstDate' name='firstDate' min='2021-01-01'
+                                    input.input(type='date' required='required' id='firstDate' name='firstDate' min='2021-01-01' max='21-12-31'
                                         value=data.firstDate)
                                 .column
                                     label.label(for='secondDate') to
                                     .control
-                                    input.input(type='date' required='required' id='secondDate' name='secondDate' min='2021-01-01'
+                                    input.input(type='date' required='required' id='secondDate' name='secondDate' min='2021-01-01' max='2100-12-31'
                                         value=data.secondDate)
 
                         .field
