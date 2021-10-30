@@ -9,9 +9,11 @@ router.get('/', function(req, res) {
 });
 
 router.get('/announces', (req, res) => {
+  announcer = req.session.announcer;
+  console.log(announcer);
   Announce.find()
       .then((announces) => {
-        res.render('announces', { title: 'Announces', announces });
+        res.render('announces', { title: 'Announces', announces, announcer });
       })
       .catch(() => { res.send('Sorry! Something went wrong.'); });
 });

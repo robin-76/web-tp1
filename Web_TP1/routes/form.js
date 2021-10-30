@@ -3,8 +3,9 @@ const mongoose = require('mongoose');
 const { validationResult } = require('express-validator');
 const router = express.Router();
 const Announce = mongoose.model('Announce');
+const auth = require('./auth');
 
-router.get('/', (req, res) => {
+router.get('/', auth, (req, res) => {
     res.render('form', { title: 'Form' });
 });
 

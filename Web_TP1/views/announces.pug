@@ -40,6 +40,8 @@ block heroFoot
                                             span.icon.is-small
                                                 i.fas.fa-sign-in-alt(aria-hidden='true')
                                             span Sign up
+                                    form(action='login/logout' method='post')
+                                      button.btn-link(type='submit' name='logout' value='logout') Log out        
 
 block middle
     section.section
@@ -79,66 +81,68 @@ block middle
     section.section
         if announces.length
             each announce in announces
-                .columns.is-mobile.is-centered.has-text-black
-                    .column.is-half
-                        .box
-                            a(href=`announces/${announce.id}`)
-                                .columns.is-gapless
-                                    .column.is-one-quarter
-                                        figure
-                                            img(src='https://bulma.io/images/placeholders/128x128.png')
-                                    .column
-                                        p.title.is-2 #{announce.title}
+                if announcer || announce.publicationStatus === 'Published'
+                    .columns.is-mobile.is-centered.has-text-black
+                        .column.is-half
+                            .box
+                                a(href=`announces/${announce.id}`)
+                                    .columns.is-gapless
+                                        .column.is-one-quarter
+                                            figure
+                                                img(src='https://bulma.io/images/placeholders/128x128.png')
+                                        .column
+                                            p.title.is-2 #{announce.title}
 
-                                        p.h2.subtitle #{announce.description}
+                                            p.h2.subtitle #{announce.description}
 
-                    .column.is-one-fifth
-                        .box
-                            .icon-text
-                                span.icon.has-text-info
-                                    i.fas.fa-info-circle
-                                span #{announce.type}
+                        .column.is-one-fifth
+                            .box
+                                .icon-text
+                                    span.icon.has-text-info
+                                        i.fas.fa-info-circle
+                                    span #{announce.type}
 
-                            .icon-text
-                                if announce.publicationStatus === 'Published'
-                                    span.icon.has-text-success
-                                        i.fas.fa-check-square
-                                    span #{announce.publicationStatus}
-                                else
-                                    span.icon.has-text-danger
-                                        i.fas.fa-times
-                                    span #{announce.publicationStatus}
+                                .icon-text
+                                    if announcer
+                                        if announce.publicationStatus === 'Published'
+                                            span.icon.has-text-success
+                                                i.fas.fa-check-square
+                                            span #{announce.publicationStatus}
+                                        else
+                                            span.icon.has-text-danger
+                                                i.fas.fa-times
+                                            span #{announce.publicationStatus}
 
-                            .icon-text
-                                if announce.goodStatus === 'Available'
-                                    span.icon.has-text-success
-                                        i.fas.fa-check-square
-                                    span #{announce.goodStatus}
-                                else if announce.goodStatus === 'Rented'
-                                    span.icon.has-text-warning
-                                        i.fas.fa-exclamation-triangle
-                                    span #{announce.goodStatus}
-                                else
-                                    span.icon.has-text-danger
-                                        i.fas.fa-times
-                                    span #{announce.goodStatus}
+                                .icon-text
+                                    if announce.goodStatus === 'Available'
+                                        span.icon.has-text-success
+                                            i.fas.fa-check-square
+                                        span #{announce.goodStatus}
+                                    else if announce.goodStatus === 'Rented'
+                                        span.icon.has-text-warning
+                                            i.fas.fa-exclamation-triangle
+                                        span #{announce.goodStatus}
+                                    else
+                                        span.icon.has-text-danger
+                                            i.fas.fa-times
+                                        span #{announce.goodStatus}
 
-                    .column.is-one-fifth
-                        .box
-                            .icon-text
-                                span.icon.has-text-info
-                                    i.fas.fa-euro-sign
-                                span #{announce.price}
-                            .icon-text
-                                span.icon.has-text-info
-                                    i.far.fa-calendar-alt
-                                span From &nbsp;
-                                span #{announce.firstDate.toDateString()}
-                            .icon-text
-                                span.icon.has-text-info
-                                    i.far.fa-calendar-alt
-                                span To &nbsp;
-                                span #{announce.secondDate.toDateString()}
+                        .column.is-one-fifth
+                            .box
+                                .icon-text
+                                    span.icon.has-text-info
+                                        i.fas.fa-euro-sign
+                                    span #{announce.price}
+                                .icon-text
+                                    span.icon.has-text-info
+                                        i.far.fa-calendar-alt
+                                    span From &nbsp;
+                                    span #{announce.firstDate.toDateString()}
+                                .icon-text
+                                    span.icon.has-text-info
+                                        i.far.fa-calendar-alt
+                                    span To &nbsp;
+                                    span #{announce.secondDate.toDateString()}
 
         else
             p.has-text-black No announces yet :(

@@ -40,6 +40,8 @@ block heroFoot
                                             span.icon.is-small
                                                 i.fas.fa-sign-in-alt(aria-hidden='true')
                                             span Sign up     
+                                    form(action='login/logout' method='post')
+                                      button.btn-link(type='submit' name='logout' value='logout') Log out        
                                                  
 block middle
     section.section
@@ -50,6 +52,8 @@ block middle
                 for error in errors
                     li= error.msg
 
+        if err
+            h1 #{err}
         form(action='login' method='POST')
             .columns.is-centered
                 .column.is-half

@@ -7,7 +7,9 @@ const User = mongoose.model('User');
 
 
 router.get('/', (req, res) => {
-    res.render('signup', { title: 'Sign up' });
+  const error = req.session.error;
+  delete req.session.error;
+  res.render("signup", { err: error });
 });
 
 router.post('/', async(req, res) => {
@@ -15,7 +17,10 @@ router.post('/', async(req, res) => {
 
     // Checking if the user is already in the database
     const emailExist = await User.findOne({email: req.body.email});
-    if(emailExist) return res.status(400).send('Email already exists')
+    if(emailExist) {
+      req.session.error = "User already exists";
+      return res.redirect("/signup");
+    }
 
     // Hash passwords
     const salt = await bcrypt.genSalt(10);

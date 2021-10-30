@@ -1,8 +1,8 @@
 const express = require('express');
 const router = express.Router();
-const verify = require('./verifyToken');
+const auth = require('./auth');
 
-router.get('/', verify, (req, res) => {
+router.get('/', auth, (req, res) => {
     res.json({
         posts: {
             title: 'my first post',

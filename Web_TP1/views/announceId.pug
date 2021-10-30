@@ -39,7 +39,9 @@ block heroFoot
                                         a(href='../signup').has-text-white
                                             span.icon.is-small
                                                 i.fas.fa-sign-in-alt(aria-hidden='true')
-                                            span Sign up          
+                                            span Sign up      
+                                    form(action='../login/logout' method='post')
+                                      button.btn-link(type='submit' name='logout' value='logout') Log out            
 
 block middle
     section.section
@@ -86,8 +88,9 @@ block middle
                                 i.fas.fa-times
                             span #{announceId.goodStatus}
                 .box.is-shadowless
-                    form(action=`/announces/${announceId.id}/modify` method='POST')
-                        button.button.is-success.is-rounded(type='submit' value='submit' style='display: block; margin: 0 auto;') Modify
+                    if announcer
+                        form(action=`/announces/${announceId.id}/modify` method='POST')
+                            button.button.is-success.is-rounded(type='submit' value='submit' style='display: block; margin: 0 auto;') Modify
 
             .column.is-one-fifth
                 .box
@@ -106,5 +109,6 @@ block middle
                         span To &nbsp;
                         span #{announceId.secondDate.toDateString()}
                 .box.is-shadowless
-                    form(action=`/announces/${announceId.id}` method='POST')
-                        button.button.is-danger.is-rounded(type='submit' value='submit' style='display: block; margin: 0 auto;') Delete
+                    if announcer
+                        form(action=`/announces/${announceId.id}` method='POST')
+                            button.button.is-danger.is-rounded(type='submit' value='submit' style='display: block; margin: 0 auto;') Delete

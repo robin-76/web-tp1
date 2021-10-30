@@ -29,10 +29,14 @@ Dans un nouveau terminal,
 
     show collections
 
-Voir les objets créés :
+Afficher les annonces créés :
 
     db.announces.find().pretty()
 
-Voir les utilisateurs créés :
+Afficher les utilisateurs crées :
 
-    db.users.find()
+    db.users.find().pretty()
+
+Afficher les sessions créés :
+
+    db.sessions.find().pretty()    
