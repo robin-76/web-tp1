@@ -48,6 +48,8 @@ html
                                             span Home
 
                                     if(page=="announces" || page=="announceId" || page=="modify")
+                                        li.is-active.has-text-black
+                                            a
                                                 span.icon.is-small
                                                     i.fas.fa-list-ul(aria-hidden='true')
                                                 span Announces
@@ -57,19 +59,20 @@ html
                                             span.icon.is-small
                                                 i.fas.fa-list-ul(aria-hidden='true')
                                             span Announces  
-
-                                    if(page=="form")
-                                        li.is-active.has-text-black
-                                            a
+                            
+                                    if(auth && announcer)
+                                        if(page=="form")
+                                            li.is-active.has-text-black
+                                                a
+                                                    span.icon.is-small
+                                                        i.far.fa-file-alt(aria-hidden='true')
+                                                    span Add an announce
+                                        else
+                                            li
+                                            a(href=`${url}form`).has-text-white
                                                 span.icon.is-small
                                                     i.far.fa-file-alt(aria-hidden='true')
                                                 span Add an announce
-                                    else
-                                        li
-                                        a(href=`${url}form`).has-text-white
-                                            span.icon.is-small
-                                                i.far.fa-file-alt(aria-hidden='true')
-                                            span Add an announce
 
                                     if(page=="about")
                                         li.is-active.has-text-black
@@ -113,7 +116,7 @@ html
 
                                     if(auth)
                                         li         
-                                        form(action='login/logout' method='post')
+                                        form(action=`${url}login/logout` method='post')
                                             button.btn-link(type='submit' name='logout' value='logout')
                                                 span.icon.is-small
                                                     i.fas.fa-sign-in-alt(aria-hidden='true')

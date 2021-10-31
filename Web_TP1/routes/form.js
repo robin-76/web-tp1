@@ -7,9 +7,10 @@ const auth = require('./auth');
 
 router.get('/', auth, (req, res) => {
     const auth = req.session.isAuth;
+    const announcer = req.session.announcer;
     const url = "/";
     const page = "form";
-    res.render('form', { title: 'Form', auth, url, page });
+    res.render('form', { title: 'Form', auth, announcer, url, page });
 });
 
 router.post('/', (req, res) => {

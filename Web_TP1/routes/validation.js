@@ -3,7 +3,11 @@ const router = express.Router();
 
 // Validation page route.
 router.get('/', function(req, res) {
-    res.render('validation', { title: 'Success' });
+    const auth = req.session.isAuth;
+    const announcer = req.session.announcer;
+    const url = "/";
+    const page = "validation";
+    res.render('validation', { title: 'Success', auth, announcer, url, page });
 });
 
 module.exports = router;

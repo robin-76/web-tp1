@@ -22,16 +22,6 @@ block middle
                         span #{announceId.type}
 
                     .icon-text
-                        if announceId.publicationStatus === 'Published'
-                            span.icon.has-text-success
-                                i.fas.fa-check-square
-                            span #{announceId.publicationStatus}
-                        else
-                            span.icon.has-text-danger
-                                i.fas.fa-times
-                            span #{announceId.publicationStatus}
-
-                    .icon-text
                         if announceId.goodStatus === 'Available'
                             span.icon.has-text-success
                                 i.fas.fa-check-square
@@ -44,12 +34,7 @@ block middle
                             span.icon.has-text-danger
                                 i.fas.fa-times
                             span #{announceId.goodStatus}
-                .box.is-shadowless
-                    if announcer
-                        form(action=`/announces/${announceId.id}/modify` method='POST')
-                            button.button.is-success.is-rounded(type='submit' value='submit' style='display: block; margin: 0 auto;') Modify
 
-            .column.is-one-fifth
                 .box
                     .icon-text
                         span.icon.has-text-info
@@ -65,6 +50,13 @@ block middle
                             i.far.fa-calendar-alt
                         span To &nbsp;
                         span #{announceId.secondDate.toDateString()}
+
+            .column.is-one-fifth
+                .box.is-shadowless
+                    if announcer
+                        form(action=`/announces/${announceId.id}/modify` method='POST')
+                            button.button.is-success.is-rounded(type='submit' value='submit' style='display: block; margin: 0 auto;') Modify
+
                 .box.is-shadowless
                     if announcer
                         form(action=`/announces/${announceId.id}` method='POST')
