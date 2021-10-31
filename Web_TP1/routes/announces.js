@@ -8,11 +8,21 @@ const auth = require('./auth');
 router.get('/:formId', async(req, res) => {
     try {
         const announceId = await Announce.findById(req.params.formId);
+        const auth = req.session.isAuth;
+        const url = "../";
+        const page = "announceId";
         announcer = req.session.announcer;
-        res.render('announceId', { title:'Announce', announceId, announcer });
+        res.render('announceId', { title:'Announce', announceId, announcer, auth, url, page });
     } catch(err) {
         res.json({ message : err });
     }
+});
+
+router.get('/modify', function(req, res) {
+    const auth = req.session.isAuth;
+    const url = "../../";
+    const page = "modify";
+    res.render('modify', { title: 'Modify', auth, url, page });
 });
 
 // Delete a specific announce

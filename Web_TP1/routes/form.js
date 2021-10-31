@@ -6,7 +6,10 @@ const Announce = mongoose.model('Announce');
 const auth = require('./auth');
 
 router.get('/', auth, (req, res) => {
-    res.render('form', { title: 'Form' });
+    const auth = req.session.isAuth;
+    const url = "/";
+    const page = "form";
+    res.render('form', { title: 'Form', auth, url, page });
 });
 
 router.post('/', (req, res) => {

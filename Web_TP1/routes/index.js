@@ -5,15 +5,21 @@ const Announce = mongoose.model('Announce');
 
 /* GET home page. */
 router.get('/', function(req, res) {
-  res.render('index', { title: 'Home' });
+  const auth = req.session.isAuth;
+  const name = req.session.name;
+  const url = "/";
+  const page = "index";
+  res.render('index', { title: 'Home', auth, name, url, page });
 });
 
 router.get('/announces', (req, res) => {
   announcer = req.session.announcer;
-  console.log(announcer);
+  const auth = req.session.isAuth;
+  const url = "/";
+  const page = "announces";
   Announce.find()
       .then((announces) => {
-        res.render('announces', { title: 'Announces', announces, announcer });
+        res.render('announces', { title: 'Announces', announces, announcer, auth, url, page });
       })
       .catch(() => { res.send('Sorry! Something went wrong.'); });
 });

@@ -7,7 +7,9 @@ const User = mongoose.model('User');
 router.get('/', (req, res) => {
   const error = req.session.error;
   delete req.session.error;
-  res.render("login", { err: error });
+  const url = "/";
+  const page = "login"
+  res.render("login", { err: error, url, page });
 });
 
 router.post('/', async(req, res) => {
@@ -31,6 +33,7 @@ router.post('/', async(req, res) => {
     else 
       req.session.announcer = false;  
 
+    req.session.name = user.name;  
     req.session.isAuth = true;
     res.redirect('/');
 }); 

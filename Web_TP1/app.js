@@ -9,7 +9,6 @@ const announcesRouter = require('./routes/announces');
 const validationRouter = require('./routes/validation');
 const signupRouter = require('./routes/signup');
 const loginRouter = require('./routes/login');
-const exampleRouter = require('./routes/example');
 const authRouter = require('./routes/auth');
 const bodyParser = require('body-parser');
 require('dotenv').config();
@@ -45,7 +44,6 @@ app.use('/announces', announcesRouter);
 app.use('/validation', validationRouter);
 app.use('/signup', signupRouter);
 app.use('/login', loginRouter);
-app.use('/example', exampleRouter);
 app.use('/auth', authRouter);
 
 module.exports = app;

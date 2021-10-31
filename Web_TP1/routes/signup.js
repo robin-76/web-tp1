@@ -8,8 +8,11 @@ const User = mongoose.model('User');
 
 router.get('/', (req, res) => {
   const error = req.session.error;
+  const auth = req.session.isAuth;
+  const url = "/";
+  const page = "signup";
   delete req.session.error;
-  res.render("signup", { err: error });
+  res.render("signup", { err: error, auth, url, page });
 });
 
 router.post('/', async(req, res) => {

@@ -25,9 +25,102 @@ html
                                                 | Le Bon Logement
 
             block heroFoot
+    // Hero footer: will stick at the bottom
+    section.hero
+        .is-primary
+            .is-small
+                .has-background-info
+                    .hero-foot
+                        nav.breadcrumb.is-centered(aria-label='breadcrumbs')
+                            .has-bullet-separator
+                                ul
+                                    if(page=="index")
+                                        li.is-active.has-text-black
+                                            a
+                                                span.icon.is-small
+                                                    i.fas.fa-home(aria-hidden='true')
+                                                span Home
+                                    else
+                                        li
+                                        a(href='/').has-text-white
+                                            span.icon.is-small
+                                                i.fas.fa-home(aria-hidden='true')
+                                            span Home
+
+                                    if(page=="announces" || page=="announceId" || page=="modify")
+                                                span.icon.is-small
+                                                    i.fas.fa-list-ul(aria-hidden='true')
+                                                span Announces
+                                    else
+                                        li
+                                         a(href=`${url}announces`).has-text-white
+                                            span.icon.is-small
+                                                i.fas.fa-list-ul(aria-hidden='true')
+                                            span Announces  
+
+                                    if(page=="form")
+                                        li.is-active.has-text-black
+                                            a
+                                                span.icon.is-small
+                                                    i.far.fa-file-alt(aria-hidden='true')
+                                                span Add an announce
+                                    else
+                                        li
+                                        a(href=`${url}form`).has-text-white
+                                            span.icon.is-small
+                                                i.far.fa-file-alt(aria-hidden='true')
+                                            span Add an announce
+
+                                    if(page=="about")
+                                        li.is-active.has-text-black
+                                            a
+                                                span.icon.is-small
+                                                    i.far.fa-question-circle(aria-hidden='true')
+                                                span About
+                                    else
+                                        li
+                                        a(href=`${url}about`).has-text-white
+                                            span.icon.is-small
+                                                i.far.fa-question-circle(aria-hidden='true')
+                                            span About                 
+
+                                    if(auth != true)
+                                        if(page=="login")
+                                            li.is-active.has-text-black
+                                                a
+                                                    span.icon.is-small
+                                                        i.fas.fa-plug(aria-hidden='true')
+                                                    span Login
+                                        else
+                                            li
+                                            a(href=`${url}login`).has-text-white
+                                                span.icon.is-small
+                                                    i.fas.fa-plug(aria-hidden='true')
+                                                span Login
+
+                                        if(page=="signup")
+                                            li.is-active.has-text-black
+                                                a
+                                                    span.icon.is-small
+                                                        i.fas.fa-sign-in-alt(aria-hidden='true')
+                                                    span Sign up
+                                        else
+                                            li
+                                            a(href=`${url}signup`).has-text-white
+                                                span.icon.is-small
+                                                    i.fas.fa-sign-in-alt(aria-hidden='true')
+                                                span Sign up      
+
+                                    if(auth)
+                                        li         
+                                        form(action='login/logout' method='post')
+                                            button.btn-link(type='submit' name='logout' value='logout')
+                                                span.icon.is-small
+                                                    i.fas.fa-sign-in-alt(aria-hidden='true')
+                                                span Log out  
 
             block middle
-
+         
         block foot
             footer.footer.wrapper.has-background-light
                 .content.has-text-centered.has-text-black.wrapper
