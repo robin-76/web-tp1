@@ -30,7 +30,7 @@ router.get('/:formId', async(req, res) => {
     }
 });
 
-router.get('/modify/:formId/', async(req, res) => {
+router.get('/modify/:formId/', auth, async(req, res) => {
     try {
         const announceId = await Announce.findById(req.params.formId);
         const auth = req.session.isAuth;

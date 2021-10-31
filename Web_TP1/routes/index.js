@@ -1,7 +1,5 @@
 const express = require('express');
 const router = express.Router();
-const mongoose = require('mongoose');
-const Announce = mongoose.model('Announce');
 
 /* GET home page. */
 router.get('/', function(req, res) {
