@@ -54,7 +54,7 @@ block middle
             .column.is-one-fifth
                 .box.is-shadowless
                     if announcer
-                        form(action=`/announces/${announceId.id}/modify` method='POST')
+                        form(action=`/announces/modify/${announceId.id}` method='GET')
                             button.button.is-success.is-rounded(type='submit' value='submit' style='display: block; margin: 0 auto;') Modify
 
                 .box.is-shadowless

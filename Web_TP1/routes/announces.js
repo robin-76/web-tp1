@@ -3,7 +3,19 @@ const router = express.Router();
 const mongoose = require('mongoose');
 const Announce = mongoose.model('Announce');
 const auth = require('./auth');
- 
+
+router.get('/', (req, res) => {
+    const announcer = req.session.announcer;
+    const auth = req.session.isAuth;
+    const url = "/";
+    const page = "announces";
+    Announce.find()
+        .then((announces) => {
+          res.render('announces', { title: 'Announces', announces, announcer, auth, url, page });
+        })
+        .catch(() => { res.send('Sorry! Something went wrong.'); });
+  });
+
 // Get a specific announce
 router.get('/:formId', async(req, res) => {
     try {
@@ -18,12 +30,17 @@ router.get('/:formId', async(req, res) => {
     }
 });
 
-router.get('/:formId/modify', function(req, res) {
-    const auth = req.session.isAuth;
-    const announcer = req.session.announcer;
-    const url = "../../";
-    const page = "modify";
-    res.render('modify', { title: 'Modify', auth, announcer, url, page });
+router.get('/modify/:formId/', async(req, res) => {
+    try {
+        const announceId = await Announce.findById(req.params.formId);
+        const auth = req.session.isAuth;
+        const announcer = req.session.announcer;
+        const url = "../../";
+        const page = "modify";
+    res.render('modify', { title: 'Modify', announceId, auth, announcer, url, page });
+    } catch(err) {
+        res.json({ message : err });
+    }
 });
 
 // Delete a specific announce
@@ -37,7 +54,7 @@ router.post('/:formId', auth, async(req, res) => {
 });
 
 // Update a specific announce
-router.post('/:formId/modify', auth, async(req, res) => {
+router.post('/modify/:formId/', auth, async(req, res) => {
     try {
         await Announce.updateOne({_id: req.params.formId},{$set:
                 {
@@ -51,7 +68,7 @@ router.post('/:formId/modify', auth, async(req, res) => {
                     secondDate: req.body.secondDate
                 }}
         );
-        res.render('modify');
+        res.redirect('/announces');
     } catch (err) {
         res.json({message: err});
     }

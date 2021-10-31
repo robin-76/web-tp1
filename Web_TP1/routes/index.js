@@ -13,16 +13,4 @@ router.get('/', function(req, res) {
   res.render('index', { title: 'Home', auth, announcer, name, url, page });
 });
 
-router.get('/announces', (req, res) => {
-  const announcer = req.session.announcer;
-  const auth = req.session.isAuth;
-  const url = "/";
-  const page = "announces";
-  Announce.find()
-      .then((announces) => {
-        res.render('announces', { title: 'Announces', announces, announcer, auth, url, page });
-      })
-      .catch(() => { res.send('Sorry! Something went wrong.'); });
-});
-
 module.exports = router;
