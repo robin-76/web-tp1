@@ -16,13 +16,13 @@ block middle
                         .field
                         label.label(for='title') Title
                         .control
-                        input.input(type='text' required='required' id='title' name='title' value=data.title)
+                        input.input(type='text' required='required' id='title' name='title' value=announceId.title)
 
                         .field
                         label.label(for='type') Object's type
                         .control
                             .select
-                                select(name='type' required='required' id='type' value=data.type)
+                                select(name='type' required='required' id='type' value=announceId.type)
                                     option(value='') Choose an option
                                     option(value='Sell') Sell
                                     option(value='Location') Location
@@ -41,7 +41,7 @@ block middle
                         label.label(for='goodStatus') Object's status
                         .control
                             .select
-                                select(name='goodStatus' required='required' id='goodStatus' value=data.goodStatus)
+                                select(name='goodStatus' required='required' id='goodStatus' value=announceId.goodStatus)
                                     option(value='') Choose an option
                                     option(value='Available') Available
                                     option(value='Rented') Rented
@@ -51,12 +51,12 @@ block middle
                         label.label(for='description') Description
                         .control
                         textarea.textarea(name='description' required='required' id ='description'
-                            placeholder='Describe your announce in a few lines ...' value=data.description)
+                            placeholder='Describe your announce in a few lines ...' value=announceId.description) #{announceId.description}
 
                         .field
                         label.label(for='price') Price
                         .control
-                        input.input(type='number' required='required' id='price' name='price' min='0' placeholder='Enter a price ...' value=data.price)
+                        input.input(type='number' required='required' id='price' name='price' min='0' placeholder='Enter a price ...' value=announceId.price)
 
                         .field
                             .columns
@@ -64,18 +64,18 @@ block middle
                                     label.label(for='firstDate') From
                                     .control
                                     input.input(type='date' required='required' id='firstDate' name='firstDate' min='2021-01-01' max='2100-12-31'
-                                        value=data.firstDate)
+                                        value=announceId.firstDate)
                                 .column
                                     label.label(for='secondDate') to
                                     .control
                                     input.input(type='date' required='required' id='secondDate' name='secondDate' min='2021-01-01' max='2100-12-31'
-                                        value=data.secondDate)
+                                        value=announceId.secondDate)
 
                         .field
                         label.label(for='pictures') Pictures
                         .control
                         input.input(type='file' id='pictures' name='pictures' multiple data-max-file-size='3MB'
-                            accept='image/png, image/jpeg' value=data.pictures)
+                            accept='image/png, image/jpeg' value=announceId.pictures)
 
                         .field
                         .control
