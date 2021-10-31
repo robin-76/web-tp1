@@ -19,33 +19,37 @@ block middle
                         input.input(type='text' required='required' id='title' name='title' placeholder='Title of your ad ...' value=data.title)
 
                         .field
-                        label.label(for='type') Object's type
-                        .control
-                            .select
-                                select(name='type' required='required' id='type' value=data.type)
-                                    option(value='') Choose an option
-                                    option(value='Sell') Sell
-                                    option(value='Location') Location
+                        label.label Object's type
+                        .control.has-text-black
+                            label.radio
+                                input(type='radio' name='type' required='required' value='Sell' checked='')
+                                |     Sell
+                            label.radio
+                                input(type='radio' name='type' required='required' value='Location')
+                                |     Location
 
                         .field
-                        label.label(for='publicationStatus') Publication's status
-                        .control
-                            .select
-                                select(name='publicationStatus' required='required' id='publicationStatus'
-                                    value=data.publicationStatus)
-                                    option(value='') Choose an option
-                                    option(value='Published') Published
-                                    option(value='Not published') Not published
+                        label.label Publication's status
+                        .control.has-text-black
+                            label.radio
+                                input(type='radio' name='publicationStatus' required='required' value='Published' checked='')
+                                |     Published
+                            label.radio
+                                input(type='radio' name='publicationStatus' required='required' value='Not published')
+                                |     Not Published
 
                         .field
-                        label.label(for='goodStatus') Object's status
-                        .control
-                            .select
-                                select(name='goodStatus' required='required' id='goodStatus' value=data.goodStatus)
-                                    option(value='') Choose an option
-                                    option(value='Available') Available
-                                    option(value='Rented') Rented
-                                    option(value='Sold') Sold
+                        label.label Object's status
+                        .control.has-text-black
+                            label.radio
+                                input(type='radio' name='goodStatus' required='required' value='Available' checked='')
+                                |     Available
+                            label.radio
+                                input(type='radio' name='goodStatus' required='required' value='Rented')
+                                |     Rented    
+                            label.radio
+                                input(type='radio' name='goodStatus' required='required' value='Sold')
+                                |     Sold        
 
                         .field
                         label.label(for='description') Description
@@ -54,7 +58,7 @@ block middle
                             placeholder='Describe your announce in a few lines ...' value=data.description)
 
                         .field
-                        label.label(for='price') Price
+                        label.label(for='price') Price (€)
                         .control
                         input.input(type='number' required='required' id='price' name='price' min='0' placeholder='Enter a price ...' value=data.price)
 

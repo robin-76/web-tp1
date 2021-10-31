@@ -22,6 +22,17 @@ block middle
                         span #{announceId.type}
 
                     .icon-text
+                        if announcer
+                            if announceId.publicationStatus === 'Published'
+                                span.icon.has-text-success
+                                    i.fas.fa-check-square
+                                span #{announceId.publicationStatus}
+                            else
+                                span.icon.has-text-danger
+                                    i.fas.fa-times
+                                span #{announceId.publicationStatus}    
+
+                    .icon-text
                         if announceId.goodStatus === 'Available'
                             span.icon.has-text-success
                                 i.fas.fa-check-square

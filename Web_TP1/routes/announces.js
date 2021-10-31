@@ -37,7 +37,9 @@ router.get('/modify/:formId/', auth, async(req, res) => {
         const announcer = req.session.announcer;
         const url = "../../";
         const page = "modify";
-    res.render('modify', { title: 'Modify', announceId, auth, announcer, url, page });
+        const fDate = announceId.firstDate.toISOString().split('T')[0];
+        const sDate = announceId.secondDate.toISOString().split('T')[0];
+    res.render('modify', { title: 'Modify', announceId, auth, announcer, url, page, fDate, sDate });
     } catch(err) {
         res.json({ message : err });
     }
