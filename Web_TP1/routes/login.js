@@ -11,6 +11,9 @@ router.get('/', (req, res) => {
   const announcer = req.session.announcer;
   const url = "/";
   const page = "login"
+
+  if(auth)
+    res.redirect("/");
   res.render("login", { err: error, auth, announcer, url, page });
 });
 

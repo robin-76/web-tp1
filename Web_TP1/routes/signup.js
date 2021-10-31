@@ -13,6 +13,10 @@ router.get('/', (req, res) => {
   const url = "/";
   const page = "signup";
   delete req.session.error;
+
+  if(auth)
+    res.redirect("/");
+    
   res.render("signup", { err: error, auth, announcer, url, page });
 });
 
