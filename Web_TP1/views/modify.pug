@@ -22,25 +22,25 @@ block middle
                         .field
                         label.label Object's type
                         .control.has-text-black
-                            if(announceId.type=="Sell")
+                            if(announceId.type==="Sell")
                                 label.radio
                                     input(type='radio' name='type' required='required' value='Sell' checked='')
-                                    |     Sell        
+                                    |     Sell
                                 label.radio
                                     input(type='radio' name='type' required='required' value='Location')
                                     |     Location
                             else
                                 label.radio
                                     input(type='radio' name='type' required='required' value='Sell')
-                                    |     Sell        
+                                    |     Sell
                                 label.radio
                                     input(type='radio' name='type' required='required' value='Location' checked='')
-                                    |     Location        
+                                    |     Location
 
                         .field
                         label.label Publication's status
                         .control.has-text-black
-                            if(announceId.publicationStatus=="Published")
+                            if(announceId.publicationStatus==="Published")
                                 label.radio
                                     input(type='radio' name='publicationStatus' required='required' value='Published' checked='')
                                     |     Published
@@ -53,22 +53,22 @@ block middle
                                     |     Published
                                 label.radio
                                     input(type='radio' name='publicationStatus' required='required' value='Not published' checked='')
-                                    |     Not Published        
+                                    |     Not Published
 
                         .field
                         label.label Object's status
                         .control.has-text-black
-                            if(announceId.goodStatus=="Available")
+                            if(announceId.goodStatus==="Available")
                                 label.radio
                                     input(type='radio' name='goodStatus' required='required' value='Available' checked='')
                                     |     Available
                                 label.radio
                                     input(type='radio' name='goodStatus' required='required' value='Rented')
-                                    |     Rented    
+                                    |     Rented
                                 label.radio
                                     input(type='radio' name='goodStatus' required='required' value='Sold')
                                     |     Sold
-                            else if(announceId.goodStatus=="Rented")
+                            else if(announceId.goodStatus==="Rented")
                                 label.radio
                                     input(type='radio' name='goodStatus' required='required' value='Available')
                                     |     Available
@@ -122,5 +122,4 @@ block middle
 
                         .field
                         .control
-                        input(name='hidden' type='hidden' value='{{hidden}}')
                         button.button.is-link(type='submit' value='submit' style='display: block; margin: 0 auto;') Submit

@@ -2,40 +2,6 @@ extends layout
 
 block middle
     section.section
-        .notification.is-primary.has-background-link-light
-            if announces.length
-                .table-container
-                    table.table.has-text-black.has-text-centered.is-hoverable.is-striped.is-fullwidth.has-background-link-light
-                        thead
-                            tr
-                                th Pictures
-                                th Title
-                                th Type
-                                th Publication's status
-                                th Good's status
-                                th Description
-                                th Price
-                                th Available date
-                                th to
-                        tbody
-                        each announce in announces
-                            tr
-                                th
-                                    a(href=`announces/${announce.pictures}`) #{announce.pictures}
-                                th
-                                    a(href=`announces/${announce.id}`) #{announce.title}
-                                td= announce.type
-                                td= announce.publicationStatus
-                                td= announce.goodStatus
-                                td= announce.description
-                                td= announce.price
-                                td= announce.firstDate.toDateString()
-                                td= announce.secondDate.toDateString()
-            else
-                p.has-text-black No announces yet :(
-
-block middle
-    section.section
         if announces.length
             each announce in announces
                 if announcer || announce.publicationStatus === 'Published'
@@ -47,7 +13,7 @@ block middle
                                         .column.is-one-quarter
                                             figure
                                                 img(src='https://bulma.io/images/placeholders/128x128.png')
-                                        .column
+                                        .column.is-half
                                             p.title.is-2 #{announce.title}
 
                                             p.h2.subtitle #{announce.description}
@@ -90,6 +56,7 @@ block middle
                                     span.icon.has-text-info
                                         i.fas.fa-euro-sign
                                     span #{announce.price}
+
                                 .icon-text
                                     span.icon.has-text-info
                                         i.far.fa-calendar-alt
@@ -102,4 +69,6 @@ block middle
                                     span #{announce.secondDate.toDateString()}
 
         else
-            p.has-text-black No announces yet :(
+            h1.title
+                .has-text-black
+                    .has-text-centered No announces yet :(

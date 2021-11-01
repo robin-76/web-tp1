@@ -14,48 +14,30 @@ block middle
                 .column.is-half
                     .notification.is-primary.has-background-link-light
                         .field
+                            h1.title
+                                .has-text-black General informations
+                        .field
                         label.label(for='title') Title
                         .control
                         input.input(type='text' required='required' id='title' name='title' placeholder='Title of your ad ...' value=data.title)
-
-                        .field
-                        label.label Object's type
-                        .control.has-text-black
-                            label.radio
-                                input(type='radio' name='type' required='required' value='Sell' checked='')
-                                |     Sell
-                            label.radio
-                                input(type='radio' name='type' required='required' value='Location')
-                                |     Location
-
-                        .field
-                        label.label Publication's status
-                        .control.has-text-black
-                            label.radio
-                                input(type='radio' name='publicationStatus' required='required' value='Published' checked='')
-                                |     Published
-                            label.radio
-                                input(type='radio' name='publicationStatus' required='required' value='Not published')
-                                |     Not Published
-
-                        .field
-                        label.label Object's status
-                        .control.has-text-black
-                            label.radio
-                                input(type='radio' name='goodStatus' required='required' value='Available' checked='')
-                                |     Available
-                            label.radio
-                                input(type='radio' name='goodStatus' required='required' value='Rented')
-                                |     Rented    
-                            label.radio
-                                input(type='radio' name='goodStatus' required='required' value='Sold')
-                                |     Sold        
 
                         .field
                         label.label(for='description') Description
                         .control
                         textarea.textarea(name='description' required='required' id ='description'
                             placeholder='Describe your announce in a few lines ...' value=data.description)
+
+                        .field
+                        label.label(for='pictures') Pictures (optionnal)
+                        .control
+                        input.input(type='file' id='pictures' name='pictures' multiple data-max-file-size='3MB'
+                            accept='image/png, image/jpeg' value=data.pictures)
+
+                        .field
+                            br
+
+                        .field
+                            p.title.has-text-black Announce settings
 
                         .field
                         label.label(for='price') Price (€)
@@ -76,11 +58,41 @@ block middle
                                         value=data.secondDate)
 
                         .field
-                        label.label(for='pictures') Pictures
-                        .control
-                        input.input(type='file' id='pictures' name='pictures' multiple data-max-file-size='3MB'
-                            accept='image/png, image/jpeg' value=data.pictures)
+                        label.label Type
+                        .control.has-text-black
+                            label.radio
+                                input(type='radio' name='type' required='required' value='Sell' checked='')
+                                |     Sell
+                            label.radio
+                                input(type='radio' name='type' required='required' value='Location')
+                                |     Location
 
                         .field
-                        .control
-                        button.button.is-link(type='submit' value='submit' style='display: block; margin: 0 auto;') Submit
+                        label.label Status
+                        .control.has-text-black
+                            label.radio
+                                input(type='radio' name='goodStatus' required='required' value='Available' checked='')
+                                |     Available
+                            label.radio
+                                input(type='radio' name='goodStatus' required='required' value='Rented')
+                                |     Rented    
+                            label.radio
+                                input(type='radio' name='goodStatus' required='required' value='Sold')
+                                |     Sold
+
+                        .field
+                        label.label Publication
+                        .control.has-text-black
+                            label.radio
+                                input(type='radio' name='publicationStatus' required='required' value='Published' checked='')
+                                |     Published
+                            label.radio
+                                input(type='radio' name='publicationStatus' required='required' value='Not published')
+                                |     Not Published
+
+                        .field
+                            .columns
+                                .column
+                                    br
+                                    .control
+                                    button.button.is-success(type='submit' value='submit' style='display: block; margin: 0 auto;') Submit
