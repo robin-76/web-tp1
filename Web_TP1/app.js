@@ -1,4 +1,5 @@
 const express = require('express');
+const bodyParser = require('body-parser');
 const session = require("express-session");
 const MongoDBStore = require("connect-mongodb-session")(session);
 const path = require('path');
@@ -10,7 +11,7 @@ const validationRouter = require('./routes/validation');
 const signupRouter = require('./routes/signup');
 const loginRouter = require('./routes/login');
 const authRouter = require('./routes/auth');
-const bodyParser = require('body-parser');
+
 require('dotenv').config();
 
 const app = express();

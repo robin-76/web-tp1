@@ -9,7 +9,7 @@ block middle
                 for error in errors
                     li= error.msg
 
-        form(action='form' method='POST')
+        form(action='form' method='POST' enctype='multipart/form-data')
             .columns.is-centered
                 .column.is-half
                     .notification.is-primary.has-background-link-light
@@ -30,9 +30,11 @@ block middle
                         .field
                         label.label(for='pictures') Pictures (optionnal)
                         .control
-                        input.input(type='file' id='pictures' name='pictures' multiple data-max-file-size='3MB'
+                        input#input-pictures.input(type='file' name='pictures' multiple data-max-file-size='3MB'
                             accept='image/png, image/jpeg' value=data.pictures)
-
+                        .field
+                            br
+                        .preview-images
                         .field
                             br
 
@@ -96,3 +98,26 @@ block middle
                                     br
                                     .control
                                     button.button.is-success(type='submit' value='submit' style='display: block; margin: 0 auto;') Submit
+        
+    script(src='https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js')
+    script(src='https://code.jquery.com/jquery-3.4.1.min.js')
+    script.
+        $(document).ready(function() {
+        let imagesPreview = function(input, placeToInsertImagePreview) {
+        if (input.files) {
+        let filesAmount = input.files.length;
+        for (i = 0; i < filesAmount; i++) {
+        let reader = new FileReader();
+        reader.onload = function(event) {
+        $($.parseHTML("<img>"))
+        .attr("src", event.target.result)
+        .appendTo(placeToInsertImagePreview);
+        };
+        reader.readAsDataURL(input.files[i]);
+        }
+        }
+        };
+        $("#input-pictures").on("change", function() {
+        imagesPreview(this, "div.preview-images");
+        });
+        });

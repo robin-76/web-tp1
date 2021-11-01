@@ -4,6 +4,7 @@ const { validationResult } = require('express-validator');
 const router = express.Router();
 const Announce = mongoose.model('Announce');
 const auth = require('./auth');
+const upload = require('./upload');
 
 router.get('/', auth, (req, res) => {
     const auth = req.session.isAuth;
@@ -13,11 +14,13 @@ router.get('/', auth, (req, res) => {
     res.render('form', { title: 'Form', auth, announcer, url, page });
 });
 
-router.post('/', (req, res) => {
+router.post('/', upload, async(req, res) => {
     const errors = validationResult(req);
 
     if (errors.isEmpty()) {
         const announce = new Announce(req.body);
+        //console.log(req.body.title);
+        //console.log(req.files);
         announce.save()
             .then(() => { res.redirect('/validation'); })
             .catch((err) => {
@@ -31,6 +34,18 @@ router.post('/', (req, res) => {
             data: req.body,
         });
     }
+
+    try {
+        await upload(req, res);
+           
+      } catch (error) {
+        console.log(error);
+    
+        if (error.code === "LIMIT_UNEXPECTED_FILE") {
+          return res.send("Too many files to upload.");
+        }
+        return res.send(`Error when trying upload many files: ${error}`);
+      }
 });
 
 module.exports = router;

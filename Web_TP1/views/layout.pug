@@ -7,6 +7,10 @@ html
         script(src='https://use.fontawesome.com/releases/v5.15.4/js/all.js' data-auto-a11y='true')
         meta(name='viewport' content='width=device-width, initial-scale=1.0')
         title #{title}
+        style.
+            div.preview-images > img {
+            width: 30%;
+            }
     body
         block content
             block heroHeader
