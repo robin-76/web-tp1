@@ -119,8 +119,9 @@ html
                                                 form(action=`${url}login/logout` method='post')
                                                     button.btn-link(type='submit' name='logout' value='logout')
                                                         span.icon.is-small
-                                                            i.fas.fa-sign-in-alt(aria-hidden='true')
-                                                        span Log out
+                                                            i.fas.fa-sign-out-alt(aria-hidden='true')
+                                                        span Log out 
+                                                        span (#{name})
 
             block middle
 
@@ -128,8 +129,32 @@ html
                 footer.footer.wrapper.has-background-light
                     .content.has-text-centered.has-text-black.wrapper
                         p
-                        strong Bulma
-                        |  by Maxence Bourgeaux and Robin Guyomar
+                        strong By
+                        |  Maxence Bourgeaux and Robin Guyomar
                         span.icon-text
                             span.icon
                                 i.far.fa-copyright
+
+    script(src='https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js')
+    script(src='https://code.jquery.com/jquery-3.4.1.min.js')
+    script.
+        $(document).ready(function() {
+            let imagesPreview = function(input, placeToInsertImagePreview) {
+                if (input.files) {
+                    let filesAmount = input.files.length;
+                    for (i = 0; i < filesAmount; i++) {
+                        let reader = new FileReader();
+                        reader.onload = function(event) {
+                            $($.parseHTML("<img>"))
+                                .attr("src", event.target.result)
+                                .appendTo(placeToInsertImagePreview);
+                        };
+                    reader.readAsDataURL(input.files[i]);
+                    }
+                }
+            };
+
+            $("#input-photos").on("change", function() {
+                imagesPreview(this, "div.preview-images");
+            });
+        });                            

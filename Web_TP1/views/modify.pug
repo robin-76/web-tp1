@@ -10,7 +10,7 @@ block middle
                 for error in errors
                     li= error.msg
 
-        form(action='' method='POST')
+        form(action='' method='POST' enctype='multipart/form-data')
             .columns.is-centered
                 .column.is-half
                     .notification.is-primary.has-background-link-light
@@ -31,10 +31,16 @@ block middle
                             value=announceId.description) #{announceId.description}
 
                         .field
-                        label.label(for='pictures') Pictures (optionnal)
+                        label.label(for='photos') Photos (optionnal)
+                        figure
+                                if(announceId.photos.length)
+                                    each picture in announceId.photos
+                                        img(src=`/images/${picture}`)
+                                else
+                                    img(src='/images/notImage.jpg')
                         .control
-                        input.input(type='file' id='pictures' name='pictures' multiple data-max-file-size='3MB'
-                            accept='image/png, image/jpeg' value=announceId.pictures)
+                        input#input-photos.input(type='file' name='photos' multiple data-max-file-size='3MB'
+                            accept='image/png, image/jpeg' value=data.photos)
 
                         .field
                             br
@@ -137,4 +143,4 @@ block middle
 
                         .field
                         .control
-                        button.button.is-success(type='submit' value='submit' style='display: block; margin: 0 auto;') Modify
+                        button.button.is-success(type='submit' value='submit' style='display: block; margin: 0 auto;') Modify                      

@@ -35,7 +35,7 @@ const AnnounceSchema = new mongoose.Schema({
         default: Date.now,
         required: true
     },
-    pictures: {
+    photos: {
         type: [String]
     }
 })

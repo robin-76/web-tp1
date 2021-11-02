@@ -28,10 +28,10 @@ block middle
                             placeholder='Describe your announce in a few lines ...' value=data.description)
 
                         .field
-                        label.label(for='pictures') Pictures (optionnal)
+                        label.label(for='photos') Photos (optionnal)
                         .control
-                        input#input-pictures.input(type='file' name='pictures' multiple data-max-file-size='3MB'
-                            accept='image/png, image/jpeg' value=data.pictures)
+                        input#input-photos.input(type='file' name='photos' multiple data-max-file-size='3MB'
+                            accept='image/png, image/jpeg' value=data.photos)
                         .field
                             br
                         .preview-images
@@ -98,27 +98,3 @@ block middle
                                     br
                                     .control
                                     button.button.is-success(type='submit' value='submit' style='display: block; margin: 0 auto;') Submit
-        
-    script(src='https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js')
-    script(src='https://code.jquery.com/jquery-3.4.1.min.js')
-    script.
-        $(document).ready(function() {
-            let imagesPreview = function(input, placeToInsertImagePreview) {
-                if (input.files) {
-                    let filesAmount = input.files.length;
-                    for (i = 0; i < filesAmount; i++) {
-                        let reader = new FileReader();
-                        reader.onload = function(event) {
-                            $($.parseHTML("<img>"))
-                                .attr("src", event.target.result)
-                                .appendTo(placeToInsertImagePreview);
-                        };
-                    reader.readAsDataURL(input.files[i]);
-                    }
-                }
-            };
-
-            $("#input-pictures").on("change", function() {
-                imagesPreview(this, "div.preview-images");
-            });
-        });

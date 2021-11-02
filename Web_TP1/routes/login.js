@@ -8,13 +8,14 @@ router.get('/', (req, res) => {
   const error = req.session.error;
   delete req.session.error;
   const auth = req.session.isAuth;
+  const name = req.session.name;
   const announcer = req.session.announcer;
   const url = "/";
   const page = "login"
 
   if(auth)
     res.redirect("/");
-  res.render("login", { err: error, auth, announcer, url, page });
+  res.render("login", { err: error, auth, name, announcer, url, page });
 });
 
 router.post('/', async(req, res) => {

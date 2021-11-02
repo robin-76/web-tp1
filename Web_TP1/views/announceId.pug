@@ -8,11 +8,15 @@ block middle
                     .columns.is-gapless
                         .column.is-one-quarter
                             figure
-                                img(src='https://bulma.io/images/placeholders/128x128.png')
+                                if(announceId.photos.length)
+                                    each picture in announceId.photos
+                                        img(src=`/images/${picture}`)
+                                else
+                                    img(src='/img/notImage.jpg')
                         .column
-                            p.title.is-2 #{announceId.title}
+                            p.title.is-2 &nbsp; #{announceId.title}
 
-                            p.h2.subtitle #{announceId.description}
+                            p.h2.subtitle &nbsp; #{announceId.description}
 
             .column.is-one-fifth
                 .box

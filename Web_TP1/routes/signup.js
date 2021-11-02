@@ -5,10 +5,10 @@ const { validationResult } = require('express-validator');
 const router = express.Router();
 const User = mongoose.model('User');
 
-
 router.get('/', (req, res) => {
   const error = req.session.error;
   const auth = req.session.isAuth;
+  const name = req.session.name;
   const announcer = req.session.announcer;
   const url = "/";
   const page = "signup";
@@ -17,7 +17,7 @@ router.get('/', (req, res) => {
   if(auth)
     res.redirect("/");
     
-  res.render("signup", { err: error, auth, announcer, url, page });
+  res.render("signup", { err: error, auth, name, announcer, url, page });
 });
 
 router.post('/', async(req, res) => {

@@ -8,40 +8,39 @@ const upload = require('./upload');
 
 router.get('/', auth, (req, res) => {
     const auth = req.session.isAuth;
+    const name = req.session.name;
     const announcer = req.session.announcer;
     const url = "/";
     const page = "form";
-    res.render('form', { title: 'Form', auth, announcer, url, page });
+    res.render('form', { title: 'Form', auth, name, announcer, url, page });
 });
 
-router.post('/', upload, async(req, res) => {
-    const errors = validationResult(req);
-
+router.post('/', async(req, res) => {
     try {
+        const errors = validationResult(req);
+        await upload(req, res);
+
         if (errors.isEmpty()) {
-            const filenames = req.files.map(function(file) {
-                return file.filename;
-              });
-            req.body.pictures = filenames;
-            const announce = new Announce(req.body);
-              
-            announce.save()
+        const filenames = req.files.map(function(file) {
+          return file.filename;
+        });
+        req.body.photos = filenames;
+        const announce = new Announce(req.body);
+        announce.save()
             .then(() => { res.redirect('/validation'); })
             .catch((err) => {
                 console.log(err);
                 res.send('Sorry! Something went wrong.');
             });
-        
-        } else {
+
+          } else {
             res.render('form', {
                 title: 'Announce form',
                 errors: errors.array(),
                 data: req.body,
-            });
-        } 
-        
-        await upload(req, res);
-           
+            }); 
+          }     
+     
       } catch (error) {
         console.log(error);
     

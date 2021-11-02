@@ -1,5 +1,4 @@
 const express = require('express');
-const bodyParser = require('body-parser');
 const session = require("express-session");
 const MongoDBStore = require("connect-mongodb-session")(session);
 const path = require('path');
@@ -12,8 +11,6 @@ const signupRouter = require('./routes/signup');
 const loginRouter = require('./routes/login');
 const authRouter = require('./routes/auth');
 
-require('dotenv').config();
-
 const app = express();
 
 const store = new MongoDBStore({
@@ -25,7 +22,6 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
 
 app.use(express.urlencoded({ extended: true }));
-app.use(bodyParser.urlencoded({ extended: true }));
 app.use('/bulma', express.static(__dirname + '/node_modules/bulma/css/'));
 app.use(express.static(path.join(__dirname, 'public')));
 
