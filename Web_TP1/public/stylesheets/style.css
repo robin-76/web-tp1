@@ -20,3 +20,7 @@ footer{
     font-family: inherit;
     font-size: inherit;
 }
+
+div.preview-images > img {
+    width: 30%;
+}

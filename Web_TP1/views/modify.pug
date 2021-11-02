@@ -15,111 +15,126 @@ block middle
                 .column.is-half
                     .notification.is-primary.has-background-link-light
                         .field
+                            h1.title
+                                .has-text-black General informations
+                        .field
                         label.label(for='title') Title
                         .control
-                        input.input(type='text' required='required' id='title' name='title' value=announceId.title)
-
-                        .field
-                        label.label Object's type
-                        .control.has-text-black
-                            if(announceId.type==="Sell")
-                                label.radio
-                                    input(type='radio' name='type' required='required' value='Sell' checked='')
-                                    |     Sell
-                                label.radio
-                                    input(type='radio' name='type' required='required' value='Location')
-                                    |     Location
-                            else
-                                label.radio
-                                    input(type='radio' name='type' required='required' value='Sell')
-                                    |     Sell
-                                label.radio
-                                    input(type='radio' name='type' required='required' value='Location' checked='')
-                                    |     Location
-
-                        .field
-                        label.label Publication's status
-                        .control.has-text-black
-                            if(announceId.publicationStatus==="Published")
-                                label.radio
-                                    input(type='radio' name='publicationStatus' required='required' value='Published' checked='')
-                                    |     Published
-                                label.radio
-                                    input(type='radio' name='publicationStatus' required='required' value='Not published')
-                                    |     Not Published
-                            else
-                                label.radio
-                                    input(type='radio' name='publicationStatus' required='required' value='Published')
-                                    |     Published
-                                label.radio
-                                    input(type='radio' name='publicationStatus' required='required' value='Not published' checked='')
-                                    |     Not Published
-
-                        .field
-                        label.label Object's status
-                        .control.has-text-black
-                            if(announceId.goodStatus==="Available")
-                                label.radio
-                                    input(type='radio' name='goodStatus' required='required' value='Available' checked='')
-                                    |     Available
-                                label.radio
-                                    input(type='radio' name='goodStatus' required='required' value='Rented')
-                                    |     Rented
-                                label.radio
-                                    input(type='radio' name='goodStatus' required='required' value='Sold')
-                                    |     Sold
-                            else if(announceId.goodStatus==="Rented")
-                                label.radio
-                                    input(type='radio' name='goodStatus' required='required' value='Available')
-                                    |     Available
-                                label.radio
-                                    input(type='radio' name='goodStatus' required='required' value='Rented' checked='')
-                                    |     Rented    
-                                label.radio
-                                    input(type='radio' name='goodStatus' required='required' value='Sold')
-                                    |     Sold   
-                            else 
-                                label.radio
-                                    input(type='radio' name='goodStatus' required='required' value='Available')
-                                    |     Available
-                                label.radio
-                                    input(type='radio' name='goodStatus' required='required' value='Rented')
-                                    |     Rented    
-                                label.radio
-                                    input(type='radio' name='goodStatus' required='required' value='Sold' checked='')
-                                    |     Sold          
-
+                        input.input(type='text' required='required' id='title' name='title'
+                            placeholder='New title of your ad ...' value=announceId.title)
 
                         .field
                         label.label(for='description') Description
                         .control
                         textarea.textarea(name='description' required='required' id ='description'
-                            placeholder='Describe your announce in a few lines ...' value=announceId.description) #{announceId.description}
+                            placeholder='New description of your announce in a few lines ...'
+                            value=announceId.description) #{announceId.description}
+
+                        .field
+                        label.label(for='pictures') Pictures (optionnal)
+                        .control
+                        input.input(type='file' id='pictures' name='pictures' multiple data-max-file-size='3MB'
+                            accept='image/png, image/jpeg' value=announceId.pictures)
+
+                        .field
+                            br
+                        .preview-images
+                        .field
+                            br
+
+                        .field
+                            p.title.has-text-black Announce settings
 
                         .field
                         label.label(for='price') Price (€)
                         .control
-                        input.input(type='number' required='required' id='price' name='price' min='0' placeholder='Enter a price ...' value=announceId.price)
+                        input.input(type='number' required='required' id='price' name='price' min='0'
+                            placeholder='Enter a new price ...' value=announceId.price)
 
                         .field
                             .columns
                                 .column
                                     label.label(for='firstDate') From
                                     .control
-                                    input.input(type='date' required='required' id='firstDate' name='firstDate' min='2021-01-01' max='2100-12-31'
-                                        value=fDate)
+                                    input.input(type='date' required='required' id='firstDate' name='firstDate'
+                                        min='2021-01-01' max='2100-12-31' value=fDate)
+
                                 .column
                                     label.label(for='secondDate') to
                                     .control
-                                    input.input(type='date' required='required' id='secondDate' name='secondDate' min='2021-01-01' max='2100-12-31'
-                                        value=sDate)
+                                    input.input(type='date' required='required' id='secondDate' name='secondDate'
+                                        min='2021-01-01' max='2100-12-31' value=sDate)
 
                         .field
-                        label.label(for='pictures') Pictures
-                        .control
-                        input.input(type='file' id='pictures' name='pictures' multiple data-max-file-size='3MB'
-                            accept='image/png, image/jpeg' value=announceId.pictures)
+                        label.label Type
+                        .control.has-text-black
+                            if(announceId.type === "Sell")
+                                label.radio
+                                    input(type='radio' name='type' required='required' value='Sell' checked='')
+                                    |   Sell
+                                label.radio
+                                    input(type='radio' name='type' required='required' value='Location')
+                                    |   Location
+                            else
+                                label.radio
+                                    input(type='radio' name='type' required='required' value='Sell')
+                                    |   Sell
+                                label.radio
+                                    input(type='radio' name='type' required='required' value='Location' checked='')
+                                    |   Location
+
+                        .field
+                        label.label Status
+                        .control.has-text-black
+                            if(announceId.goodStatus === "Available")
+                                label.radio
+                                    input(type='radio' name='goodStatus' required='required' value='Available' checked='')
+                                    |   Available
+                                label.radio
+                                    input(type='radio' name='goodStatus' required='required' value='Rented')
+                                    |   Rented
+                                label.radio
+                                    input(type='radio' name='goodStatus' required='required' value='Sold')
+                                    |   Sold
+                            else if(announceId.goodStatus === "Rented")
+                                label.radio
+                                    input(type='radio' name='goodStatus' required='required' value='Available')
+                                    |   Available
+                                label.radio
+                                    input(type='radio' name='goodStatus' required='required' value='Rented' checked='')
+                                    |   Rented
+                                label.radio
+                                    input(type='radio' name='goodStatus' required='required' value='Sold')
+                                    |   Sold
+                            else
+                                label.radio
+                                    input(type='radio' name='goodStatus' required='required' value='Available')
+                                    |   Available
+                                label.radio
+                                    input(type='radio' name='goodStatus' required='required' value='Rented')
+                                    |   Rented
+                                label.radio
+                                    input(type='radio' name='goodStatus' required='required' value='Sold' checked='')
+                                    |   Sold
+
+                        .field
+                        label.label Publication
+                        .control.has-text-black
+                            if(announceId.publicationStatus === "Published")
+                                label.radio
+                                    input(type='radio' name='publicationStatus' required='required' value='Published' checked='')
+                                    |   Published
+                                label.radio
+                                    input(type='radio' name='publicationStatus' required='required' value='Not published')
+                                    |   Not Published
+                            else
+                                label.radio
+                                    input(type='radio' name='publicationStatus' required='required' value='Published')
+                                    |   Published
+                                label.radio
+                                    input(type='radio' name='publicationStatus' required='required' value='Not published' checked='')
+                                    |   Not Published
 
                         .field
                         .control
-                        button.button.is-link(type='submit' value='submit' style='display: block; margin: 0 auto;') Submit
+                        button.button.is-success(type='submit' value='submit' style='display: block; margin: 0 auto;') Modify
