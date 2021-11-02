@@ -32,12 +32,13 @@ block middle
 
                         .field
                         label.label(for='photos') Photos (optionnal)
-                        figure
-                                if(announceId.photos.length)
-                                    each picture in announceId.photos
-                                        img(src=`/images/${picture}`)
-                                else
-                                    img(src='/images/notImage.jpg')
+                            .column.is-one-quarter
+                                figure
+                                        if(announceId.photos.length)
+                                            each picture in announceId.photos
+                                                img(src=`/images/${picture}`)
+                                        else
+                                            img(src='/images/notImage.jpg')
                         .control
                         input#input-photos.input(type='file' name='photos' multiple data-max-file-size='3MB'
                             accept='image/png, image/jpeg' value=data.photos)
@@ -45,8 +46,6 @@ block middle
                         .field
                             br
                         .preview-images
-                        .field
-                            br
 
                         .field
                             p.title.has-text-black Announce settings

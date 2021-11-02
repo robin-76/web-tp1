@@ -78,11 +78,21 @@ router.post('/modify/:formId/', auth, async(req, res) => {
         await upload(req, res);
         const announceId = await Announce.findById(req.params.formId);
         const oldPicture = announceId.photos;
-        const filenames = req.files.map(function(file) {
-            return file.filename;
-          });
-        req.body.photos = filenames;
+        let filenames = [];
+            
+        if(req.files.length){
+            filenames = req.files.map(function(file) { return file.filename; });
         
+            // Deleting images    
+            for (let i = 0; i < oldPicture.length; i++) {
+                fs.unlink(`public/images/${oldPicture[i]}`,(err) => {
+                    if (err) throw err;
+                });
+             }
+        }
+        else
+            filenames = oldPicture;
+                  
         await Announce.updateOne({_id: req.params.formId},{$set:
             {
                 title: req.body.title,
@@ -96,12 +106,7 @@ router.post('/modify/:formId/', auth, async(req, res) => {
                 photos: filenames
             }}
         );
-        // Deleting images    
-        for (let i = 0; i < oldPicture.length; i++) {
-            fs.unlink(`public/images/${oldPicture[i]}`,(err) => {
-                if (err) throw err;
-             });
-          }
+        
         res.redirect('/announces');
 
     } catch (error) {

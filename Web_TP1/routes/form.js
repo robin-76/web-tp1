@@ -6,6 +6,7 @@ const Announce = mongoose.model('Announce');
 const auth = require('./auth');
 const upload = require('./upload');
 
+//Get form
 router.get('/', auth, (req, res) => {
     const auth = req.session.isAuth;
     const name = req.session.name;
