@@ -36,8 +36,7 @@ const AnnounceSchema = new mongoose.Schema({
         required: true
     },
     pictures: {
-        data: Buffer,
-        contentType: String,
+        type: [String]
     }
 })
 

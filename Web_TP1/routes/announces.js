@@ -20,6 +20,7 @@ router.get('/', (req, res) => {
 router.get('/:formId', async(req, res) => {
     try {
         const announceId = await Announce.findById(req.params.formId);
+        console.log(announceId)
         const auth = req.session.isAuth;
         const announcer = req.session.announcer;
         const url = "../";

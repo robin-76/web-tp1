@@ -19,8 +19,12 @@ router.post('/', upload, async(req, res) => {
 
     try {
         if (errors.isEmpty()) {
+            const filenames = req.files.map(function(file) {
+                return file.filename;
+              });
+            req.body.pictures = filenames;
             const announce = new Announce(req.body);
-            console.log(req.body);
+              
             announce.save()
             .then(() => { res.redirect('/validation'); })
             .catch((err) => {
