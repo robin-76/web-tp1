@@ -17,25 +17,25 @@ router.get('/', auth, (req, res) => {
 router.post('/', upload, async(req, res) => {
     const errors = validationResult(req);
 
-    if (errors.isEmpty()) {
-        const announce = new Announce(req.body);
-        //console.log(req.body.title);
-        //console.log(req.files);
-        announce.save()
+    try {
+        if (errors.isEmpty()) {
+            const announce = new Announce(req.body);
+            console.log(req.body);
+            announce.save()
             .then(() => { res.redirect('/validation'); })
             .catch((err) => {
                 console.log(err);
                 res.send('Sorry! Something went wrong.');
             });
-    } else {
-        res.render('form', {
-            title: 'Announce form',
-            errors: errors.array(),
-            data: req.body,
-        });
-    }
-
-    try {
+        
+        } else {
+            res.render('form', {
+                title: 'Announce form',
+                errors: errors.array(),
+                data: req.body,
+            });
+        } 
+        
         await upload(req, res);
            
       } catch (error) {
