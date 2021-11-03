@@ -1,22 +1,15 @@
-extends layout         
+extends layout
 
 block middle
-    section.section
-        .columns.is-mobile.is-centered.has-text-black
-            .column.is-half
-                .box
-                    .columns.is-gapless
-                        .column.is-one-quarter
-                            figure
-                                if(announceId.photos.length)
-                                    each picture in announceId.photos
-                                        img(src=`/images/${picture}`)
-                                else
-                                    img(src='/img/notImage.jpg')
-                        .column
-                            p.title.is-2 &nbsp; #{announceId.title}
+    section.section.is-size-5
+        .columns.is-centered
+            .column.is-one-fifth
 
-                            p.h2.subtitle &nbsp; #{announceId.description}
+            .column.is-half.has-text-black
+                .box
+                    h1.title.is-2.has-text-centered &nbsp; #{announceId.title}
+                    br
+                    p.is-2 &nbsp; #{announceId.description}
 
             .column.is-one-fifth
                 .box
@@ -34,7 +27,7 @@ block middle
                             else
                                 span.icon.has-text-danger
                                     i.fas.fa-times
-                                span #{announceId.publicationStatus}    
+                                span #{announceId.publicationStatus}
 
                     .icon-text
                         if announceId.goodStatus === 'Available'
@@ -55,6 +48,8 @@ block middle
                         span.icon.has-text-info
                             i.fas.fa-euro-sign
                         span #{announceId.price}
+
+                .box
                     .icon-text
                         span.icon.has-text-info
                             i.far.fa-calendar-alt
@@ -66,13 +61,51 @@ block middle
                         span To &nbsp;
                         span #{announceId.secondDate.toDateString()}
 
-            .column.is-one-fifth
-                .box.is-shadowless
-                    if announcer
-                        form(action=`/announces/modify/${announceId.id}` method='GET')
-                            button.button.is-success.is-rounded(type='submit' value='submit' style='display: block; margin: 0 auto;') Modify
+        .columns.is-centered
+            .column.is-half
+                figure
+                    .columns.is-centered
+                        if(announceId.photos.length)
+                            each picture in announceId.photos
+                                .column.is-one-third
+                                    img(src=`/images/${picture}`)
+                        else
+                            .column.is-one-fifth
+                                img(src='/img/notImage.jpg')
 
-                .box.is-shadowless
-                    if announcer
-                        form(action=`/announces/${announceId.id}` method='POST')
-                            button.button.is-danger.is-rounded(type='submit' value='submit' style='display: block; margin: 0 auto;') Delete
+        .columns.is-centered
+            .box.is-shadowless
+                if announcer
+                    form(action=`/announces/modify/${announceId.id}` method='GET')
+                        button.button.is-success.is-rounded(type='submit' value='submit' style='display: block; margin: 0 auto;') Modify
+
+            .box.is-shadowless
+                if announcer
+                    form(action=`/announces/${announceId.id}` method='POST')
+                        button.button.is-danger.is-rounded(type='submit' value='submit' style='display: block; margin: 0 auto;') Delete
+
+        .columns.is-centered
+            .column.is-half
+                article.media
+                    .media-content
+                        .content
+                            p
+                                strong John Smith
+                                br
+                                |   Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin ornare magna eros, eu
+                                |   pellentesque tortor vestibulum ut. Maecenas non massa sem. Etiam finibus odio quis feugiat facilisis.
+                                br
+                                small
+                                    a Reply
+
+        .columns.is-centered
+            .column.is-half
+                article.media
+                    .media-content
+                        .field
+                            p.control
+                                textarea.textarea(placeholder='Add a comment...')
+                        nav.level
+                              .level-item
+                                a.button.is-success Post comment
+

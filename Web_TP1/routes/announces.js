@@ -46,7 +46,7 @@ router.get('/modify/:formId/', auth, async(req, res) => {
         const page = "modify";
         const fDate = announceId.firstDate.toISOString().split('T')[0];
         const sDate = announceId.secondDate.toISOString().split('T')[0];
-    res.render('modify', { title: 'Modify', announceId, auth, name, announcer, url, page, fDate, sDate });
+        res.render('modify', { title: 'Modify', announceId, auth, name, announcer, url, page, fDate, sDate });
     } catch(err) {
         res.json({ message : err });
     }
@@ -78,7 +78,7 @@ router.post('/modify/:formId/', auth, async(req, res) => {
         await upload(req, res);
         const announceId = await Announce.findById(req.params.formId);
         const oldPicture = announceId.photos;
-        let filenames = [];
+        let filenames;
             
         if(req.files.length){
             filenames = req.files.map(function(file) { return file.filename; });

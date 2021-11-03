@@ -9,17 +9,18 @@ block middle
                         .column.is-half
                             .box
                                 a(href=`announces/${announce.id}`)
-                                    .columns.is-gapless
-                                        .column.is-one-quarter
+                                    .columns
+                                        .column.is-one-fifth
                                             figure
                                                 if(announce.photos.length)
                                                     img(src=`images/${announce.photos[0]}`)
                                                 else
-                                                    img(src='img/notImage.jpg')        
-                                        .column.is-half
-                                            p.title.is-2 &nbsp; #{announce.title}
+                                                    img(src='img/notImage.jpg')
 
-                                            p.h2.subtitle &nbsp; #{announce.description}
+                                        .column.is-three-quarters
+                                            p.title.is-2.has-text-centered &nbsp; #{announce.title}
+
+                                            p.h2.subtitle.has-text-centered &nbsp; #{announce.description}
 
                         .column.is-one-fifth
                             .box

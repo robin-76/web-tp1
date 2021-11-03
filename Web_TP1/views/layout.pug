@@ -149,7 +149,7 @@ html
                                 .attr("src", event.target.result)
                                 .appendTo(placeToInsertImagePreview);
                         };
-                    reader.readAsDataURL(input.files[i]);
+                        reader.readAsDataURL(input.files[i]);
                     }
                 }
             };
@@ -157,4 +157,4 @@ html
             $("#input-photos").on("change", function() {
                 imagesPreview(this, "div.preview-images");
             });
-        });                            
+        });

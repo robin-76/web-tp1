@@ -1,6 +1,5 @@
 @import '~bulma';
 
-/* Center the footer */
 body{
     min-height: 100vh;
     display: flex;
@@ -23,4 +22,12 @@ footer{
 
 div.preview-images > img {
     width: 30%;
+}
+
+textarea {
+    white-space: pre-line;
+}
+
+p {
+    white-space: pre-line;
 }
