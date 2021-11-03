@@ -53,7 +53,7 @@ router.get('/modify/:formId/', auth, async(req, res) => {
 });
 
 // Delete a specific announce
-router.post('/:formId', auth, async(req, res) => {
+router.post('/delete/:formId', auth, async(req, res) => {
     try {
         const announceId = await Announce.findById(req.params.formId);
         const oldPicture = announceId.photos;
@@ -118,6 +118,22 @@ router.post('/modify/:formId/', auth, async(req, res) => {
         }
         return res.send(`Error when trying upload many files: ${error}`);
       }
+});
+
+router.post('/comment/:formId', async(req, res) => {
+    try {
+        const announceId = await Announce.findById(req.params.formId);
+        let tabComments = announceId.comments;
+        tabComments.push(req.body.comment);
+        
+        await Announce.updateOne({_id: req.params.formId},{$set: {
+                    comments: tabComments
+                }}
+        );
+        res.redirect(`/announces/${announceId._id}`);
+    } catch (err) {
+        res.json({message: err});
+    }
 });
 
 module.exports = router;

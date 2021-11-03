@@ -37,6 +37,9 @@ const AnnounceSchema = new mongoose.Schema({
     },
     photos: {
         type: [String]
+    },
+    comments: {
+        type: [String]
     }
 })
 

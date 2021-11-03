@@ -81,7 +81,7 @@ block middle
 
             .box.is-shadowless
                 if announcer
-                    form(action=`/announces/${announceId.id}` method='POST')
+                    form(action=`/announces/delete/${announceId.id}` method='POST')
                         button.button.is-danger.is-rounded(type='submit' value='submit' style='display: block; margin: 0 auto;') Delete
 
         .columns.is-centered
@@ -89,14 +89,10 @@ block middle
                 article.media
                     .media-content
                         .content
-                            p
-                                strong John Smith
-                                br
-                                |   Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin ornare magna eros, eu
-                                |   pellentesque tortor vestibulum ut. Maecenas non massa sem. Etiam finibus odio quis feugiat facilisis.
-                                br
-                                small
-                                    a Reply
+                        each comment in announceId.comments
+                            textarea.textarea(name='comments')
+                                | #{comment}
+                            br         
 
         .columns.is-centered
             .column.is-half
@@ -104,8 +100,8 @@ block middle
                     .media-content
                         .field
                             p.control
-                                textarea.textarea(placeholder='Add a comment...')
-                        nav.level
-                              .level-item
-                                a.button.is-success Post comment
+                                form(action=`/announces/comment/${announceId.id}` method='POST')
+                                    textarea.textarea(name='comment' placeholder='Write a comment...' required='true')
+                                    br
+                                    button.button.is-success(type='submit' value='submit' style='display: block; margin: 0 auto;') Post comment
 
