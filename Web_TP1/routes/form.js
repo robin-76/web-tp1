@@ -25,6 +25,7 @@ router.post('/', async(req, res) => {
         const filenames = req.files.map(function(file) {
           return file.filename;
         });
+        req.body.author = req.session.name;
         req.body.photos = filenames;
         const announce = new Announce(req.body);
         announce.save()
