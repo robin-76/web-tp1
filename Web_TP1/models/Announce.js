@@ -42,9 +42,16 @@ const AnnounceSchema = new mongoose.Schema({
     photos: {
         type: [String]
     },
-    comments: {
-        type: [String]
-    }
+    comments: [{ type: mongoose.Schema.Types.ObjectId, ref: "Comment"}]
 })
 
+const CommentSchema = new mongoose.Schema({
+    author: String,
+    text: String,
+    announcer: Boolean,
+    date: {type: Date, default: Date.now},
+    announce: [{ type: mongoose.Schema.Types.ObjectId, ref: "Announce"}]
+})
+
+module.exports = mongoose.model('Comment', CommentSchema);
 module.exports = mongoose.model('Announce', AnnounceSchema);

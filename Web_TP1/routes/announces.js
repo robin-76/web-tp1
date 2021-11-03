@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const mongoose = require('mongoose');
 const Announce = mongoose.model('Announce');
+const Comment = mongoose.model('Comment');
 const auth = require('./auth');
 const upload = require('./upload');
 const fs = require('fs');
@@ -23,13 +24,14 @@ router.get('/', (req, res) => {
 // Get a specific announce
 router.get('/:formId', async(req, res) => {
     try {
-        const announceId = await Announce.findById(req.params.formId);
+        const announceId = await Announce.findById(req.params.formId).populate('comments');
+        const commentId = await Comment.find({ announce: announceId._id}); 
         const auth = req.session.isAuth;
         const name = req.session.name;
         const announcer = req.session.announcer;
         const url = "../";
         const page = "announceId";
-        res.render('announceId', { title:'Announce', announceId, announcer, auth, name, url, page });
+        res.render('announceId', { title:'Announce', announceId, commentId, announcer, auth, name, url, page });
     } catch(err) {
         res.json({ message : err });
     }
@@ -122,9 +124,17 @@ router.post('/modify/:formId/', auth, async(req, res) => {
 
 router.post('/comment/:formId', async(req, res) => {
     try {
-        const announceId = await Announce.findById(req.params.formId);
+        const announceId = await Announce.findById(req.params.formId).populate('comments');
         let tabComments = announceId.comments;
-        tabComments.push(req.body.comment);
+
+        const comment = await Comment.create({
+            author: req.session.name,
+            text: req.body.comment,
+            announcer: req.session.announcer,
+            announce: announceId._id
+        })
+        
+        tabComments.push(comment);
         
         await Announce.updateOne({_id: req.params.formId},{$set: {
                     comments: tabComments

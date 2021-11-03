@@ -60,6 +60,12 @@ block middle
                             i.far.fa-calendar-alt
                         span To &nbsp;
                         span #{announceId.secondDate.toDateString()}
+                
+                .box
+                    .icon-text
+                        span.icon.has-text-info
+                            i.fas.fa-user
+                        span #{announceId.author}    
 
         .columns.is-centered
             .column.is-half
@@ -89,20 +95,25 @@ block middle
                 article.media
                     .media-content
                         .content
-                        each comment in announceId.comments
-                            strong John Smith
-                            textarea.textarea(name='comments')
-                                | #{comment}
-                            br         
-
-        .columns.is-centered
-            .column.is-half
-                article.media
-                    .media-content
-                        .field
-                            p.control
-                                form(action=`/announces/comment/${announceId.id}` method='POST')
-                                    textarea.textarea(name='comment' placeholder='Write a comment...' required='true')
-                                    br
-                                    button.button.is-success(type='submit' value='submit' style='display: block; margin: 0 auto;') Post comment
+                        each comment in commentId
+                            b #{comment.author}
+                            if(comment.announcer)
+                                span.icon.has-text-info &nbsp;
+                                    i.fas.fa-check
+                            span &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; #{comment.date.toLocaleString()}    
+                            textarea.textarea(name='comments' readonly='true')
+                                | #{comment.text}
+                            br 
+     
+        if(auth)
+            .columns.is-centered
+                .column.is-half
+                    article.media
+                        .media-content
+                            .field
+                                p.control
+                                    form(action=`/announces/comment/${announceId.id}` method='POST')
+                                        textarea.textarea(name='comment' placeholder='Write a comment...' required='true')
+                                        br
+                                        button.button.is-success(type='submit' value='submit' style='display: block; margin: 0 auto;') Post comment
 
