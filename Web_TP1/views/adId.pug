@@ -7,72 +7,72 @@ block middle
 
             .column.is-half.has-text-black
                 .box
-                    h1.title.is-2.has-text-centered &nbsp; #{announceId.title}
+                    h1.title.is-2.has-text-centered &nbsp; #{adId.title}
                     br
-                    p.is-2 &nbsp; #{announceId.description}
+                    p.is-2 &nbsp; #{adId.description}
 
             .column.is-one-fifth
                 .box
                     .icon-text
                         span.icon.has-text-info
                             i.fas.fa-info-circle
-                        span #{announceId.type}
+                        span #{adId.type}
 
                     .icon-text
-                        if announcer
-                            if announceId.publicationStatus === 'Published'
+                        if agent
+                            if adId.publicationStatus === 'Published'
                                 span.icon.has-text-success
                                     i.fas.fa-check-square
-                                span #{announceId.publicationStatus}
+                                span #{adId.publicationStatus}
                             else
                                 span.icon.has-text-danger
                                     i.fas.fa-times
-                                span #{announceId.publicationStatus}
+                                span #{adId.publicationStatus}
 
                     .icon-text
-                        if announceId.goodStatus === 'Available'
+                        if adId.goodStatus === 'Available'
                             span.icon.has-text-success
                                 i.fas.fa-check-square
-                            span #{announceId.goodStatus}
-                        else if announceId.goodStatus === 'Rented'
+                            span #{adId.goodStatus}
+                        else if adId.goodStatus === 'Rented'
                             span.icon.has-text-warning
                                 i.fas.fa-exclamation-triangle
-                            span #{announceId.goodStatus}
+                            span #{adId.goodStatus}
                         else
                             span.icon.has-text-danger
                                 i.fas.fa-times
-                            span #{announceId.goodStatus}
+                            span #{adId.goodStatus}
 
                 .box
                     .icon-text
                         span.icon.has-text-info
                             i.fas.fa-euro-sign
-                        span #{announceId.price}
+                        span #{adId.price}
 
                 .box
                     .icon-text
                         span.icon.has-text-info
                             i.far.fa-calendar-alt
                         span From &nbsp;
-                        span #{announceId.firstDate.toDateString()}
+                        span #{adId.firstDate.toDateString()}
                     .icon-text
                         span.icon.has-text-info
                             i.far.fa-calendar-alt
                         span To &nbsp;
-                        span #{announceId.secondDate.toDateString()}
+                        span #{adId.secondDate.toDateString()}
                 
                 .box
                     .icon-text
                         span.icon.has-text-info
                             i.fas.fa-user
-                        span #{announceId.author}    
+                        span #{adId.author}    
 
         .columns.is-centered
             .column.is-half
                 figure
                     .columns.is-centered
-                        if(announceId.photos.length)
-                            each picture in announceId.photos
+                        if(adId.photos.length)
+                            each picture in adId.photos
                                 .column.is-one-third
                                     img(src=`/images/${picture}`)
                         else
@@ -81,13 +81,13 @@ block middle
 
         .columns.is-centered
             .box.is-shadowless
-                if announcer
-                    form(action=`/announces/modify/${announceId.id}` method='GET')
+                if agent
+                    form(action=`/ads/modify/${adId.id}` method='GET')
                         button.button.is-success.is-rounded(type='submit' value='submit' style='display: block; margin: 0 auto;') Modify
 
             .box.is-shadowless
-                if announcer
-                    form(action=`/announces/delete/${announceId.id}` method='POST')
+                if agent
+                    form(action=`/ads/delete/${adId.id}` method='POST')
                         button.button.is-danger.is-rounded(type='submit' value='submit' style='display: block; margin: 0 auto;') Delete
 
         .columns.is-centered
@@ -96,24 +96,24 @@ block middle
                     .media-content
                         .content
                         each comment in commentId
-                            b #{comment.author} &nbsp;
-                            if(comment.announcer)
-                                span.icon.has-text-danger &nbsp;
-                                    i.fas.fa-user-lock
-                            else
+                            if(comment.agent)
+                                b(style='color:#FF0000') #{comment.author}
                                 span.icon.has-text-info &nbsp;
-                                    i.fas.fa-user
+                                    i.fas.fa-check
+                            else 
+                                b #{comment.author}        
                             span &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; #{comment.date.toLocaleString()}    
-                            p #{comment.text}
-                            br 
-
+                            textarea.textarea(name='comments' readonly='true')
+                                | #{comment.text}
+                            br
+ 
         .columns.is-centered
             .column.is-half
                 article.media
                     .media-content
                         .field
                             p.control
-                                form(action=`/announces/comment/${announceId.id}` method='POST')
+                                form(action=`/ads/comment/${adId.id}` method='POST')
                                     if(!auth)
                                         textarea.textarea(name='comment' placeholder='Login to post a comment...' disabled='')
                                         br

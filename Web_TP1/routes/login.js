@@ -10,13 +10,13 @@ router.get('/', (req, res) => {
   delete req.session.error;
   const auth = req.session.isAuth;
   const name = req.session.name;
-  const announcer = req.session.announcer;
+  const agent = req.session.agent;
   const url = "/";
   const page = "login"
 
   if(auth)
     res.redirect("/");
-  res.render("login", { err: error, auth, name, announcer, url, page });
+  res.render("login", { err: error, auth, name, agent, url, page });
 });
 
 // Log in the website
@@ -36,7 +36,7 @@ router.post('/', async(req, res) => {
           return res.redirect("/login");
     }
 
-    req.session.announcer = !!user.announcer;
+    req.session.agent = !!user.agent;
 
     req.session.name = user.name;  
     req.session.isAuth = true;

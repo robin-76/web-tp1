@@ -1,66 +1,66 @@
 const express = require('express');
 const router = express.Router();
 const mongoose = require('mongoose');
-const Announce = mongoose.model('Announce');
+const Ad = mongoose.model('Ad');
 const Comment = mongoose.model('Comment');
 const auth = require('./auth');
 const upload = require('./upload');
 const fs = require('fs');
 
-// Get all the announces
+// Get all the ads
 router.get('/', (req, res) => {
-    const announcer = req.session.announcer;
+    const agent = req.session.agent;
     const name = req.session.name;
     const auth = req.session.isAuth;
     const url = "/";
-    const page = "announces";
-    Announce.find()
-        .then((announces) => {
-            res.render('announces', { title: 'Announces', announces, announcer, auth, name, url, page });
+    const page = "ads";
+    Ad.find()
+        .then((ads) => {
+            res.render('ads', { title: 'Ads', ads, agent, auth, name, url, page });
         })
         .catch(() => { res.send('Sorry! Something went wrong.'); });
 });
 
-// Get a specific announce
-router.get('/:formId', async(req, res) => {
+// Get a specific ad
+router.get('/:id', async(req, res) => {
     try {
-        const announceId = await Announce.findById(req.params.formId).populate('comments');
-        const commentId = await Comment.find({ announce: announceId._id});
+        const adId = await Ad.findById(req.params.id).populate('comments');
+        const commentId = await Comment.find({ ad: adId._id});
         const auth = req.session.isAuth;
         const name = req.session.name;
-        const announcer = req.session.announcer;
+        const agent = req.session.agent;
         const url = "../";
-        const page = "announceId";
-        res.render('announceId', { title:'Announce', announceId, commentId, announcer, auth, name, url, page });
+        const page = "adId";
+        res.render('adId', { title:'Ad', adId, commentId, agent, auth, name, url, page });
     } catch(err) {
         res.json({ message : err });
     }
 });
 
 // Get a modify form
-router.get('/modify/:formId/', auth, async(req, res) => {
+router.get('/modify/:id/', auth, async(req, res) => {
     try {
-        const announceId = await Announce.findById(req.params.formId);
+        const adId = await Ad.findById(req.params.id);
         const auth = req.session.isAuth;
         const name = req.session.name;
-        const announcer = req.session.announcer;
+        const agent = req.session.agent;
         const url = "../../";
         const page = "modify";
-        const fDate = announceId.firstDate.toISOString().split('T')[0];
-        const sDate = announceId.secondDate.toISOString().split('T')[0];
-        res.render('modify', { title: 'Modify', announceId, auth, name, announcer, url, page, fDate, sDate });
+        const fDate = adId.firstDate.toISOString().split('T')[0];
+        const sDate = adId.secondDate.toISOString().split('T')[0];
+        res.render('modify', { title: 'Modify', adId, auth, name, agent, url, page, fDate, sDate });
     } catch(err) {
         res.json({ message : err });
     }
 });
 
-// Delete a specific announce
-router.post('/delete/:formId', auth, async(req, res) => {
+// Delete a specific ad
+router.post('/delete/:id', auth, async(req, res) => {
     try {
-        const announceId = await Announce.findById(req.params.formId);
-        const oldPicture = announceId.photos;
+        const adId = await Ad.findById(req.params.id);
+        const oldPicture = adId.photos;
 
-        await Announce.deleteOne({_id: req.params.formId})
+        await Ad.deleteOne({_id: req.params.id})
 
         // Deleting images
         for (let i = 0; i < oldPicture.length; i++) {
@@ -68,18 +68,18 @@ router.post('/delete/:formId', auth, async(req, res) => {
                 if (err) throw err;
             });
         }
-        res.redirect('/announces');
+        res.redirect('/ads');
     } catch (err) {
         res.json({message: err});
     }
 });
 
-// Update a specific announce
-router.post('/modify/:formId/', auth, async(req, res) => {
+// Update a specific ad
+router.post('/modify/:id/', auth, async(req, res) => {
     try {
         await upload(req, res);
-        const announceId = await Announce.findById(req.params.formId);
-        const oldPicture = announceId.photos;
+        const adId = await Ad.findById(req.params.id);
+        const oldPicture = adId.photos;
         let filenames;
 
         if(req.files.length){
@@ -95,7 +95,7 @@ router.post('/modify/:formId/', auth, async(req, res) => {
         else
             filenames = oldPicture;
 
-        await Announce.updateOne({_id: req.params.formId},{$set:
+        await Ad.updateOne({_id: req.params.id},{$set:
                 {
                     title: req.body.title,
                     description: req.body.description,
@@ -109,7 +109,7 @@ router.post('/modify/:formId/', auth, async(req, res) => {
                 }}
         );
 
-        res.redirect(`/announces/${announceId._id}`);
+        res.redirect(`/ads/${adId._id}`);
 
     } catch (error) {
         res.json({message: err});
@@ -123,25 +123,25 @@ router.post('/modify/:formId/', auth, async(req, res) => {
 });
 
 // Post a comment
-router.post('/comment/:formId', async(req, res) => {
+router.post('/comment/:id', async(req, res) => {
     try {
-        const announceId = await Announce.findById(req.params.formId).populate('comments');
-        let tabComments = announceId.comments;
+        const adId = await Ad.findById(req.params.id).populate('comments');
+        let tabComments = adId.comments;
 
         const comment = await Comment.create({
             author: req.session.name,
             text: req.body.comment,
-            announcer: req.session.announcer,
-            announce: announceId._id
+            agent: req.session.agent,
+            ad: adId._id
         })
 
         tabComments.push(comment);
 
-        await Announce.updateOne({_id: req.params.formId},{$set: {
+        await Ad.updateOne({_id: req.params.id},{$set: {
                 comments: tabComments
             }}
         );
-        res.redirect(`/announces/${announceId._id}`);
+        res.redirect(`/ads/${adId._id}`);
     } catch (err) {
         res.json({message: err});
     }

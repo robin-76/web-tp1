@@ -42,37 +42,37 @@ html
                                                         span Home
                                             else
                                                 li
-                                                a(href='/').has-text-white
-                                                    span.icon.is-small
-                                                        i.fas.fa-home(aria-hidden='true')
-                                                    span Home
+                                                    a(href='/').has-text-white
+                                                        span.icon.is-small
+                                                            i.fas.fa-home(aria-hidden='true')
+                                                        span Home
 
-                                            if(page==="announces")
+                                            if(page==="ads")
                                                 li.is-active.has-text-black
                                                     a
                                                         span.icon.is-small
                                                             i.fas.fa-list-ul(aria-hidden='true')
-                                                        span Announces
+                                                        span Ads
                                             else
                                                 li
-                                                    a(href=`${url}announces`).has-text-white
+                                                    a(href=`${url}ads`).has-text-white
                                                         span.icon.is-small
                                                             i.fas.fa-list-ul(aria-hidden='true')
-                                                        span Announces
+                                                        span Ads
 
-                                            if(auth && announcer)
+                                            if(auth && agent)
                                                 if(page==="form")
                                                     li.is-active.has-text-black
                                                         a
                                                             span.icon.is-small
                                                                 i.far.fa-file-alt(aria-hidden='true')
-                                                            span Add an announce
+                                                            span Add an ad
                                                 else
                                                     li
                                                         a(href=`${url}form`).has-text-white
                                                             span.icon.is-small
                                                                 i.far.fa-file-alt(aria-hidden='true')
-                                                            span Add an announce
+                                                            span Add an ad
 
                                             if(page==="about")
                                                 li.is-active.has-text-black
@@ -96,10 +96,10 @@ html
                                                             span Login
                                                 else
                                                     li
-                                                    a(href=`${url}login`).has-text-white
-                                                        span.icon.is-small
-                                                            i.fas.fa-plug(aria-hidden='true')
-                                                        span Login
+                                                        a(href=`${url}login`).has-text-white
+                                                            span.icon.is-small
+                                                                i.fas.fa-plug(aria-hidden='true')
+                                                            span Login
 
                                                 if(page==="signup")
                                                     li.is-active.has-text-black
@@ -116,11 +116,10 @@ html
 
                                             if(auth)
                                                 li
-                                                form(action=`${url}login/logout` method='post')
+                                                form(action=`${url}login/logout` method='post') &nbsp;
                                                     button.btn-link(type='submit' name='logout' value='logout')
-                                                        span.icon.is-small
-                                                            i.fas.fa-sign-out-alt(aria-hidden='true')
-                                                        span Log out 
+                                                        i.fas.fa-sign-out-alt(aria-hidden='true')
+                                                        span &nbsp; Log out 
                                                         span (#{name})
 
             block middle

@@ -2,88 +2,88 @@ extends layout
 
 block middle
     section.section
-        if announces.length
-            each announce in announces.reverse()
-                if announcer || announce.publicationStatus === 'Published'
+        if ads.length
+            each ad in ads.reverse()
+                if agent || ad.publicationStatus === 'Published'
                     .columns.is-mobile.is-centered.has-text-black
                         .column
                             .columns.is-centered
                                 .column.is-half
                                     .box
-                                        a(href=`announces/${announce.id}`)
+                                        a(href=`ads/${ad.id}`)
                                             .columns
                                                 .column.is-one-fifth
                                                     figure
-                                                        if(announce.photos.length)
-                                                            img(src=`images/${announce.photos[0]}`)
+                                                        if(ad.photos.length)
+                                                            img(src=`images/${ad.photos[0]}`)
                                                         else
                                                             img(src='img/notImage.jpg')
 
                                                 .column.is-three-quarters
-                                                    p.title.is-2.has-text-centered &nbsp; #{announce.title}
+                                                    p.title.is-2.has-text-centered &nbsp; #{ad.title}
 
-                                                    p.h2.subtitle.has-text-centered &nbsp; #{announce.description}
+                                                    p.h2.subtitle.has-text-centered &nbsp; #{ad.description}
 
                                 .column.is-one-fifth
                                     .box
                                         .icon-text
                                             span.icon.has-text-info
                                                 i.fas.fa-info-circle
-                                            span #{announce.type}
+                                            span #{ad.type}
 
                                         .icon-text
-                                            if announce.goodStatus === 'Available'
+                                            if ad.goodStatus === 'Available'
                                                 span.icon.has-text-success
                                                     i.fas.fa-check-square
-                                                span #{announce.goodStatus}
-                                            else if announce.goodStatus === 'Rented'
+                                                span #{ad.goodStatus}
+                                            else if ad.goodStatus === 'Rented'
                                                 span.icon.has-text-warning
                                                     i.fas.fa-exclamation-triangle
-                                                span #{announce.goodStatus}
+                                                span #{ad.goodStatus}
                                             else
                                                 span.icon.has-text-danger
                                                     i.fas.fa-times
-                                                span #{announce.goodStatus}
+                                                span #{ad.goodStatus}
 
                                         .icon-text
                                             span.icon.has-text-info
                                                 i.fas.fa-user
-                                            span #{announce.author}
+                                            span #{ad.author}
 
-                                    if announcer
+                                    if agent
                                         .columns.is-mobile.is-centered.has-text-black
                                             .column
                                                 .box
                                                     .icon-text
-                                                        if announce.publicationStatus === 'Published'
+                                                        if ad.publicationStatus === 'Published'
                                                             span.icon.has-text-success
                                                                 i.fas.fa-check-square
-                                                            span #{announce.publicationStatus}
+                                                            span #{ad.publicationStatus}
                                                         else
                                                             span.icon.has-text-danger
                                                                 i.fas.fa-times
-                                                            span #{announce.publicationStatus}
+                                                            span #{ad.publicationStatus}
 
                                 .column.is-one-fifth
                                     .box
                                         .icon-text
                                             span.icon.has-text-info
                                                 i.fas.fa-euro-sign
-                                            span #{announce.price}
+                                            span #{ad.price}
 
                                         .icon-text
                                             span.icon.has-text-info
                                                 i.far.fa-calendar-alt
                                             span From &nbsp;
-                                            span #{announce.firstDate.toDateString()}
+                                            span #{ad.firstDate.toDateString()}
                                         .icon-text
                                             span.icon.has-text-info
                                                 i.far.fa-calendar-alt
                                             span To &nbsp;
-                                            span #{announce.secondDate.toDateString()}
+                                            span #{ad.secondDate.toDateString()}
 
 
         else
             h1.title
                 .has-text-black
-                    .has-text-centered No announces yet :(
+                    .has-text-centered No ads yet :(

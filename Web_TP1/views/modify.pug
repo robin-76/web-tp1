@@ -21,21 +21,21 @@ block middle
                         label.label(for='title') Title
                         .control
                         input.input(type='text' required='required' id='title' name='title'
-                            placeholder='New title of your ad ...' value=announceId.title)
+                            placeholder='New title of your ad ...' value=adId.title)
 
                         .field
                         label.label(for='description') Description
                         .control
                         textarea.textarea(name='description' required='required' id ='description'
-                            placeholder='New description of your announce in a few lines ...'
-                            value=announceId.description) #{announceId.description}
+                            placeholder='New description of your ad in a few lines ...'
+                            value=adId.description) #{adId.description}
 
                         .field
                         label.label(for='photos') Photos (optionnal)
                             .column.is-one-quarter
                                 figure
-                                        if(announceId.photos.length)
-                                            each picture in announceId.photos
+                                        if(adId.photos.length)
+                                            each picture in adId.photos
                                                 img(src=`/images/${picture}`)
                                         else
                                             img(src='/images/notImage.jpg')
@@ -48,13 +48,13 @@ block middle
                         .preview-images
 
                         .field
-                            p.title.has-text-black Announce settings
+                            p.title.has-text-black Ad settings
 
                         .field
                         label.label(for='price') Price (€)
                         .control
                         input.input(type='number' required='required' id='price' name='price' min='0'
-                            placeholder='Enter a new price ...' value=announceId.price)
+                            placeholder='Enter a new price ...' value=adId.price)
 
                         .field
                             .columns
@@ -73,7 +73,7 @@ block middle
                         .field
                         label.label Type
                         .control.has-text-black
-                            if(announceId.type === "Sell")
+                            if(adId.type === "Sell")
                                 label.radio
                                     input(type='radio' name='type' required='required' value='Sell' checked='')
                                     |   Sell
@@ -91,7 +91,7 @@ block middle
                         .field
                         label.label Status
                         .control.has-text-black
-                            if(announceId.goodStatus === "Available")
+                            if(adId.goodStatus === "Available")
                                 label.radio
                                     input(type='radio' name='goodStatus' required='required' value='Available' checked='')
                                     |   Available
@@ -101,7 +101,7 @@ block middle
                                 label.radio
                                     input(type='radio' name='goodStatus' required='required' value='Sold')
                                     |   Sold
-                            else if(announceId.goodStatus === "Rented")
+                            else if(adId.goodStatus === "Rented")
                                 label.radio
                                     input(type='radio' name='goodStatus' required='required' value='Available')
                                     |   Available
@@ -125,7 +125,7 @@ block middle
                         .field
                         label.label Publication
                         .control.has-text-black
-                            if(announceId.publicationStatus === "Published")
+                            if(adId.publicationStatus === "Published")
                                 label.radio
                                     input(type='radio' name='publicationStatus' required='required' value='Published' checked='')
                                     |   Published

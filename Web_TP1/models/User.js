@@ -17,7 +17,7 @@ const UserSchema = new mongoose.Schema({
         type: Date,
         default: Date.now
     },
-    announcer: {
+    agent: {
         type: Boolean,
         required: true
     }

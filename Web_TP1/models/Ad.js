@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 
-const AnnounceSchema = new mongoose.Schema({
+const AdSchema = new mongoose.Schema({
     author: {
         type: String,
         required: true
@@ -48,10 +48,10 @@ const AnnounceSchema = new mongoose.Schema({
 const CommentSchema = new mongoose.Schema({
     author: String,
     text: String,
-    announcer: Boolean,
+    agent: Boolean,
     date: {type: Date, default: Date.now},
-    announce: [{ type: mongoose.Schema.Types.ObjectId, ref: "Announce"}]
+    ad: [{ type: mongoose.Schema.Types.ObjectId, ref: "Ade"}]
 })
 
 module.exports = mongoose.model('Comment', CommentSchema);
-module.exports = mongoose.model('Announce', AnnounceSchema);
+module.exports = mongoose.model('Ad', AdSchema);

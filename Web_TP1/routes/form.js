@@ -2,7 +2,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const { validationResult } = require('express-validator');
 const router = express.Router();
-const Announce = mongoose.model('Announce');
+const Ad = mongoose.model('Ad');
 const auth = require('./auth');
 const upload = require('./upload');
 
@@ -10,13 +10,13 @@ const upload = require('./upload');
 router.get('/', auth, (req, res) => {
     const auth = req.session.isAuth;
     const name = req.session.name;
-    const announcer = req.session.announcer;
+    const agent = req.session.agent;
     const url = "/";
     const page = "form";
-    res.render('form', { title: 'Form', auth, name, announcer, url, page });
+    res.render('form', { title: 'Form', auth, name, agent, url, page });
 });
 
-// Create form (create an announce)
+// Create form (create an ad)
 router.post('/', async(req, res) => {
     try {
         const errors = validationResult(req);
@@ -28,8 +28,8 @@ router.post('/', async(req, res) => {
         });
         req.body.author = req.session.name;
         req.body.photos = filenames;
-        const announce = new Announce(req.body);
-        announce.save()
+        const ad = new Ad(req.body);
+        ad.save()
             .then(() => { res.redirect('/validation'); })
             .catch((err) => {
                 console.log(err);
@@ -38,7 +38,7 @@ router.post('/', async(req, res) => {
 
           } else {
             res.render('form', {
-                title: 'Announce form',
+                title: 'Ad form',
                 errors: errors.array(),
                 data: req.body,
             }); 

@@ -5,10 +5,10 @@ const router = express.Router();
 router.get('/', function(req, res) {
   const auth = req.session.isAuth;
   const name = req.session.name;
-  const announcer =req.session.announcer;
+  const agent =req.session.agent;
   const url = "/";
   const page = "index";
-  res.render('index', { title: 'Home', auth, name, announcer, url, page });
+  res.render('index', { title: 'Home', auth, name, agent, url, page });
 });
 
 module.exports = router;

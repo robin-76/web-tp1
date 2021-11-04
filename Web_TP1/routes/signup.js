@@ -10,7 +10,7 @@ router.get('/', (req, res) => {
   const error = req.session.error;
   const auth = req.session.isAuth;
   const name = req.session.name;
-  const announcer = req.session.announcer;
+  const agent = req.session.agent;
   const url = "/";
   const page = "signup";
   delete req.session.error;
@@ -18,7 +18,7 @@ router.get('/', (req, res) => {
   if(auth)
     res.redirect("/");
     
-  res.render("signup", { err: error, auth, name, announcer, url, page });
+  res.render("signup", { err: error, auth, name, agent, url, page });
 });
 
 // Create the account

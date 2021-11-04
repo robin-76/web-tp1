@@ -3,11 +3,11 @@ module.exports = (req, res, next) => {
       req.session.error = "You have to Login first";
       res.redirect("/login");
     } 
-    else if(!req.session.announcer){
+    else if(!req.session.agent){
       res.redirect("/");
     }
 
-    else if(req.session.announcer){
+    else if(req.session.agent){
       next();
     }
   };

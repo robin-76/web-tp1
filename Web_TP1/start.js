@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 
 mongoose.connect(process.env.DB, {
     useNewUrlParser: true,
-    useUnifiedTopology: true,
+    useUnifiedTopology: true
 });
 
 mongoose.connection
@@ -14,7 +14,7 @@ mongoose.connection
         console.log(`Connection error: ${err.message}`);
     });
 
-require('./models/Announce');
+require('./models/Ad');
 require('./models/User');
 
 const app = require('./app');
@@ -22,5 +22,3 @@ const app = require('./app');
 const server = app.listen(3000, () => {
     console.log(`Express is running on port ${server.address().port}`);
 });
-
-console.log('Server is running on http://localhost:3000')
