@@ -1,7 +1,9 @@
+// Import routes
 const express = require('express');
 const session = require("express-session");
 const MongoDBStore = require("connect-mongodb-session")(session);
 const path = require('path');
+
 const indexRouter = require('./routes/index');
 const formRouter = require('./routes/form');
 const aboutRouter = require('./routes/about');
@@ -14,13 +16,14 @@ const authRouter = require('./routes/auth');
 const app = express();
 
 const store = new MongoDBStore({
-  uri: "mongodb://localhost:27017/LeBonLogement",
+  uri: process.env.DB,
   collection: "sessions",
 });
 
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
 
+// Middlewares
 app.use(express.urlencoded({ extended: true }));
 app.use('/bulma', express.static(__dirname + '/node_modules/bulma/css/'));
 app.use(express.static(path.join(__dirname, 'public')));

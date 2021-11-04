@@ -96,24 +96,31 @@ block middle
                     .media-content
                         .content
                         each comment in commentId
-                            b #{comment.author}
+                            b #{comment.author} &nbsp;
                             if(comment.announcer)
+                                span.icon.has-text-danger &nbsp;
+                                    i.fas.fa-user-lock
+                            else
                                 span.icon.has-text-info &nbsp;
-                                    i.fas.fa-check
+                                    i.fas.fa-user
                             span &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; #{comment.date.toLocaleString()}    
-                            textarea.textarea(name='comments' readonly='true')
-                                | #{comment.text}
+                            p #{comment.text}
                             br 
-     
-        if(auth)
-            .columns.is-centered
-                .column.is-half
-                    article.media
-                        .media-content
-                            .field
-                                p.control
-                                    form(action=`/announces/comment/${announceId.id}` method='POST')
+
+        .columns.is-centered
+            .column.is-half
+                article.media
+                    .media-content
+                        .field
+                            p.control
+                                form(action=`/announces/comment/${announceId.id}` method='POST')
+                                    if(!auth)
+                                        textarea.textarea(name='comment' placeholder='Login to post a comment...' disabled='')
+                                        br
+                                        button.button.is-success(type='submit' value='submit' style='display: block; margin: 0 auto;' disabled='') Post comment
+                                    else
                                         textarea.textarea(name='comment' placeholder='Write a comment...' required='true')
                                         br
                                         button.button.is-success(type='submit' value='submit' style='display: block; margin: 0 auto;') Post comment
+
 

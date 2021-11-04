@@ -6,7 +6,7 @@ const Announce = mongoose.model('Announce');
 const auth = require('./auth');
 const upload = require('./upload');
 
-//Get form
+// Get form
 router.get('/', auth, (req, res) => {
     const auth = req.session.isAuth;
     const name = req.session.name;
@@ -16,6 +16,7 @@ router.get('/', auth, (req, res) => {
     res.render('form', { title: 'Form', auth, name, announcer, url, page });
 });
 
+// Create form (create an announce)
 router.post('/', async(req, res) => {
     try {
         const errors = validationResult(req);

@@ -10,7 +10,8 @@ block middle
                     li= error.msg
 
         if err
-            h1 #{err}
+            h1.title.has-text-centered #{err}
+
         form(action='login' method='POST')
             .columns.is-centered
                 .column.is-half

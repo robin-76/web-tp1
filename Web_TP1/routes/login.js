@@ -4,6 +4,7 @@ const bcrypt = require('bcryptjs');
 const mongoose = require('mongoose');
 const User = mongoose.model('User');
 
+// Get the login form to log
 router.get('/', (req, res) => {
   const error = req.session.error;
   delete req.session.error;
@@ -18,6 +19,7 @@ router.get('/', (req, res) => {
   res.render("login", { err: error, auth, name, announcer, url, page });
 });
 
+// Log in the website
 router.post('/', async(req, res) => {
     // Checking if the name exists
     const user = await User.findOne({name: req.body.name});
@@ -34,16 +36,14 @@ router.post('/', async(req, res) => {
           return res.redirect("/login");
     }
 
-    if(user.announcer)
-      req.session.announcer = true;
-    else 
-      req.session.announcer = false;  
+    req.session.announcer = !!user.announcer;
 
     req.session.name = user.name;  
     req.session.isAuth = true;
     res.redirect('/');
 }); 
 
+// Log out from the website
 router.post('/logout', async(req, res) => {
     req.session.destroy((err) => {
         if (err) throw err;

@@ -7,7 +7,7 @@ const auth = require('./auth');
 const upload = require('./upload');
 const fs = require('fs');
 
-// Get the announces
+// Get all the announces
 router.get('/', (req, res) => {
     const announcer = req.session.announcer;
     const name = req.session.name;
@@ -16,16 +16,16 @@ router.get('/', (req, res) => {
     const page = "announces";
     Announce.find()
         .then((announces) => {
-          res.render('announces', { title: 'Announces', announces, announcer, auth, name, url, page });
+            res.render('announces', { title: 'Announces', announces, announcer, auth, name, url, page });
         })
         .catch(() => { res.send('Sorry! Something went wrong.'); });
-  });
+});
 
 // Get a specific announce
 router.get('/:formId', async(req, res) => {
     try {
         const announceId = await Announce.findById(req.params.formId).populate('comments');
-        const commentId = await Comment.find({ announce: announceId._id}); 
+        const commentId = await Comment.find({ announce: announceId._id});
         const auth = req.session.isAuth;
         const name = req.session.name;
         const announcer = req.session.announcer;
@@ -59,15 +59,15 @@ router.post('/delete/:formId', auth, async(req, res) => {
     try {
         const announceId = await Announce.findById(req.params.formId);
         const oldPicture = announceId.photos;
-        
+
         await Announce.deleteOne({_id: req.params.formId})
-        
+
         // Deleting images
         for (let i = 0; i < oldPicture.length; i++) {
             fs.unlink(`public/images/${oldPicture[i]}`,(err) => {
                 if (err) throw err;
-             });
-          }
+            });
+        }
         res.redirect('/announces');
     } catch (err) {
         res.json({message: err});
@@ -81,47 +81,48 @@ router.post('/modify/:formId/', auth, async(req, res) => {
         const announceId = await Announce.findById(req.params.formId);
         const oldPicture = announceId.photos;
         let filenames;
-            
+
         if(req.files.length){
             filenames = req.files.map(function(file) { return file.filename; });
-        
+
             // Deleting images    
             for (let i = 0; i < oldPicture.length; i++) {
                 fs.unlink(`public/images/${oldPicture[i]}`,(err) => {
                     if (err) throw err;
                 });
-             }
+            }
         }
         else
             filenames = oldPicture;
-                  
+
         await Announce.updateOne({_id: req.params.formId},{$set:
-            {
-                title: req.body.title,
-                description: req.body.description,
-                publicationStatus: req.body.publicationStatus,
-                goodStatus: req.body.goodStatus,
-                type: req.body.type,
-                price: req.body.price,
-                firstDate: req.body.firstDate,
-                secondDate: req.body.secondDate,
-                photos: filenames
-            }}
+                {
+                    title: req.body.title,
+                    description: req.body.description,
+                    publicationStatus: req.body.publicationStatus,
+                    goodStatus: req.body.goodStatus,
+                    type: req.body.type,
+                    price: req.body.price,
+                    firstDate: req.body.firstDate,
+                    secondDate: req.body.secondDate,
+                    photos: filenames
+                }}
         );
-        
-        res.redirect('/announces');
+
+        res.redirect(`/announces/${announceId._id}`);
 
     } catch (error) {
         res.json({message: err});
         console.log(error);
-    
+
         if (error.code === "LIMIT_UNEXPECTED_FILE") {
-          return res.send("Too many files to upload.");
+            return res.send("Too many files to upload.");
         }
         return res.send(`Error when trying upload many files: ${error}`);
-      }
+    }
 });
 
+// Post a comment
 router.post('/comment/:formId', async(req, res) => {
     try {
         const announceId = await Announce.findById(req.params.formId).populate('comments');
@@ -133,12 +134,12 @@ router.post('/comment/:formId', async(req, res) => {
             announcer: req.session.announcer,
             announce: announceId._id
         })
-        
+
         tabComments.push(comment);
-        
+
         await Announce.updateOne({_id: req.params.formId},{$set: {
-                    comments: tabComments
-                }}
+                comments: tabComments
+            }}
         );
         res.redirect(`/announces/${announceId._id}`);
     } catch (err) {

@@ -5,6 +5,7 @@ const { validationResult } = require('express-validator');
 const router = express.Router();
 const User = mongoose.model('User');
 
+// Get signup form to create an account
 router.get('/', (req, res) => {
   const error = req.session.error;
   const auth = req.session.isAuth;
@@ -20,6 +21,7 @@ router.get('/', (req, res) => {
   res.render("signup", { err: error, auth, name, announcer, url, page });
 });
 
+// Create the account
 router.post('/', async(req, res) => {
     const errors = validationResult(req);
 
@@ -32,8 +34,7 @@ router.post('/', async(req, res) => {
 
     // Hash passwords
     const salt = await bcrypt.genSalt(10);
-    const hashedPassword = await bcrypt.hash(req.body.password, salt);
-    req.body.password = hashedPassword;
+    req.body.password = await bcrypt.hash(req.body.password, salt);
 
     if (errors.isEmpty()) {
         const user = new User(req.body);
