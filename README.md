@@ -31,7 +31,7 @@ Dans un nouveau terminal,
 
 Afficher les annonces créés :
 
-    db.announces.find().pretty()
+    db.ads.find().pretty()
 
 Afficher les utilisateurs crées :
 

@@ -35,9 +35,11 @@ router.post('/', async(req, res) => {
           req.session.error = "Invalid password";
           return res.redirect("/login");
     }
+    
+    // Expires after 1 hour
+    req.session.cookie.expires = new Date(Date.now() + 3600000);
 
     req.session.agent = !!user.agent;
-
     req.session.name = user.name;  
     req.session.isAuth = true;
     res.redirect('/');

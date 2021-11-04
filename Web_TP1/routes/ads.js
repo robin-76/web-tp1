@@ -57,10 +57,11 @@ router.get('/modify/:id/', auth, async(req, res) => {
 // Delete a specific ad
 router.post('/delete/:id', auth, async(req, res) => {
     try {
-        const adId = await Ad.findById(req.params.id);
+        const adId = await Ad.findById(req.params.id).populate('comments');
         const oldPicture = adId.photos;
 
-        await Ad.deleteOne({_id: req.params.id})
+        await Ad.deleteOne({_id: req.params.id});
+        await Comment.deleteMany({ ad: req.params.id });
 
         // Deleting images
         for (let i = 0; i < oldPicture.length; i++) {
