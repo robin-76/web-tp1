@@ -24,7 +24,7 @@ block middle
                         .field
                         label.label(for='description') Description
                         .control
-                        textarea.textarea(name='description' required='required' id ='description'
+                        textarea.textarea(name='description' required='required' id='description'
                             placeholder='Describe your ad in a few lines...' value=data.description)
 
                         .field
@@ -58,6 +58,7 @@ block middle
                                     .control
                                     input.input(type='date' required='required' id='secondDate' name='secondDate' min='2021-01-01' max='2100-12-31'
                                         value=data.secondDate)
+                            #message.title.has-text-black.has-text-centered
 
                         .field
                         label.label Type
@@ -97,4 +98,24 @@ block middle
                                 .column
                                     br
                                     .control
-                                    button.button.is-success(type='submit' value='submit' style='display: block; margin: 0 auto;') Submit
+                                    button.button.is-success(type='submit' value='submit' name='submit' id='submit'
+                                       style='display: block; margin: 0 auto;') Submit
+
+    script(type='text/javascript').
+        let startInput = document.getElementById('firstDate');
+        let endInput = document.getElementById('secondDate');
+        let messageDiv = document.getElementById('message');
+        let submitButton = document.getElementById('submit');
+        let compare = () => {
+            let startValue = (new Date(startInput.value)).getTime();
+            let endValue = (new Date(endInput.value)).getTime();
+            if (endValue < startValue) {
+                messageDiv.innerHTML = 'Start date must be before end date !';
+                submitButton.disabled = true;
+            } else {
+                messageDiv.innerHTML = '';
+                submitButton.disabled = false;
+            }
+        };
+        startInput.addEventListener('change', compare);
+        endInput.addEventListener('change', compare);

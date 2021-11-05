@@ -11,6 +11,18 @@ block middle
                     br
                     p.is-2 &nbsp; #{adId.description}
 
+                .columns.is-centered
+                    .column
+                        figure
+                            .columns.is-centered
+                                if(adId.photos.length)
+                                    each picture in adId.photos
+                                        .column.is-one-third
+                                            img(src=`/images/${picture}`)
+                                else
+                                    .column.is-one-fifth
+                                        img(src='/img/notImage.jpg')
+
             .column.is-one-fifth
                 .box
                     .icon-text
@@ -65,19 +77,7 @@ block middle
                     .icon-text
                         span.icon.has-text-info
                             i.fas.fa-user
-                        span #{adId.author}    
-
-        .columns.is-centered
-            .column.is-half
-                figure
-                    .columns.is-centered
-                        if(adId.photos.length)
-                            each picture in adId.photos
-                                .column.is-one-third
-                                    img(src=`/images/${picture}`)
-                        else
-                            .column.is-one-fifth
-                                img(src='/img/notImage.jpg')
+                        span #{adId.author}
 
         .columns.is-centered
             .box.is-shadowless

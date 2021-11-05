@@ -12,7 +12,7 @@ describe('Ad', function() {
             useNewUrlParser: true,
             useUnifiedTopology: true
         });
-        
+
         mongoose.connection
             .on('open', () => {
                 console.log('Mongoose connection open');
@@ -36,7 +36,8 @@ describe('Ad', function() {
             publicationStatus: 'Published',
             goodStatus: 'Available',
             description: 'Magnifique appartement de 50 m² à louer',
-            price: '800'
+            price: '800',
+            photos: ['test_ad1.jpeg', 'test_ad2.jpeg']
         });
 
         ad.save()
@@ -46,15 +47,15 @@ describe('Ad', function() {
             });
 
         const ad2 = new Ad({
-                author: 'bob',
+                author: 'jerry',
                 title: 'Maison à vendre en campagne',
                 type: 'Sell',
                 publicationStatus: 'Published',
                 goodStatus: 'Available',
                 description: 'Maison de 200 m² à vendre',
-                price: '100'
+                price: '150000'
         });
-    
+
         ad2.save()
             .then(() => { done(); })
             .catch((err) => {
@@ -68,14 +69,21 @@ describe('Ad', function() {
             ad: ad._id
         })
 
+        const comment2 = Comment.create({
+            author: 'robert',
+            text: 'Bonjour alice, \nla maison fut construite en 1998. \n\nCordialement, \nRobert',
+            agent: true,
+            ad: ad._id
+        })
+
         Ad.updateOne({_id: ad._id},{$set: {
-                comments: comment
+                comments: comment, comment2
             }}
-        );            
+        );
 
     });
 
-    it('Author of ad', function(done) {
+    it('Author of the ad', function(done) {
         Ad.findOne({ title: 'Appartement à louer en centre-ville' })
         .then((ads) => {
             assert.equal(ads.author, 'bob');
@@ -92,7 +100,7 @@ describe('Ad', function() {
         })
         .catch((err) => { console.log(err); });
         });
-        
+
     it('Publication status of ad', function(done) {
         Ad.findOne({ title: 'Appartement à louer en centre-ville' })
         .then((ads) => {
@@ -101,8 +109,8 @@ describe('Ad', function() {
         })
         .catch((err) => { console.log(err); });
         });
-        
-    it('Status of ad', function(done) {
+
+    it('Status of the ad', function(done) {
         Ad.findOne({ title: 'Appartement à louer en centre-ville' })
         .then((ads) => {
             assert.equal(ads.goodStatus, 'Available');
@@ -110,8 +118,8 @@ describe('Ad', function() {
         })
         .catch((err) => { console.log(err); });
         });
-        
-    it('Desciption of ad', function(done) {
+
+    it('Description of the ad', function(done) {
         Ad.findOne({ title: 'Appartement à louer en centre-ville' })
         .then((ads) => {
             assert.equal(ads.description, 'Magnifique appartement de 50 m² à louer');
@@ -119,8 +127,8 @@ describe('Ad', function() {
         })
         .catch((err) => { console.log(err); });
         });
-        
-    it('Price of ad', function(done) {
+
+    it('Price of the ad', function(done) {
         Ad.findOne({ title: 'Appartement à louer en centre-ville' })
         .then((ads) => {
             assert.equal(ads.price, '800');
@@ -128,30 +136,52 @@ describe('Ad', function() {
         })
         .catch((err) => { console.log(err); });
         });
-        
+
     it('Author\'s ads', function(done) {
         Ad.find({ author: 'bob' })
         .then((ads) => {
             assert.equal(ads[0].title, 'Appartement à louer en centre-ville');
-            assert.equal(ads[1].title, 'Maison à vendre en campagne');
             done();
         })
         .catch((err) => { console.log(err); });
-        });    
+        });
 
-    it('Comments', function(done) {
-        Comment.find()
+    it('Photo(s) of the ad', function(done) {
+        Ad.findOne({ title: 'Appartement à louer en centre-ville' })
+            .then((ads) => {
+                assert.equal(ads.photos[0], 'test_ad1.jpeg');
+                assert.equal(ads.photos[1], 'test_ad2.jpeg');
+                done();
+            })
+            .catch((err) => { console.log(err); });
+    });
+
+    it('Comment viewer', function(done) {
+        Comment.find( {author: 'alice'})
         .then((comments) => {
             assert.equal(comments[0].text, 'Bonjour, en quelle année la maison a été construite ?');
+            assert.equal(comments[0].author, 'alice');
+            assert.equal(comments[0].agent, false);
             done();
         })
         .catch((err) => { console.log(err); });
-        });    
+        });
+
+    it('Comment agent', function(done) {
+        Comment.find( {author: 'robert'})
+            .then((comments) => {
+                assert.equal(comments[0].text, 'Bonjour alice, la maison fut construite en 1998. Cordialement, Robert');
+                assert.equal(comments[0].author, 'robert');
+                assert.equal(comments[0].agent, true);
+                done();
+            })
+            .catch((err) => { console.log(err); });
+    });
 
     afterEach(function(done) {
-        Ad.deleteMany({});
         Comment.deleteMany();
-        done();
-     }); 
-
+        Ad.deleteMany({}, function () {
+            done();
+        })
+     });
 });

@@ -4,10 +4,9 @@
   "private": true,
   "scripts": {
     "start": "nodemon ./start.js",
-    "test": "mocha ./test/test.ad.js"
-  },
-  "jest": {
-    "testEnvironment": "node"
+    "test": "npm run test:ad && npm run test:user",
+    "test:ad": "mocha ./test/test.ad.js",
+    "test:user": "mocha ./test/test.user.js"
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",
@@ -17,6 +16,7 @@
     "dotenv": "^10.0.0",
     "express": "^4.17.1",
     "express-session": "^1.17.2",
+    "mocha": "^9.1.3",
     "mongoose": "^6.0.12",
     "pug": "^3.0.2"
   },
@@ -27,7 +27,6 @@
   "description": "",
   "devDependencies": {
     "express-validator": "^6.13.0",
-    "jest": "^27.3.1",
     "mongodb": "^4.1.3",
     "multer": "^1.4.3",
     "nodemon": "^2.0.14"

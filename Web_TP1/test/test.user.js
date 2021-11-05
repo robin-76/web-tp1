@@ -11,7 +11,7 @@ describe('User', function() {
             useNewUrlParser: true,
             useUnifiedTopology: true
         });
-        
+
         mongoose.connection
             .on('open', () => {
                 console.log('Mongoose connection open');
@@ -51,19 +51,19 @@ describe('User', function() {
         .catch((err) => { console.log(err); });
         });
 
-    it('User is real state agent', function(done) {
+    it('User is a real state agent', function(done) {
         User.findOne({ name : 'bob'})
         .then((users) => {
             assert.equal(users.agent, true);
             done();
         })
         .catch((err) => { console.log(err); });
-        });    
+        });
 
     afterEach(function(done) {
         User.deleteMany({}, function() {
             done();
         });
-     }); 
+     });
 
 });

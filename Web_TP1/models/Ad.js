@@ -42,7 +42,12 @@ const AdSchema = new mongoose.Schema({
     photos: {
         type: [String]
     },
-    comments: [{ type: mongoose.Schema.Types.ObjectId, ref: "Comment"}]
+    comments: [
+        {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: "Comment"
+        }
+    ]
 })
 
 const CommentSchema = new mongoose.Schema({
