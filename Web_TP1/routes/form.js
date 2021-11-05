@@ -9,11 +9,11 @@ const upload = require('./upload');
 // Get form
 router.get('/', auth, (req, res) => {
     const auth = req.session.isAuth;
-    const name = req.session.name;
+    const username = req.session.username;
     const agent = req.session.agent;
     const url = "/";
     const page = "form";
-    res.render('form', { title: 'Form', auth, name, agent, url, page });
+    res.render('form', { title: 'Form', auth, username, agent, url, page });
 });
 
 // Create form (create an ad)
@@ -26,7 +26,7 @@ router.post('/', async(req, res) => {
         const filenames = req.files.map(function(file) {
           return file.filename;
         });
-        req.body.author = req.session.name;
+        req.body.author = req.session.username;
         req.body.photos = filenames;
         const ad = new Ad(req.body);
         ad.save()

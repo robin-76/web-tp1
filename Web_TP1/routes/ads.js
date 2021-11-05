@@ -10,13 +10,13 @@ const fs = require('fs');
 // Get all the ads
 router.get('/', (req, res) => {
     const agent = req.session.agent;
-    const name = req.session.name;
+    const username = req.session.username;
     const auth = req.session.isAuth;
     const url = "/";
     const page = "ads";
     Ad.find()
         .then((ads) => {
-            res.render('ads', { title: 'Ads', ads, agent, auth, name, url, page });
+            res.render('ads', { title: 'Ads', ads, agent, auth, username, url, page });
         })
         .catch(() => { res.send('Sorry! Something went wrong.'); });
 });
@@ -27,11 +27,11 @@ router.get('/:id', async(req, res) => {
         const adId = await Ad.findById(req.params.id).populate('comments');
         const commentId = await Comment.find({ ad: adId._id});
         const auth = req.session.isAuth;
-        const name = req.session.name;
+        const username = req.session.username;
         const agent = req.session.agent;
         const url = "../";
         const page = "adId";
-        res.render('adId', { title:'Ad', adId, commentId, agent, auth, name, url, page });
+        res.render('adId', { title:'Ad', adId, commentId, agent, auth, username, url, page });
     } catch(err) {
         res.json({ message : err });
     }
@@ -42,13 +42,13 @@ router.get('/modify/:id/', auth, async(req, res) => {
     try {
         const adId = await Ad.findById(req.params.id);
         const auth = req.session.isAuth;
-        const name = req.session.name;
+        const username = req.session.username;
         const agent = req.session.agent;
         const url = "../../";
         const page = "modify";
         const fDate = adId.firstDate.toISOString().split('T')[0];
         const sDate = adId.secondDate.toISOString().split('T')[0];
-        res.render('modify', { title: 'Modify', adId, auth, name, agent, url, page, fDate, sDate });
+        res.render('modify', { title: 'Modify', adId, auth, username, agent, url, page, fDate, sDate });
     } catch(err) {
         res.json({ message : err });
     }
@@ -130,7 +130,7 @@ router.post('/comment/:id', async(req, res) => {
         let tabComments = adId.comments;
 
         const comment = await Comment.create({
-            author: req.session.name,
+            author: req.session.username,
             text: req.body.comment,
             agent: req.session.agent,
             ad: adId._id

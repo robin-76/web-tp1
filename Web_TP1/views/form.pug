@@ -110,7 +110,7 @@ block middle
             let startValue = (new Date(startInput.value)).getTime();
             let endValue = (new Date(endInput.value)).getTime();
             if (endValue < startValue) {
-                messageDiv.innerHTML = 'Start date must be before end date !';
+                messageDiv.innerHTML = 'The end date must be after the start date !';
                 submitButton.disabled = true;
             } else {
                 messageDiv.innerHTML = '';

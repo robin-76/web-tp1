@@ -9,7 +9,7 @@ const User = mongoose.model('User');
 router.get('/', (req, res) => {
   const error = req.session.error;
   const auth = req.session.isAuth;
-  const name = req.session.name;
+  const username = req.session.username;
   const agent = req.session.agent;
   const url = "/";
   const page = "signup";
@@ -18,7 +18,7 @@ router.get('/', (req, res) => {
   if(auth)
     res.redirect("/");
     
-  res.render("signup", { err: error, auth, name, agent, url, page });
+  res.render("signup", { err: error, auth, username, agent, url, page });
 });
 
 // Create the account

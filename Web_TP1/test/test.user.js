@@ -29,7 +29,7 @@ describe('User', function() {
 
     beforeEach(function(done) {
         const user = new User({
-            name: 'bob',
+            username: 'bob',
             email: 'bob_76@gmail.com',
             password: 'pass',
             agent: true
@@ -42,8 +42,8 @@ describe('User', function() {
             });
     });
 
-    it('Find an email by name', function(done) {
-        User.findOne({ name : 'bob'})
+    it('Find an email by username', function(done) {
+        User.findOne({ username : 'bob'})
         .then((users) => {
             assert.equal(users.email, 'bob_76@gmail.com');
             done();
@@ -52,7 +52,7 @@ describe('User', function() {
         });
 
     it('User is a real state agent', function(done) {
-        User.findOne({ name : 'bob'})
+        User.findOne({ username : 'bob'})
         .then((users) => {
             assert.equal(users.agent, true);
             done();
