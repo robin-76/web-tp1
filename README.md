@@ -39,4 +39,8 @@ Afficher les utilisateurs créés :
 
 Afficher les sessions créées :
 
-    db.sessions.find().pretty()    
+    db.sessions.find().pretty() 
+
+Afficher les commentaires des utilisateurs : 
+
+    db.comments.find().pretty()

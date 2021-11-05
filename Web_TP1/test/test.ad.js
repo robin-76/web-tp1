@@ -170,7 +170,7 @@ describe('Ad', function() {
     it('Comment agent', function(done) {
         Comment.find( {author: 'robert'})
             .then((comments) => {
-                assert.equal(comments[0].text, 'Bonjour alice, la maison fut construite en 1998. Cordialement, Robert');
+                assert.equal(comments[0].text, 'Bonjour alice, \nla maison fut construite en 1998. \n\nCordialement, \nRobert');
                 assert.equal(comments[0].author, 'robert');
                 assert.equal(comments[0].agent, true);
                 done();
@@ -179,7 +179,12 @@ describe('Ad', function() {
     });
 
     afterEach(function(done) {
-        Comment.deleteMany();
+        Comment.deleteMany({}, function () {
+            done();
+        });
+    });
+
+    afterEach(function(done) {
         Ad.deleteMany({}, function () {
             done();
         })
