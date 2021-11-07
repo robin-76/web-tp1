@@ -25,10 +25,17 @@ router.get('/', (req, res) => {
 router.post('/', async(req, res) => {
     const errors = validationResult(req);
 
-    // Checking if the user is already in the database
+    // Checking if the email is already in the database
     const emailExist = await User.findOne({email: req.body.email});
     if(emailExist) {
-      req.session.error = "User already exists";
+      req.session.error = "Email already exists";
+      return res.redirect("/signup");
+    }
+
+    // Checking if the username is already in the database
+    const usernameExist = await User.findOne({username: req.body.username});
+    if(usernameExist) {
+      req.session.error = "Username already exists";
       return res.redirect("/signup");
     }
 

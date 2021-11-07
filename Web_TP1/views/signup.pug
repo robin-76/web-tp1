@@ -9,6 +9,9 @@ block middle
                 for error in errors
                     li= error.msg
 
+        if err
+            h1.title.has-text-centered #{err}            
+
         form(action='signup' method='POST')
             .columns.is-centered
                 .column.is-half
