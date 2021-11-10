@@ -69,6 +69,7 @@ block middle
                                     .control
                                     input.input(type='date' required='required' id='secondDate' name='secondDate'
                                         min='2021-01-01' max='2100-12-31' value=sDate)
+                            #message.title.has-text-black.has-text-centered
 
                         .field
                         label.label Type
@@ -142,4 +143,23 @@ block middle
 
                         .field
                         .control
-                        button.button.is-success(type='submit' value='submit' style='display: block; margin: 0 auto;') Modify                      
+                        button.button.is-success(type='submit' value='submit' style='display: block; margin: 0 auto;') Modify
+
+    script(type='text/javascript').
+        let startInput = document.getElementById('firstDate');
+        let endInput = document.getElementById('secondDate');
+        let messageDiv = document.getElementById('message');
+        let submitButton = document.getElementById('submit');
+        let compare = () => {
+            let startValue = (new Date(startInput.value)).getTime();
+            let endValue = (new Date(endInput.value)).getTime();
+            if (endValue < startValue) {
+                messageDiv.innerHTML = 'The end date must be after the start date !';
+                submitButton.disabled = true;
+            } else {
+                messageDiv.innerHTML = '';
+                submitButton.disabled = false;
+            }
+        };
+        startInput.addEventListener('change', compare);
+        endInput.addEventListener('change', compare);

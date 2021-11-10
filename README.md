@@ -1,25 +1,61 @@
-# Web - TP1
 
-Création d'un site Web de gestion d'annonces de biens immobiliers en utilisant les technologies Express.js et MongoDB.
+- Year : M2 IWOCS
+- Subject : WEB
+- TP : n°1
 
-# Commandes pour lancer le serveur
-Se mettre dans le répertoire :
+## Author(s)
+
+|Nom|Prénom|
+|--|--|
+| *Guyomar* | *Robin*|
+| *Bourgeaux* | *Maxence*|
+
+# Description
+
+Creation of a real estate ad management website using Express.js and MongoDB technologies.
+
+This site allows to create and display different ads. Here are the available features:
+- Basic account creation
+- Login
+
+If you are not logged in :
+- Only look at the list of ads
+
+If you are logged in but you are a customer :
+- Post a comment on a particular ad (ask a question for example)
+
+If you are a real estate agent (box to be chosen when creating your account) :
+- Create an ad :
+    - Title
+    - Description
+    - Photos (optional)
+    - Price
+    - Availability date
+    - Property type
+    - Property status
+    - Publication status
+- Modify the ad
+- Delete the ad
+- Post a comment on a particular ad (to answer a question for example)
+
+# Commands to launch the server
+Go to the directory :
 
     cd Web_TP1
 
-Installer les dépendances :
+Installing the dependencies :
 
     npm i
-    
-Lancer le serveur :
+
+Launch the server :
 
     npm start
 
-Lien du serveur : http://localhost:3000
+Server link : http://localhost:3000
 
-Pour vérifier la base de données :
+To check the database :
 
-Dans un nouveau terminal,
+In a new terminal,
 
     mongo
 
@@ -29,18 +65,18 @@ Dans un nouveau terminal,
 
     show collections
 
-Afficher les annonces créées :
+Display the created ads :
 
     db.ads.find().pretty()
 
-Afficher les utilisateurs créés :
+Show created users :
 
     db.users.find().pretty()
 
-Afficher les sessions créées :
+View created sessions:
 
     db.sessions.find().pretty() 
 
-Afficher les commentaires des utilisateurs : 
+View user comments :
 
     db.comments.find().pretty()

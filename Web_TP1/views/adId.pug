@@ -2,125 +2,126 @@ extends layout
 
 block middle
     section.section.is-size-5
-        .columns.is-centered
-            .column.is-one-fifth
+        if agent || adId.publicationStatus === 'Published'
+            .columns.is-centered
+                .column.is-one-fifth
 
-            .column.is-half.has-text-black
-                .box
-                    h1.title.is-2.has-text-centered &nbsp; #{adId.title}
-                    br
-                    p.is-2 &nbsp; #{adId.description}
+                .column.is-half.has-text-black
+                    .box
+                        h1.title.is-2.has-text-centered &nbsp; #{adId.title}
+                        br
+                        p.is-2 &nbsp; #{adId.description}
 
-                .columns.is-centered
-                    .column
-                        figure
-                            .columns.is-centered
-                                if(adId.photos.length)
-                                    each picture in adId.photos
-                                        .column.is-one-third
-                                            img(src=`/images/${picture}`)
+                    .columns.is-centered
+                        .column
+                            figure
+                                .columns.is-centered
+                                    if(adId.photos.length)
+                                        each picture in adId.photos
+                                            .column.is-one-third
+                                                img(src=`/images/${picture}`)
+                                    else
+                                        .column.is-one-fifth
+                                            img(src='/img/notImage.jpg')
+
+                .column.is-one-fifth
+                    .box
+                        .icon-text
+                            span.icon.has-text-info
+                                i.fas.fa-info-circle
+                            span #{adId.type}
+
+                        .icon-text
+                            if agent
+                                if adId.publicationStatus === 'Published'
+                                    span.icon.has-text-success
+                                        i.fas.fa-check-square
+                                    span #{adId.publicationStatus}
                                 else
-                                    .column.is-one-fifth
-                                        img(src='/img/notImage.jpg')
+                                    span.icon.has-text-danger
+                                        i.fas.fa-times
+                                    span #{adId.publicationStatus}
 
-            .column.is-one-fifth
-                .box
-                    .icon-text
-                        span.icon.has-text-info
-                            i.fas.fa-info-circle
-                        span #{adId.type}
-
-                    .icon-text
-                        if agent
-                            if adId.publicationStatus === 'Published'
+                        .icon-text
+                            if adId.goodStatus === 'Available'
                                 span.icon.has-text-success
                                     i.fas.fa-check-square
-                                span #{adId.publicationStatus}
+                                span #{adId.goodStatus}
+                            else if adId.goodStatus === 'Rented'
+                                span.icon.has-text-warning
+                                    i.fas.fa-exclamation-triangle
+                                span #{adId.goodStatus}
                             else
                                 span.icon.has-text-danger
                                     i.fas.fa-times
-                                span #{adId.publicationStatus}
+                                span #{adId.goodStatus}
 
-                    .icon-text
-                        if adId.goodStatus === 'Available'
-                            span.icon.has-text-success
-                                i.fas.fa-check-square
-                            span #{adId.goodStatus}
-                        else if adId.goodStatus === 'Rented'
-                            span.icon.has-text-warning
-                                i.fas.fa-exclamation-triangle
-                            span #{adId.goodStatus}
-                        else
-                            span.icon.has-text-danger
-                                i.fas.fa-times
-                            span #{adId.goodStatus}
+                    .box
+                        .icon-text
+                            span.icon.has-text-info
+                                i.fas.fa-euro-sign
+                            span #{adId.price}
 
-                .box
-                    .icon-text
-                        span.icon.has-text-info
-                            i.fas.fa-euro-sign
-                        span #{adId.price}
+                    .box
+                        .icon-text
+                            span.icon.has-text-info
+                                i.far.fa-calendar-alt
+                            span From &nbsp;
+                            span #{adId.firstDate.toDateString()}
+                        .icon-text
+                            span.icon.has-text-info
+                                i.far.fa-calendar-alt
+                            span To &nbsp;
+                            span #{adId.secondDate.toDateString()}
 
-                .box
-                    .icon-text
-                        span.icon.has-text-info
-                            i.far.fa-calendar-alt
-                        span From &nbsp;
-                        span #{adId.firstDate.toDateString()}
-                    .icon-text
-                        span.icon.has-text-info
-                            i.far.fa-calendar-alt
-                        span To &nbsp;
-                        span #{adId.secondDate.toDateString()}
-                
-                .box
-                    .icon-text
-                        span.icon.has-text-info
-                            i.fas.fa-user
-                        span #{adId.author}
+                    .box
+                        .icon-text
+                            span.icon.has-text-info
+                                i.fas.fa-user
+                            span #{adId.author}
 
-        .columns.is-centered
-            .box.is-shadowless
-                if agent
-                    form(action=`/ads/modify/${adId.id}` method='GET')
-                        button.button.is-success.is-rounded(type='submit' value='submit' style='display: block; margin: 0 auto;') Modify
+            .columns.is-centered
+                .box.is-shadowless
+                    if agent
+                        form(action=`/ads/modify/${adId.id}` method='GET')
+                            button.button.is-success.is-rounded(type='submit' value='submit' style='display: block; margin: 0 auto;') Modify
 
-            .box.is-shadowless
-                if agent
-                    form(action=`/ads/delete/${adId.id}` method='POST')
-                        button.button.is-danger.is-rounded(type='submit' value='submit' style='display: block; margin: 0 auto;') Delete
+                .box.is-shadowless
+                    if agent
+                        form(action=`/ads/delete/${adId.id}` method='POST')
+                            button.button.is-danger.is-rounded(type='submit' value='submit' style='display: block; margin: 0 auto;') Delete
 
-        .columns.is-centered
-            .column.is-half
-                article.media
-                    .media-content
-                        .content
-                        each comment in commentId
-                            if(comment.agent)
-                                b(style='color:#FF0000') #{comment.author}
-                                span.icon.has-text-info &nbsp;
-                                    i.fas.fa-check
-                            else 
-                                b #{comment.author}        
-                            span &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; #{comment.date.toLocaleString()}    
-                            textarea.textarea(name='comments' readonly='true')
-                                | #{comment.text}
-                            br
- 
-        .columns.is-centered
-            .column.is-half
-                article.media
-                    .media-content
-                        .field
-                            p.control
-                                form(action=`/ads/comment/${adId.id}` method='POST')
-                                    if(!auth)
-                                        textarea.textarea(name='comment' placeholder='Login to post a comment...' disabled='')
-                                        br
-                                        button.button.is-success(type='submit' value='submit' style='display: block; margin: 0 auto;' disabled='') Post comment
-                                    else
-                                        textarea.textarea(name='comment' placeholder='Write a comment...' required='true')
-                                        br
-                                        button.button.is-success(type='submit' value='submit' style='display: block; margin: 0 auto;') Post comment
+            .columns.is-centered
+                .column.is-half
+                    article.media
+                        .media-content
+                            .content
+                            each comment in commentId
+                                if(comment.agent)
+                                    b(style='color:#FF0000') #{comment.author}
+                                    span.icon.has-text-info &nbsp;
+                                        i.fas.fa-check
+                                else
+                                    b #{comment.author}
+                                span &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; #{comment.date.toLocaleString()}
+                                textarea.textarea(name='comments' readonly='true')
+                                    | #{comment.text}
+                                br
+
+            .columns.is-centered
+                .column.is-half
+                    article.media
+                        .media-content
+                            .field
+                                p.control
+                                    form(action=`/ads/comment/${adId.id}` method='POST')
+                                        if(!auth)
+                                            textarea.textarea(name='comment' placeholder='Login to post a comment...' disabled='')
+                                            br
+                                            button.button.is-success(type='submit' value='submit' style='display: block; margin: 0 auto;' disabled='') Post comment
+                                        else
+                                            textarea.textarea(name='comment' placeholder='Write a comment...' required='true')
+                                            br
+                                            button.button.is-success(type='submit' value='submit' style='display: block; margin: 0 auto;') Post comment
 
 
