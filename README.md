@@ -80,3 +80,33 @@ View created sessions:
 View user comments :
 
     db.comments.find().pretty()
+
+# Screenshots
+
+Sign up :
+
+![Sign up](Web_TP1/public/screenshots/1-signup.png)
+
+Login :
+
+![Login](Web_TP1/public/screenshots/2-login.png)
+
+Home :
+
+![Home](Web_TP1/public/screenshots/3-Home.png)
+
+Form :
+
+![Form](Web_TP1/public/screenshots/4-Form.png)
+
+Ads :
+
+![Ads](Web_TP1/public/screenshots/5-Ads.png)
+
+Ad :
+
+![Ad](Web_TP1/public/screenshots/6-Ad.png)
+
+About :
+
+![About](Web_TP1/public/screenshots/7-About.png)
